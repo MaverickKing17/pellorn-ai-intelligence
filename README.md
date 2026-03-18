@@ -1,12 +1,12 @@
 bastion-audit
-ReactTypeScriptTailwindOSFIPIPEDAStatus
-Enterprise AI Security Posture Management (AI-SPM) and runtime governance layer for Canadian financial institutions. Bastion acts as a semantic firewall between autonomous AI agents and the enterprise systems they control — intercepting prompt injections, preventing PII leakage, and providing real-time OSFI E-21 compliance monitoring across your entire AI agent fleet.
+
+Enterprise AI Security Posture Management (AI-SPM) and a runtime governance layer for Canadian financial institutions. Bastion acts as a semantic firewall between autonomous AI agents and the enterprise systems they control — intercepting prompt injections, preventing PII leakage, and providing real-time OSFI E-21 compliance monitoring across your entire AI agent fleet.
 
 ⚡ Real-time Interception
 Sub-10ms guardrail execution across Lakera Guard, Presidio PII detection, and financial compliance checks.
 
 🧠 Behavioral Drift Detection
-30-day baseline profiling per agent. Circuit-breaker auto-terminates sessions that deviate beyond threshold.
+30-day baseline profiling per agent. Circuit-breaker auto-terminates sessions that deviate beyond the threshold.
 
 🔐 Zero Trust Agent Identity
 JIT cryptographic identity per agent session. Short-lived tokens replace static API keys.
