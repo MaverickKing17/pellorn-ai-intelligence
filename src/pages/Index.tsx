@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Radio, FlaskConical, Box, Shield, Activity, FileText } from 'lucide-react';
+import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
 import Footer from '@/components/layout/Footer';
@@ -9,13 +9,15 @@ import ModelInventory from '@/components/dashboard/ModelInventory';
 import VulnerabilityAudit from '@/components/dashboard/VulnerabilityAudit';
 import BehavioralDrift from '@/components/dashboard/BehavioralDrift';
 import BoardReport from '@/components/dashboard/BoardReport';
+import PolicyEnforcement from '@/components/dashboard/PolicyEnforcement';
 
 const tabs = [
   { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
-  { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical, badge: 'NEW' },
+  { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert, badge: 'NEW' },
+  { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
-  { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity, badge: 'NEW' },
+  { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity },
   { id: 'board-report', label: 'Board Report', icon: FileText },
 ];
 
@@ -26,6 +28,7 @@ export default function Index() {
   const renderTab = () => {
     switch (activeTab) {
       case 'threat-feed': return <LiveThreatFeed />;
+      case 'policy-engine': return <PolicyEnforcement />;
       case 'red-team': return <RedTeamSandbox />;
       case 'model-inventory': return <ModelInventory />;
       case 'vuln-audit': return <VulnerabilityAudit />;
