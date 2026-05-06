@@ -28,6 +28,7 @@ export default function Index() {
   const renderTab = () => {
     switch (activeTab) {
       case 'threat-feed': return <LiveThreatFeed />;
+      case 'policy-engine': return <PolicyEnforcement />;
       case 'red-team': return <RedTeamSandbox />;
       case 'model-inventory': return <ModelInventory />;
       case 'vuln-audit': return <VulnerabilityAudit />;
