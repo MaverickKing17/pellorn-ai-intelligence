@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from 'react';
-import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert, Loader2 } from 'lucide-react';
+import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert, Loader2, Stethoscope } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
 import Footer from '@/components/layout/Footer';
@@ -11,6 +11,7 @@ const VulnerabilityAudit = lazy(() => import('@/components/dashboard/Vulnerabili
 const BehavioralDrift = lazy(() => import('@/components/dashboard/BehavioralDrift'));
 const BoardReport = lazy(() => import('@/components/dashboard/BoardReport'));
 const PolicyEnforcement = lazy(() => import('@/components/dashboard/PolicyEnforcement'));
+const DiagnosticsPanel = lazy(() => import('@/components/dashboard/DiagnosticsPanel'));
 
 const tabs = [
   { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
@@ -20,6 +21,7 @@ const tabs = [
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
   { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity },
   { id: 'board-report', label: 'Board Report', icon: FileText },
+  { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
 ];
 
 export default function Index() {
@@ -35,6 +37,7 @@ export default function Index() {
       case 'vuln-audit': return <VulnerabilityAudit />;
       case 'behavioral-drift': return <BehavioralDrift />;
       case 'board-report': return <BoardReport />;
+      case 'diagnostics': return <DiagnosticsPanel />;
       default: return <LiveThreatFeed />;
     }
   };
