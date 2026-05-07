@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert } from 'lucide-react';
+import { useState, lazy, Suspense } from 'react';
+import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert, Loader2 } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
 import Footer from '@/components/layout/Footer';
 import LiveThreatFeed from '@/components/dashboard/LiveThreatFeed';
-import RedTeamSandbox from '@/components/dashboard/RedTeamSandbox';
-import ModelInventory from '@/components/dashboard/ModelInventory';
-import VulnerabilityAudit from '@/components/dashboard/VulnerabilityAudit';
-import BehavioralDrift from '@/components/dashboard/BehavioralDrift';
-import BoardReport from '@/components/dashboard/BoardReport';
-import PolicyEnforcement from '@/components/dashboard/PolicyEnforcement';
+
+const RedTeamSandbox = lazy(() => import('@/components/dashboard/RedTeamSandbox'));
+const ModelInventory = lazy(() => import('@/components/dashboard/ModelInventory'));
+const VulnerabilityAudit = lazy(() => import('@/components/dashboard/VulnerabilityAudit'));
+const BehavioralDrift = lazy(() => import('@/components/dashboard/BehavioralDrift'));
+const BoardReport = lazy(() => import('@/components/dashboard/BoardReport'));
+const PolicyEnforcement = lazy(() => import('@/components/dashboard/PolicyEnforcement'));
 
 const tabs = [
   { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
@@ -71,7 +72,9 @@ export default function Index() {
           })}
         </div>
 
-        {renderTab()}
+        <Suspense fallback={<div className="flex items-center justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-text-secondary" /></div>}>
+          {renderTab()}
+        </Suspense>
       </main>
 
       <div className="lg:ml-60">
