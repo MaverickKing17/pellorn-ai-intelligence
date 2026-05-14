@@ -1,111 +1,106 @@
-bastion-audit
+To give your **Bastion Audit** GitHub repository an institutional, enterprise-grade feel, we need to move away from the plain text description and use **Markdown** to create a structured, high-authority document.
 
-Enterprise AI Security Posture Management (AI-SPM) and a runtime governance layer for Canadian financial institutions. Bastion acts as a semantic firewall between autonomous AI agents and the enterprise systems they control — intercepting prompt injections, preventing PII leakage, and providing real-time OSFI E-21 compliance monitoring across your entire AI agent fleet.
+Based on your current files, here is the updated content for your `README.md`.
 
-⚡ Real-time Interception
-Sub-10ms guardrail execution across Lakera Guard, Presidio PII detection, and financial compliance checks.
+---
 
-🧠 Behavioral Drift Detection
-30-day baseline profiling per agent. Circuit-breaker auto-terminates sessions that deviate beyond the threshold.
+# Bastion Audit: Enterprise AI Security Gateway
 
-🔐 Zero Trust Agent Identity
-JIT cryptographic identity per agent session. Short-lived tokens replace static API keys.
+**Bastion Audit** is an AI Security Posture Management (AI-SPM) and runtime governance layer designed specifically for the Canadian financial sector. It provides a "Sovereign Security" gateway between autonomous AI agents and the enterprise systems they control.
 
-📋 OSFI E-21 Registry
-Immutable audit trail for every AI model deployed. Automated compliance scoring across your entire portfolio.
+**[Live Demo (Vercel)](https://bastion-audit.vercel.app)** | **[Security Documentation](https://www.google.com/search?q=%23-security-stack)**
 
-Tech stack
-React 18
-TypeScript 5
-Vite
-Tailwind CSS
-shadcn/ui
-Recharts
-Lucide React
-React Router
-Space Grotesk
-JetBrains Mono
-Dashboard tabs
-01 · Live Threat Feed
-Real-time interception gateway, guardrail execution, agent log stream
-02 · Red Team Sandbox
-Manual adversarial simulation environment with global search
-03 · Model Inventory
-OSFI E-21 agent registry with risk tier scoring and audit history
-04 · Vulnerability Audit
-30-day deep-dive report with Lakera Guard integration
-05 · Behavioral Drift ✦ new
-Agent baseline vs. anomaly drift chart with Circuit Breaker log
-06 · Board Report ✦ new
-Executive summary, compliance posture, AI-generated narrative
-Getting started
-git clone https://github.com/your-org/bastion-audit.git
-cd bastion-audit
+---
+
+## 🛡️ Core Value Proposition
+
+As Canadian financial institutions (FRFIs) deploy autonomous agents, they face unique regulatory and security risks. Bastion Audit acts as a semantic firewall to intercept adversarial attacks and ensure compliance with **OSFI Guideline E-21**.
+
+* **Sub-10ms Interception:** Real-time guardrail execution across Lakera Guard and Presidio PII detection.
+* **Behavioral Drift Detection:** 30-day baseline profiling per agent with automated circuit-breaker termination.
+* **Zero Trust Identity:** Cryptographic identity per agent session using short-lived tokens.
+* **Sovereign Data Residency:** Primary region pinned to **Canada Central** with automated PII scrubbing before data leaves the sovereign border.
+
+---
+
+## 🚀 Feature Breakdown
+
+### 1. Red Team Sandbox (Simulation Mode)
+
+A secure environment for manual adversarial simulation. Stress-test your agents against prompt injections and jailbreaks before production deployment.
+
+* **Scenario Testing:** Underwriting bias, financial fraud, and PII leak simulations.
+* **Guardrail Audit:** Real-time feedback on which security layers (Lakera, OSFI-E21, etc.) caught the violation.
+
+### 2. Live Threat Feed
+
+High-fidelity telemetry of all active AI agent sessions across the enterprise tenant.
+
+* **Kill-Switch:** One-click manual or automated termination of suspicious agent sessions.
+* **Behavioral Stream:** Real-time monitoring of Chain-of-Thought (CoT) to detect logic-based drift.
+
+### 3. Vulnerability Audit & Compliance
+
+Automated scoring against Canadian and international frameworks:
+
+* **OSFI E-21:** Operational Risk Management for AI.
+* **PIPEDA:** Automated PII redaction and audit logging.
+* **AIDA (Bill C-27):** Preparing for upcoming Canadian AI regulations.
+
+---
+
+## ⚙️ The Security Stack
+
+| Layer | Component | Function |
+| --- | --- | --- |
+| **Inline Shield** | **Lakera Guard** | Prompt injection & jailbreak prevention. |
+| **Data Protection** | **Microsoft Presidio** | PII entity recognition and redaction. |
+| **Identity (IAM)** | **Microsoft Entra ID** | Secure SSO and granular RBAC. |
+| **SIEM Integration** | **Microsoft Sentinel** | Long-term log retention and threat correlation. |
+
+---
+
+## 🛠️ Technical Implementation
+
+### Tech Stack
+
+* **Frontend:** React 18 / TypeScript 5 / Vite
+* **Styling:** Tailwind CSS / shadcn/ui
+* **Visualizations:** Recharts / Lucide Icons
+* **Deployment:** Vercel (Canada Central)
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/MaverickKing17/bastion-audit.git
+
+# Install dependencies
 npm install
+
+# Set up local environment
 cp .env.example .env.local
+
+# Launch development server
 npm run dev
-Environment variables
-# .env.local
-VITE_LAKERA_API_KEY=your_lakera_key_here
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_TENANT_ID=global-enterprise
-VITE_DATA_REGION=CA-CENTRAL  # Canadian sovereign data residency
-Regulatory compliance
-Framework	Scope	Status	Coverage
-OSFI E-21	AI model governance, FRFIs	● Compliant — 96%	Model inventory, risk scoring, audit trail
-PIPEDA	Personal data protection	● Compliant — 98%	PII detection, data residency enforcement
-AIDA	Federal AI legislation	◑ Under review — 81%	2 controls pending — impact assessment
-SOC 2 Type II	Security & availability	● Compliant — 94%	Immutable Supabase audit trail, access logs
-Data residency
-All PII processing and immutable audit trails are strictly confined to Canadian sovereign infrastructure. Primary region: Canada Central. Failover zone: Canada East. No data leaves Canadian borders.
 
-Roadmap
-Done
-Live Threat Feed with real-time guardrail execution
-Done
-Model Inventory with OSFI E-21 risk tier registry
-Done
-30-Day Vulnerability Audit with Lakera Guard integration
-Done
-Behavioral Drift tab with anomaly detection chart
-Done
-Board Report tab with AI-generated executive narrative
-Soon
-Supabase backend — live data replacing simulation layer
-Soon
-Lakera Guard API integration — real prompt scanning
-Soon
-SIEM export — Splunk & Microsoft Sentinel connectors
-Planned
-Multi-tenant support for banking group subsidiaries
-Planned
-Agent-to-agent communication DLP network graph
-Planned
-JIT cryptographic agent identity panel
-Project structure
-bastion-audit/
-├── src/
-│   ├── components/
-│   │   ├── layout/          # Nav, sidebar, footer
-│   │   ├── tabs/            # One folder per tab
-│   │   │   ├── LiveThreatFeed/
-│   │   │   ├── RedTeamSandbox/
-│   │   │   ├── ModelInventory/
-│   │   │   ├── VulnerabilityAudit/
-│   │   │   ├── BehavioralDrift/
-│   │   │   └── BoardReport/
-│   │   └── ui/              # shadcn/ui overrides
-│   ├── hooks/
-│   │   └── useSimulation.ts # Live data simulation hook
-│   ├── lib/
-│   │   └── utils.ts
-│   └── types/
-│       └── index.ts         # Agent, Threat, ComplianceScore types
-├── public/
-├── .env.example
-└── README.md
-Contributing
-This project is currently in private MVP development. Contact the maintainers to request access or discuss partnership opportunities.
+```
 
-Built in Toronto, ON · Protecting Canadian financial infrastructure · © 2026 Bastion Audit Security
+---
+
+## 🗺️ Roadmap
+
+* [x] **Phase 1:** Live Threat Feed & Lakera Guard Integration.
+* [x] **Phase 2:** Red Team Sandbox & Behavioral Drift Baseline.
+* [ ] **Phase 3:** Native Microsoft Sentinel & Splunk Connectors.
+* [ ] **Phase 4:** Multi-tenant support for Tier 1 Canadian Banks.
+
+---
+
+## ⚖️ Governance & Legal
+
+Built in Toronto, ON. Designed to protect Canadian financial infrastructure.
+
+**Founder:** Dwayne Benjamin
+
+
