@@ -100,3 +100,16 @@ Built in Toronto, ON. Designed to protect Canadian financial infrastructure.
 **Founder:** Dwayne Benjamin
 
 
+---
+
+## ⚖️ Disclaimer & Project Scope
+
+**Educational Purpose Only:** Bastion Audit is an independent research and development project created by a technology enthusiast. It is intended for **demonstration and educational purposes only**.
+
+* **Not a Commercial Product:** This software is a "Build in Public" prototype and is not a production-ready SaaS or a commercial security offering.
+* **No Professional Advice:** The architectural patterns, compliance mappings (OSFI E-21, PIPEDA), and security configurations provided here do not constitute professional, legal, or cybersecurity advice.
+* **Individual Builder:** I am a technology and AI enthusiast exploring enterprise security frameworks. I am not a licensed security auditor, professional engineer, or a representative of the regulatory bodies mentioned.
+
+**Liability:** The author assumes no liability for any security vulnerabilities, data loss, or regulatory non-compliance resulting from the use or adaptation of this code. Use at your own risk.
+
+
