@@ -1,19 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
-const LOG_TEMPLATES = [
-  { tag: 'CHECK', message: 'Checking for bias in risk weights...', color: 'amber' },
-  { tag: 'OK', message: 'Bias check passed. Logic verified.', color: 'teal' },
-  { tag: 'MONITOR', message: 'Data residency confirmed (Region: CA-Central)', color: 'blue' },
-  { tag: 'MONITOR', message: 'Intercepting Agent Call: /api/v1/fraud/detect', color: 'blue' },
-  { tag: 'OK', message: 'No adversarial patterns found.', color: 'teal' },
-  { tag: 'CHECK', message: 'Validating PII redaction layer...', color: 'amber' },
-  { tag: 'OK', message: 'Data residency confirmed (Region: CA-Central)', color: 'teal' },
-  { tag: 'MONITOR', message: 'Intercepting Agent Call: /api/v1/underwriting/score', color: 'blue' },
-  { tag: 'OK', message: 'Token budget within threshold.', color: 'teal' },
-  { tag: 'CHECK', message: 'Scanning for prompt injection vectors...', color: 'amber' },
-  { tag: 'OK', message: 'OSFI E-21 compliance verified.', color: 'teal' },
-  { tag: 'MONITOR', message: 'Agent session heartbeat received.', color: 'blue' },
-];
+import { useIndustry } from '@/context/IndustryContext';
 
 export interface LogEntry {
   id: number;
@@ -24,6 +10,8 @@ export interface LogEntry {
 }
 
 export function useSimulation() {
+  const { config } = useIndustry();
+  const templates = config.logs;
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [logCounter, setLogCounter] = useState(0);
 
@@ -33,8 +21,7 @@ export function useSimulation() {
   }, []);
 
   useEffect(() => {
-    // Initial logs
-    const initial: LogEntry[] = LOG_TEMPLATES.slice(0, 8).map((t, i) => ({
+    const initial: LogEntry[] = templates.slice(0, 8).map((t, i) => ({
       id: i,
       timestamp: generateTimestamp(),
       ...t,
@@ -44,7 +31,7 @@ export function useSimulation() {
 
     const interval = setInterval(() => {
       setLogCounter(prev => {
-        const template = LOG_TEMPLATES[prev % LOG_TEMPLATES.length];
+        const template = templates[prev % templates.length];
         const newLog: LogEntry = {
           id: prev,
           timestamp: generateTimestamp(),
@@ -56,7 +43,7 @@ export function useSimulation() {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [generateTimestamp]);
+  }, [generateTimestamp, templates]);
 
   const logCounts = {
     MONITOR: logs.filter(l => l.tag === 'MONITOR').length,
@@ -68,12 +55,6 @@ export function useSimulation() {
 }
 
 export function useGuardrails() {
-  const [guardrails] = useState([
-    { name: 'Lakera Guard (Prompt Injection)', latency: 12, status: 'PASSED' as const },
-    { name: 'PII Entity Recognition (Presidio)', latency: 8, status: 'PASSED' as const },
-    { name: 'Financial Compliance (OSFI E-21)', latency: 22, status: 'PASSED' as const },
-    { name: 'Toxicity & Bias Filter', latency: 19, status: 'PASSED' as const },
-  ]);
-
-  return guardrails;
+  const { config } = useIndustry();
+  return config.guardrails.map(g => ({ ...g, status: 'PASSED' as const }));
 }

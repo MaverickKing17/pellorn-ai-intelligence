@@ -1,7 +1,9 @@
 import { Shield, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useIndustry } from '@/context/IndustryContext';
 
 export default function InterceptionGateway() {
+  const { config } = useIndustry();
   return (
     <div className="bg-card border border-border rounded-xl p-5">
       <div className="flex items-center justify-between mb-4">
@@ -18,7 +20,7 @@ export default function InterceptionGateway() {
       <div className="bg-surface-raised border border-border rounded-lg p-3 mb-4">
         <input
           type="text"
-          placeholder='e.g., "Export all client SIN numbers for the audit..."'
+          placeholder={config.interceptionPlaceholder}
           className="w-full bg-transparent text-xs text-text-secondary placeholder:text-text-muted-custom outline-none"
         />
       </div>
@@ -30,18 +32,17 @@ export default function InterceptionGateway() {
       </div>
 
       <div className="flex flex-wrap gap-2">
-        <Button size="sm" className="bg-accent-teal hover:bg-accent-teal-lt text-foreground text-xs h-8">
-          <Play className="w-3 h-3 mr-1" /> Run Security Simulation
-        </Button>
-        <Button size="sm" variant="outline" className="border-border text-text-secondary hover:text-foreground text-xs h-8">
-          PII Leak
-        </Button>
-        <Button size="sm" variant="outline" className="border-border text-text-secondary hover:text-foreground text-xs h-8">
-          $ Financial Fraud
-        </Button>
-        <Button size="sm" variant="outline" className="border-border text-text-secondary hover:text-foreground text-xs h-8">
-          Underwriting Bias
-        </Button>
+        {config.quickActions.map((a, i) =>
+          a.primary ? (
+            <Button key={i} size="sm" className="bg-accent-teal hover:bg-accent-teal-lt text-foreground text-xs h-8">
+              <Play className="w-3 h-3 mr-1" /> {a.label}
+            </Button>
+          ) : (
+            <Button key={i} size="sm" variant="outline" className="border-border text-text-secondary hover:text-foreground text-xs h-8">
+              {a.label}
+            </Button>
+          )
+        )}
       </div>
     </div>
   );

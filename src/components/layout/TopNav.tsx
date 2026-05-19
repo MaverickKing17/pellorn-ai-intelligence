@@ -1,19 +1,15 @@
 import { Shield, Menu, Power } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useIndustry } from '@/context/IndustryContext';
+import IndustryToggle from './IndustryToggle';
 
 interface TopNavProps {
   onMenuToggle: () => void;
 }
 
-const complianceBadges = [
-  { label: 'OSFI E-21', status: 'compliant' },
-  { label: 'PIPEDA', status: 'compliant' },
-  { label: 'AIDA', status: 'review' },
-  { label: 'SOC2', status: 'compliant' },
-];
-
 export default function TopNav({ onMenuToggle }: TopNavProps) {
+  const { config } = useIndustry();
+
   return (
     <header className="h-14 border-b border-border bg-card flex items-center justify-between px-4 sticky top-0 z-50">
       <div className="flex items-center gap-3">
@@ -23,12 +19,12 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
         <Shield className="w-6 h-6 text-accent-teal" />
         <div className="hidden sm:block">
           <h1 className="text-sm font-bold text-foreground leading-none">Bastion Audit</h1>
-          <p className="text-[10px] uppercase tracking-widest text-text-secondary">Enterprise Security Gateway</p>
+          <p className="text-[10px] uppercase tracking-widest text-text-secondary">{config.brandTagline}</p>
         </div>
       </div>
 
-      <div className="hidden sm:flex items-center gap-2">
-        {complianceBadges.map(b => (
+      <div className="hidden md:flex items-center gap-2">
+        {config.complianceBadges.map(b => (
           <span
             key={b.label}
             className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
@@ -43,7 +39,8 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="hidden sm:flex items-center gap-2">
+        <IndustryToggle />
+        <div className="hidden lg:flex items-center gap-2">
           <span className="text-[10px] uppercase tracking-wider text-text-secondary">Security Health</span>
           <span className="text-sm font-bold text-foreground">100.0%</span>
           <div className="w-16 h-1.5 bg-border rounded-full overflow-hidden">
