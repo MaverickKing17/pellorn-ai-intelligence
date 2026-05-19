@@ -1,4 +1,4 @@
-import { Shield, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { useGuardrails } from '@/hooks/useSimulation';
 
 export default function GuardrailExecution() {
@@ -20,7 +20,7 @@ export default function GuardrailExecution() {
             <span className="text-xs text-foreground flex-1">{g.name}</span>
             <span className="text-[11px] text-text-secondary font-mono">{g.latency}ms</span>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full">
-              {g.status}
+              PASSED
             </span>
           </div>
         ))}

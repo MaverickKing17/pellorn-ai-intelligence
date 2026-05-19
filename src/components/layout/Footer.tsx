@@ -1,7 +1,9 @@
 import { Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useIndustry } from '@/context/IndustryContext';
 
 export default function Footer() {
+  const { config } = useIndustry();
   return (
     <footer className="bg-card border-t border-border mt-8">
       <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -10,15 +12,14 @@ export default function Footer() {
             <Shield className="w-4 h-4 text-accent-teal" />
             <span className="text-sm font-bold text-foreground">Bastion Audit</span>
           </div>
-          <p className="text-xs text-text-secondary">Enterprise AI Security Posture Management for Canadian Financial Institutions</p>
+          <p className="text-xs text-text-secondary">{config.footerTagline}</p>
         </div>
         <div>
           <h4 className="text-[10px] uppercase tracking-widest text-text-secondary mb-3">Regulatory Frameworks</h4>
           <ul className="space-y-1.5 text-xs text-accent-blue">
-            <li className="hover:underline cursor-pointer">OSFI E-21 Guidelines</li>
-            <li className="hover:underline cursor-pointer">PIPEDA Compliance</li>
-            <li className="hover:underline cursor-pointer">AIDA (AI Act)</li>
-            <li className="hover:underline cursor-pointer">SOC 2 Type II</li>
+            {config.regulatoryLinks.map(link => (
+              <li key={link} className="hover:underline cursor-pointer">{link}</li>
+            ))}
           </ul>
         </div>
         <div>

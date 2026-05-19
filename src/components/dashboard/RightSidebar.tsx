@@ -1,43 +1,39 @@
-import { Shield, AlertTriangle, Scale, Radar } from 'lucide-react';
+import { Shield, AlertTriangle, Scale } from 'lucide-react';
+import { useIndustry } from '@/context/IndustryContext';
 
 export default function RightSidebar() {
+  const { config, industry } = useIndustry();
+  const iconMap = {
+    alert: <AlertTriangle className="w-4 h-4 text-accent-red" />,
+    scale: <Scale className="w-4 h-4 text-accent-blue" />,
+    shield: <Shield className="w-4 h-4 text-accent-purple" />,
+  } as const;
+
   return (
     <div className="space-y-4">
-      {/* ROI Card */}
       <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-[10px] uppercase tracking-widest text-accent-amber font-semibold mb-4">Why This Matters for ROI</h3>
         <div className="space-y-4">
-          <ROIItem
-            icon={<AlertTriangle className="w-4 h-4 text-accent-red" />}
-            title="Avoid Fines"
-            desc="Real-time PII blocking prevents PIPEDA violations up to $100K per occurrence."
-          />
-          <ROIItem
-            icon={<Scale className="w-4 h-4 text-accent-blue" />}
-            title="Regulatory Capital"
-            desc="OSFI E-21 compliance lowers operational risk capital charges."
-          />
-          <ROIItem
-            icon={<Shield className="w-4 h-4 text-accent-purple" />}
-            title="Liability Mitigation"
-            desc="Intercepts biased underwriting logic, prevents class action lawsuits."
-          />
+          {config.roi.map((r, i) => (
+            <ROIItem key={i} icon={iconMap[r.iconKey]} title={r.title} desc={r.desc} />
+          ))}
         </div>
       </div>
 
-      {/* Global Threat Intel */}
       <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-accent-red animate-pulse-glow" />
             <span className="text-accent-red">Global Threat Intel</span>
           </h3>
-          <span className="text-[10px] text-text-muted-custom">Amazon AWS</span>
+          <span className="text-[10px] text-text-muted-custom">
+            {industry === 'real_estate' ? 'GTA Brokerage Net' : 'Amazon AWS'}
+          </span>
         </div>
         <div className="space-y-3">
-          <ThreatItem title="System Prompt Leak" desc="Rogue Customer Support AI" severity="CRITICAL" />
-          <ThreatItem title="PII Extraction" desc="Rogue Customer Support AI" severity="HIGH" />
-          <ThreatItem title="Jailbreak Attempt" desc="Rogue Wealth Mgmt Bot" severity="HIGH" />
+          {config.threats.map((t, i) => (
+            <ThreatItem key={i} title={t.title} desc={t.desc} severity={t.severity} />
+          ))}
         </div>
         <div className="mt-4 flex items-center gap-2">
           <span className="text-xs text-text-secondary">Active Honeypots:</span>
@@ -48,7 +44,6 @@ export default function RightSidebar() {
         </div>
       </div>
 
-      {/* Compliance Score */}
       <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold mb-3">Compliance Score Impact</h3>
         <div className="flex items-baseline gap-2 mb-2">
