@@ -1,12 +1,8 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useEffect, ReactNode } from 'react';
+import { useAuth } from '@/hooks/useAuth';
 
 export type IndustryType = 'financial' | 'real_estate';
 
-interface IndustryContextValue {
-  industry: IndustryType;
-  setIndustry: (i: IndustryType) => void;
-  config: IndustryConfig;
-}
 
 export interface ComplianceBadge {
   label: string;
@@ -148,28 +144,23 @@ export const INDUSTRY_CONFIGS: Record<IndustryType, IndustryConfig> = {
   real_estate: REAL_ESTATE,
 };
 
-const STORAGE_KEY = 'bastion.industry_type';
+interface IndustryContextOnly {
+  industry: IndustryType;
+  config: IndustryConfig;
+}
 
-const IndustryContext = createContext<IndustryContextValue | undefined>(undefined);
+const IndustryContext = createContext<IndustryContextOnly | undefined>(undefined);
 
 export function IndustryProvider({ children }: { children: ReactNode }) {
-  const [industry, setIndustryState] = useState<IndustryType>(() => {
-    if (typeof window === 'undefined') return 'financial';
-    const stored = window.localStorage.getItem(STORAGE_KEY) as IndustryType | null;
-    return stored === 'real_estate' || stored === 'financial' ? stored : 'financial';
-  });
-
-  const setIndustry = (i: IndustryType) => {
-    setIndustryState(i);
-    try { window.localStorage.setItem(STORAGE_KEY, i); } catch {}
-  };
+  const { industry: accountIndustry } = useAuth();
+  const industry: IndustryType = accountIndustry ?? 'financial';
 
   useEffect(() => {
     document.documentElement.dataset.industry = industry;
   }, [industry]);
 
   return (
-    <IndustryContext.Provider value={{ industry, setIndustry, config: INDUSTRY_CONFIGS[industry] }}>
+    <IndustryContext.Provider value={{ industry, config: INDUSTRY_CONFIGS[industry] }}>
       {children}
     </IndustryContext.Provider>
   );

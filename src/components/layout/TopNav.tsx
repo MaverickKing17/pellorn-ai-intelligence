@@ -1,7 +1,7 @@
-import { Shield, Menu, Power } from 'lucide-react';
+import { Shield, Menu, Power, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useIndustry } from '@/context/IndustryContext';
-import IndustryToggle from './IndustryToggle';
+import { useAuth } from '@/hooks/useAuth';
 
 interface TopNavProps {
   onMenuToggle: () => void;
@@ -9,6 +9,7 @@ interface TopNavProps {
 
 export default function TopNav({ onMenuToggle }: TopNavProps) {
   const { config } = useIndustry();
+  const { user, signOut } = useAuth();
 
   return (
     <header className="h-14 border-b border-border bg-card flex items-center justify-between px-4 sticky top-0 z-50">
@@ -39,7 +40,6 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <IndustryToggle />
         <div className="hidden lg:flex items-center gap-2">
           <span className="text-[10px] uppercase tracking-wider text-text-secondary">Security Health</span>
           <span className="text-sm font-bold text-foreground">100.0%</span>
@@ -56,13 +56,21 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
           Live Kill-Switch
         </Button>
 
-        <Button
-          variant="outline"
-          size="sm"
-          className="border-border text-text-secondary hover:text-foreground h-7 text-xs"
-        >
-          Sign In
-        </Button>
+        {user && (
+          <>
+            <span className="hidden md:inline text-[10px] uppercase tracking-wider text-text-secondary truncate max-w-[160px]">
+              {user.email}
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={signOut}
+              className="border-border text-text-secondary hover:text-foreground h-7 text-xs"
+            >
+              <LogOut className="w-3 h-3 mr-1" /> Sign Out
+            </Button>
+          </>
+        )}
       </div>
     </header>
   );
