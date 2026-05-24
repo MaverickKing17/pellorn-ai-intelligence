@@ -1,4 +1,5 @@
-import { Shield, Menu, Power, LogOut } from 'lucide-react';
+import { Shield, Menu, Power, LogIn, LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIndustry } from '@/context/IndustryContext';
 import { useAuth } from '@/hooks/useAuth';
@@ -56,7 +57,7 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
           Live Kill-Switch
         </Button>
 
-        {user && (
+        {user ? (
           <>
             <span className="hidden md:inline text-[10px] uppercase tracking-wider text-text-secondary truncate max-w-[160px]">
               {user.email}
@@ -70,6 +71,17 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
               <LogOut className="w-3 h-3 mr-1" /> Sign Out
             </Button>
           </>
+        ) : (
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="border-border text-text-secondary hover:text-foreground h-7 text-xs"
+          >
+            <Link to="/auth">
+              <LogIn className="w-3 h-3 mr-1" /> Sign In
+            </Link>
+          </Button>
         )}
       </div>
     </header>

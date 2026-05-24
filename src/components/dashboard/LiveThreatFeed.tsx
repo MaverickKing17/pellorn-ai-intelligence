@@ -1,26 +1,32 @@
 import { Search, Download, AlertTriangle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import InterceptionGateway from './InterceptionGateway';
 import GuardrailExecution from './GuardrailExecution';
 import AgentBehaviorStream from './AgentBehaviorStream';
 import RightSidebar from './RightSidebar';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function LiveThreatFeed() {
+  const { user } = useAuth();
+
   return (
     <div className="space-y-4">
       {/* Auth Banner */}
-      <div className="bg-accent-amber/10 border border-accent-amber/20 rounded-xl p-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <AlertTriangle className="w-5 h-5 text-accent-amber" />
-          <div>
-            <p className="text-sm font-semibold text-foreground">Authentication Required</p>
-            <p className="text-xs text-text-secondary">Please sign in to view live security logs and interact with the Bastion Gateway.</p>
+      {!user && (
+        <div className="bg-accent-amber/10 border border-accent-amber/20 rounded-xl p-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-accent-amber" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">Authentication Required</p>
+              <p className="text-xs text-text-secondary">Please sign in to bind your industry profile and unlock live audit actions.</p>
+            </div>
           </div>
+          <Button asChild size="sm" className="bg-accent-red hover:bg-accent-red/80 text-foreground text-xs h-8">
+            <Link to="/auth">Sign In Now</Link>
+          </Button>
         </div>
-        <Button size="sm" className="bg-accent-red hover:bg-accent-red/80 text-foreground text-xs h-8">
-          Sign In Now
-        </Button>
-      </div>
+      )}
 
       {/* Search Bar */}
       <div className="flex flex-wrap gap-2">
