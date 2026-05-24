@@ -34,6 +34,7 @@ export default function Index() {
     switch (activeTab) {
       case 'threat-feed': return <LiveThreatFeed />;
       case 'policy-engine': return <PolicyEnforcement />;
+      case 'azure-workspace': return <AzureWorkspace />;
       case 'red-team': return <RedTeamSandbox />;
       case 'model-inventory': return <ModelInventory />;
       case 'vuln-audit': return <VulnerabilityAudit />;
