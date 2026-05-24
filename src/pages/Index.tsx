@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from 'react';
-import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert, Loader2, Stethoscope } from 'lucide-react';
+import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert, Loader2, Stethoscope, Cloud } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
 import Footer from '@/components/layout/Footer';
@@ -12,10 +12,12 @@ const BehavioralDrift = lazy(() => import('@/components/dashboard/BehavioralDrif
 const BoardReport = lazy(() => import('@/components/dashboard/BoardReport'));
 const PolicyEnforcement = lazy(() => import('@/components/dashboard/PolicyEnforcement'));
 const DiagnosticsPanel = lazy(() => import('@/components/dashboard/DiagnosticsPanel'));
+const AzureWorkspace = lazy(() => import('@/components/dashboard/AzureWorkspace'));
 
 const tabs = [
   { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
   { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert, badge: 'NEW' },
+  { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud, badge: 'NEW' },
   { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
@@ -32,6 +34,7 @@ export default function Index() {
     switch (activeTab) {
       case 'threat-feed': return <LiveThreatFeed />;
       case 'policy-engine': return <PolicyEnforcement />;
+      case 'azure-workspace': return <AzureWorkspace />;
       case 'red-team': return <RedTeamSandbox />;
       case 'model-inventory': return <ModelInventory />;
       case 'vuln-audit': return <VulnerabilityAudit />;
