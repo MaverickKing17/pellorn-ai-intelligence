@@ -45,8 +45,8 @@ export interface IndustryConfig {
 }
 
 const FINANCIAL: IndustryConfig = {
-  brandTagline: 'Enterprise Security Gateway',
-  footerTagline: 'Enterprise AI Security Posture Management for Canadian Financial Institutions',
+  brandTagline: 'Enterprise AI Governance Gateway',
+  footerTagline: 'The Enterprise AI Governance Gateway — Securing Identity, Behavior, and Trust Across Autonomous Workforces.',
   complianceBadges: [
     { label: 'OSFI E-21', status: 'compliant' },
     { label: 'PIPEDA', status: 'compliant' },
@@ -93,8 +93,8 @@ const FINANCIAL: IndustryConfig = {
 };
 
 const REAL_ESTATE: IndustryConfig = {
-  brandTagline: 'Brokerage AI Trust Gateway',
-  footerTagline: 'Enterprise AI Security Posture Management for GTA Luxury Real Estate Brokerages',
+  brandTagline: 'Brokerage AI Governance Gateway',
+  footerTagline: 'The Enterprise AI Governance Gateway — Securing Identity, Behavior, and Trust Across Brokerage AI Workforces.',
   complianceBadges: [
     { label: 'RECO', status: 'compliant' },
     { label: 'FINTRAC', status: 'compliant' },
