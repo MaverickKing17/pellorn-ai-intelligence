@@ -1,10 +1,18 @@
 import { useState, lazy, Suspense } from 'react';
-import { Radio, FlaskConical, Box, Shield, Activity, FileText, ShieldAlert, Loader2, Stethoscope, Cloud } from 'lucide-react';
+import {
+  Gauge, Users, Award, Briefcase, Cloud, ShieldAlert, FlaskConical, Box, Shield,
+  Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2,
+} from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
 import Footer from '@/components/layout/Footer';
-import LiveThreatFeed from '@/components/dashboard/LiveThreatFeed';
+import GovernanceCommandCenter from '@/components/dashboard/GovernanceCommandCenter';
 
+const AgentRegistry = lazy(() => import('@/components/dashboard/AgentRegistry'));
+const TrustScore = lazy(() => import('@/components/dashboard/TrustScore'));
+const ExecutiveExposure = lazy(() => import('@/components/dashboard/ExecutiveExposure'));
+const DigitalTwin = lazy(() => import('@/components/dashboard/DigitalTwin'));
+const LiveThreatFeed = lazy(() => import('@/components/dashboard/LiveThreatFeed'));
 const RedTeamSandbox = lazy(() => import('@/components/dashboard/RedTeamSandbox'));
 const ModelInventory = lazy(() => import('@/components/dashboard/ModelInventory'));
 const VulnerabilityAudit = lazy(() => import('@/components/dashboard/VulnerabilityAudit'));
@@ -15,9 +23,14 @@ const DiagnosticsPanel = lazy(() => import('@/components/dashboard/DiagnosticsPa
 const AzureWorkspace = lazy(() => import('@/components/dashboard/AzureWorkspace'));
 
 const tabs = [
+  { id: 'command-center', label: 'Command Center', icon: Gauge },
+  { id: 'agent-registry', label: 'Agent Registry', icon: Users, badge: 'NEW' },
+  { id: 'trust-score', label: 'Trust Score™', icon: Award, badge: 'NEW' },
+  { id: 'executive-exposure', label: 'Executive Exposure', icon: Briefcase, badge: 'NEW' },
+  { id: 'digital-twin', label: 'Digital Twin', icon: TrendingUp, badge: 'BETA' },
+  { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud },
+  { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert },
   { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
-  { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert, badge: 'NEW' },
-  { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud, badge: 'NEW' },
   { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
@@ -27,21 +40,26 @@ const tabs = [
 ];
 
 export default function Index() {
-  const [activeTab, setActiveTab] = useState('threat-feed');
+  const [activeTab, setActiveTab] = useState('command-center');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const renderTab = () => {
     switch (activeTab) {
-      case 'threat-feed': return <LiveThreatFeed />;
-      case 'policy-engine': return <PolicyEnforcement />;
+      case 'command-center': return <GovernanceCommandCenter />;
+      case 'agent-registry': return <AgentRegistry />;
+      case 'trust-score': return <TrustScore />;
+      case 'executive-exposure': return <ExecutiveExposure />;
+      case 'digital-twin': return <DigitalTwin />;
       case 'azure-workspace': return <AzureWorkspace />;
+      case 'policy-engine': return <PolicyEnforcement />;
+      case 'threat-feed': return <LiveThreatFeed />;
       case 'red-team': return <RedTeamSandbox />;
       case 'model-inventory': return <ModelInventory />;
       case 'vuln-audit': return <VulnerabilityAudit />;
       case 'behavioral-drift': return <BehavioralDrift />;
       case 'board-report': return <BoardReport />;
       case 'diagnostics': return <DiagnosticsPanel />;
-      default: return <LiveThreatFeed />;
+      default: return <GovernanceCommandCenter />;
     }
   };
 
@@ -51,7 +69,6 @@ export default function Index() {
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <main className="lg:ml-60 pt-4 px-4 pb-4">
-        {/* Tab Navigation */}
         <div className="flex gap-1 overflow-x-auto pb-3 mb-4 scrollbar-hide">
           {tabs.map(tab => {
             const Icon = tab.icon;
