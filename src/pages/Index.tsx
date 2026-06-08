@@ -48,7 +48,7 @@ const moreTabs = [
   { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
 ];
 
-const tabs = [...primaryTabs, ...moreTabs];
+
 
 export default function Index() {
   const [activeTab, setActiveTab] = useState('command-center');
