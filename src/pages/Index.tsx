@@ -1,7 +1,7 @@
 import { useState, lazy, Suspense } from 'react';
 import {
   Gauge, Users, Award, Briefcase, Cloud, ShieldAlert, FlaskConical, Box, Shield,
-  Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2,
+  Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2, BadgeCheck, Archive, Workflow, MoreHorizontal,
 } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
@@ -21,15 +21,24 @@ const BoardReport = lazy(() => import('@/components/dashboard/BoardReport'));
 const PolicyEnforcement = lazy(() => import('@/components/dashboard/PolicyEnforcement'));
 const DiagnosticsPanel = lazy(() => import('@/components/dashboard/DiagnosticsPanel'));
 const AzureWorkspace = lazy(() => import('@/components/dashboard/AzureWorkspace'));
+const AgentCertification = lazy(() => import('@/components/dashboard/AgentCertification'));
+const EvidenceVault = lazy(() => import('@/components/dashboard/EvidenceVault'));
+const GovernanceWorkflows = lazy(() => import('@/components/dashboard/GovernanceWorkflows'));
 
-const tabs = [
+const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
-  { id: 'agent-registry', label: 'Agent Registry', icon: Users, badge: 'NEW' },
-  { id: 'trust-score', label: 'Trust Score™', icon: Award, badge: 'NEW' },
-  { id: 'executive-exposure', label: 'Executive Exposure', icon: Briefcase, badge: 'NEW' },
+  { id: 'agent-registry', label: 'Agent Registry', icon: Users },
+  { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck, badge: 'NEW' },
+  { id: 'evidence-vault', label: 'Evidence Vault', icon: Archive, badge: 'NEW' },
+  { id: 'governance-workflows', label: 'Governance Workflows', icon: Workflow, badge: 'NEW' },
+  { id: 'trust-score', label: 'Trust Score™', icon: Award },
+  { id: 'executive-exposure', label: 'Executive Exposure', icon: Briefcase },
   { id: 'digital-twin', label: 'Digital Twin', icon: TrendingUp, badge: 'BETA' },
   { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud },
   { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert },
+];
+
+const moreTabs = [
   { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
   { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
@@ -38,6 +47,8 @@ const tabs = [
   { id: 'board-report', label: 'Board Report', icon: FileText },
   { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
 ];
+
+const tabs = [...primaryTabs, ...moreTabs];
 
 export default function Index() {
   const [activeTab, setActiveTab] = useState('command-center');
