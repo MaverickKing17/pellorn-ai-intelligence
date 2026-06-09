@@ -24,6 +24,7 @@ const AzureWorkspace = lazy(() => import('@/components/dashboard/AzureWorkspace'
 const AgentCertification = lazy(() => import('@/components/dashboard/AgentCertification'));
 const EvidenceVault = lazy(() => import('@/components/dashboard/EvidenceVault'));
 const GovernanceWorkflows = lazy(() => import('@/components/dashboard/GovernanceWorkflows'));
+const CaseManagement = lazy(() => import('@/components/dashboard/CaseManagement'));
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
