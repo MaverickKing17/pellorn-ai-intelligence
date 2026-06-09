@@ -61,6 +61,7 @@ export default function Index() {
       case 'command-center': return <GovernanceCommandCenter />;
       case 'agent-registry': return <AgentRegistry />;
       case 'agent-certification': return <AgentCertification />;
+      case 'case-management': return <CaseManagement />;
       case 'evidence-vault': return <EvidenceVault />;
       case 'governance-workflows': return <GovernanceWorkflows />;
       case 'trust-score': return <TrustScore />;
