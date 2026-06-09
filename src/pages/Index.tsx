@@ -36,17 +36,17 @@ const primaryTabs = [
   { id: 'trust-score', label: 'Trust Score™', icon: Award },
   { id: 'executive-exposure', label: 'Executive Exposure', icon: Briefcase },
   { id: 'digital-twin', label: 'Digital Twin', icon: TrendingUp, badge: 'BETA' },
+  { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
+  { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
+  { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity },
+  { id: 'board-report', label: 'Board Report', icon: FileText },
   { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud },
   { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert },
 ];
 
 const moreTabs = [
-  { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
-  { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
-  { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity },
-  { id: 'board-report', label: 'Board Report', icon: FileText },
   { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
 ];
 
