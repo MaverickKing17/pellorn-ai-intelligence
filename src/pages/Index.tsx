@@ -1,7 +1,7 @@
 import { useState, lazy, Suspense } from 'react';
 import {
   Gauge, Users, Award, Briefcase, Cloud, ShieldAlert, FlaskConical, Box, Shield,
-  Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2, BadgeCheck, Archive, Workflow, MoreHorizontal,
+  Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2, BadgeCheck, Archive, Workflow, MoreHorizontal, Scale,
 } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
@@ -24,11 +24,13 @@ const AzureWorkspace = lazy(() => import('@/components/dashboard/AzureWorkspace'
 const AgentCertification = lazy(() => import('@/components/dashboard/AgentCertification'));
 const EvidenceVault = lazy(() => import('@/components/dashboard/EvidenceVault'));
 const GovernanceWorkflows = lazy(() => import('@/components/dashboard/GovernanceWorkflows'));
+const CaseManagement = lazy(() => import('@/components/dashboard/CaseManagement'));
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
   { id: 'agent-registry', label: 'Agent Registry', icon: Users },
-  { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck, badge: 'NEW' },
+  { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck },
+  { id: 'case-management', label: 'Case Management', icon: Scale, badge: '12' },
   { id: 'evidence-vault', label: 'Evidence Vault', icon: Archive, badge: 'NEW' },
   { id: 'governance-workflows', label: 'Governance Workflows', icon: Workflow, badge: 'NEW' },
   { id: 'trust-score', label: 'Trust Score™', icon: Award },
@@ -59,6 +61,7 @@ export default function Index() {
       case 'command-center': return <GovernanceCommandCenter />;
       case 'agent-registry': return <AgentRegistry />;
       case 'agent-certification': return <AgentCertification />;
+      case 'case-management': return <CaseManagement />;
       case 'evidence-vault': return <EvidenceVault />;
       case 'governance-workflows': return <GovernanceWorkflows />;
       case 'trust-score': return <TrustScore />;
