@@ -28,6 +28,7 @@ const GovernanceWorkflows = lazy(() => import('@/components/dashboard/Governance
 const CaseManagement = lazy(() => import('@/components/dashboard/CaseManagement'));
 const EntraConnector = lazy(() => import('@/components/dashboard/EntraConnector'));
 const IntegrationCenter = lazy(() => import('@/components/dashboard/IntegrationCenter'));
+const GovernanceGraph = lazy(() => import('@/components/dashboard/GovernanceGraph'));
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
