@@ -26,6 +26,8 @@ const AgentCertification = lazy(() => import('@/components/dashboard/AgentCertif
 const EvidenceVault = lazy(() => import('@/components/dashboard/EvidenceVault'));
 const GovernanceWorkflows = lazy(() => import('@/components/dashboard/GovernanceWorkflows'));
 const CaseManagement = lazy(() => import('@/components/dashboard/CaseManagement'));
+const EntraConnector = lazy(() => import('@/components/dashboard/EntraConnector'));
+const IntegrationCenter = lazy(() => import('@/components/dashboard/IntegrationCenter'));
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
