@@ -48,6 +48,8 @@ const primaryTabs = [
 ];
 
 const moreTabs = [
+  { id: 'entra-connector', label: 'Entra Connector', icon: KeyRound, badge: 'PREVIEW' },
+  { id: 'integration-center', label: 'Integration Center', icon: Plug, badge: 'NEW' },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
   { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
