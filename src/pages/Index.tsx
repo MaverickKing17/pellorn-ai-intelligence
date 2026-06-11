@@ -2,7 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import {
   Gauge, Users, Award, Briefcase, Cloud, ShieldAlert, FlaskConical, Box, Shield,
   Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2, BadgeCheck, Archive, Workflow, MoreHorizontal, Scale,
-  KeyRound, Plug,
+  KeyRound, Plug, Network,
 } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
@@ -28,9 +28,11 @@ const GovernanceWorkflows = lazy(() => import('@/components/dashboard/Governance
 const CaseManagement = lazy(() => import('@/components/dashboard/CaseManagement'));
 const EntraConnector = lazy(() => import('@/components/dashboard/EntraConnector'));
 const IntegrationCenter = lazy(() => import('@/components/dashboard/IntegrationCenter'));
+const GovernanceGraph = lazy(() => import('@/components/dashboard/GovernanceGraph'));
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
+  { id: 'governance-graph', label: 'Governance Graph', icon: Network, badge: 'NEW' },
   { id: 'agent-registry', label: 'Agent Registry', icon: Users },
   { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck },
   { id: 'case-management', label: 'Case Management', icon: Scale, badge: '12' },
@@ -64,6 +66,7 @@ export default function Index() {
   const renderTab = () => {
     switch (activeTab) {
       case 'command-center': return <GovernanceCommandCenter />;
+      case 'governance-graph': return <GovernanceGraph />;
       case 'agent-registry': return <AgentRegistry />;
       case 'agent-certification': return <AgentCertification />;
       case 'case-management': return <CaseManagement />;
