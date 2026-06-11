@@ -73,6 +73,8 @@ export default function Index() {
       case 'executive-exposure': return <ExecutiveExposure />;
       case 'digital-twin': return <DigitalTwin />;
       case 'azure-workspace': return <AzureWorkspace />;
+      case 'entra-connector': return <EntraConnector />;
+      case 'integration-center': return <IntegrationCenter />;
       case 'policy-engine': return <PolicyEnforcement />;
       case 'threat-feed': return <LiveThreatFeed />;
       case 'red-team': return <RedTeamSandbox />;
