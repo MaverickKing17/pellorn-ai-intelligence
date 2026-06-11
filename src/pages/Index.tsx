@@ -32,6 +32,7 @@ const GovernanceGraph = lazy(() => import('@/components/dashboard/GovernanceGrap
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
+  { id: 'governance-graph', label: 'Governance Graph', icon: Network, badge: 'NEW' },
   { id: 'agent-registry', label: 'Agent Registry', icon: Users },
   { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck },
   { id: 'case-management', label: 'Case Management', icon: Scale, badge: '12' },
