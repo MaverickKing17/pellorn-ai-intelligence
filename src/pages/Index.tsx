@@ -66,6 +66,7 @@ export default function Index() {
   const renderTab = () => {
     switch (activeTab) {
       case 'command-center': return <GovernanceCommandCenter />;
+      case 'governance-graph': return <GovernanceGraph />;
       case 'agent-registry': return <AgentRegistry />;
       case 'agent-certification': return <AgentCertification />;
       case 'case-management': return <CaseManagement />;
