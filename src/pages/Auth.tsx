@@ -12,7 +12,7 @@ import type { IndustryType } from '@/context/IndustryContext';
 
 export default function Auth() {
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
+  const { user, loading, signInDemo } = useAuth();
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -181,6 +181,18 @@ export default function Auth() {
             className="w-full"
           >
             Continue with Google
+          </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => {
+              signInDemo();
+              navigate('/', { replace: true });
+            }}
+            className="w-full mt-2 border-accent-teal/40 text-accent-teal hover:bg-accent-teal/10 hover:text-accent-teal hover:border-accent-teal font-semibold uppercase tracking-wider text-xs"
+          >
+            Try Demo — Instant Guest Access
           </Button>
         </div>
 
