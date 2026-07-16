@@ -182,6 +182,18 @@ export default function Auth() {
           >
             Continue with Google
           </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => {
+              signInDemo();
+              navigate('/', { replace: true });
+            }}
+            className="w-full mt-2 border-accent-teal/40 text-accent-teal hover:bg-accent-teal/10 hover:text-accent-teal hover:border-accent-teal font-semibold uppercase tracking-wider text-xs"
+          >
+            Try Demo — Instant Guest Access
+          </Button>
         </div>
 
         <p className="text-[10px] text-text-secondary text-center mt-6 uppercase tracking-widest">
