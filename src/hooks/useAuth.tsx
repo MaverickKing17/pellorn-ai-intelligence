@@ -9,7 +9,18 @@ interface AuthContextValue {
   industry: IndustryType | null;
   loading: boolean;
   signOut: () => Promise<void>;
+  signInDemo: () => void;
 }
+
+const DEMO_KEY = 'bastion_demo_mode';
+const DEMO_USER = {
+  id: 'demo-user-00000000',
+  email: 'demo@bastion.audit',
+  app_metadata: {},
+  user_metadata: { full_name: 'Demo Reviewer', industry: 'financial' },
+  aud: 'authenticated',
+  created_at: new Date().toISOString(),
+} as unknown as User;
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
