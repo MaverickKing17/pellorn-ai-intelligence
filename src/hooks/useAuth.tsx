@@ -31,6 +31,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Demo bypass: mock authenticated session, skip Supabase entirely.
+    if (typeof window !== 'undefined' && window.localStorage.getItem(DEMO_KEY) === '1') {
+      setUser(DEMO_USER);
+      setSession(null);
+      setIndustry('financial');
+      setLoading(false);
+      return;
+    }
+
     // 1. Subscribe FIRST
     const { data: sub } = supabase.auth.onAuthStateChange((_event, sess) => {
       setSession(sess);
@@ -66,13 +75,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIndustry((data?.industry as IndustryType) ?? 'financial');
   };
 
+  const signInDemo = () => {
+    window.localStorage.setItem(DEMO_KEY, '1');
+    setUser(DEMO_USER);
+    setSession(null);
+    setIndustry('financial');
+    setLoading(false);
+  };
+
   const signOut = async () => {
-    await supabase.auth.signOut();
+    const wasDemo = window.localStorage.getItem(DEMO_KEY) === '1';
+    window.localStorage.removeItem(DEMO_KEY);
+    if (!wasDemo) await supabase.auth.signOut();
+    setUser(null);
+    setSession(null);
     setIndustry(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, industry, loading, signOut }}>
+    <AuthContext.Provider value={{ user, session, industry, loading, signOut, signInDemo }}>
       {children}
     </AuthContext.Provider>
   );
