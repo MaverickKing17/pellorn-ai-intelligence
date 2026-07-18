@@ -367,8 +367,10 @@ export default function GovernanceCommandCenter() {
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
         <KpiCard label="AI Governance Score" value="92/100" status="Excellent" statusTone="teal" sub="↑ +3 vs Q3" icon={ShieldCheck} accent="teal" />
         <KpiCard label="Agents Under Mgmt" value="284" status="6 BUs" statusTone="blue" sub="+42 this month" icon={Users} accent="blue" />
-        <KpiCard label="Regulatory Exposure" value="$3.4M" status="Low" statusTone="teal" sub="if unmitigated" icon={Scale} accent="amber" />
-        <KpiCard label="Financial Loss Prevented" value="$28.7M" status="12 mo" statusTone="teal" sub="↑ +18% YoY" icon={DollarSign} accent="teal" />
+        <KpiCard label="Regulatory Exposure" value="$3.4M" status="Low" statusTone="teal" sub="if unmitigated" icon={Scale} accent="amber"
+          tooltip="Calculated using active PIPEDA/AIDA (Bill C-27) fine schedules × intercepted PII leaks × OSFI E-21 exposure weighting. CAD, 12-mo forward-looking." />
+        <KpiCard label="Financial Loss Prevented" value="$28.7M" status="12 mo" statusTone="teal" sub="↑ +18% YoY" icon={DollarSign} accent="teal"
+          tooltip="Sum of blocked fraud attempts, prevented PII breaches (avg $165 per record · IBM 2025) and averted OSFI B-13 penalties over the last 12 months." />
         <KpiCard label="High-Risk Agents" value="7" status="Investigate" statusTone="red" sub="quarantine ready" icon={AlertTriangle} accent="red" />
         <KpiCard label="Active Interventions" value="134" status="Today" statusTone="blue" sub="↑ +12 since 09:00" icon={Activity} accent="blue" />
       </div>
