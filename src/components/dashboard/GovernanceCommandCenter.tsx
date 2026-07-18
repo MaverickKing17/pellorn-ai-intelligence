@@ -1,14 +1,22 @@
+import { useState } from 'react';
 import {
   ShieldCheck, Users, Scale, DollarSign, AlertTriangle, Activity,
-  Sparkles, TrendingUp, ArrowUpRight, Clock, Building2, ChevronRight,
+  Sparkles, TrendingUp, ArrowUpRight, Building2, ChevronRight,
+  Settings, Info, Lock, KeyRound, Search, ShieldOff,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger,
+} from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import { toast } from 'sonner';
 
 /* ---------------- KPI HERO ---------------- */
 function KpiCard({
-  label, value, status, statusTone = 'teal', sub, icon: Icon, accent = 'teal',
+  label, value, status, statusTone = 'teal', sub, icon: Icon, accent = 'teal', tooltip,
 }: {
   label: string;
   value: string;
@@ -17,6 +25,7 @@ function KpiCard({
   sub?: string;
   icon: any;
   accent?: 'teal' | 'amber' | 'red' | 'blue';
+  tooltip?: string;
 }) {
   const accentClass = {
     teal: 'text-accent-teal',
@@ -30,11 +39,14 @@ function KpiCard({
     red: 'bg-accent-red/10 text-accent-red border-accent-red/30',
     blue: 'bg-accent-blue/10 text-accent-blue border-accent-blue/30',
   }[statusTone];
-  return (
-    <div className="bg-card border border-border rounded-xl p-4 relative overflow-hidden group hover:border-accent-teal/40 transition-colors">
+  const card = (
+    <div className="bg-card border border-border rounded-xl p-4 relative overflow-hidden group hover:border-accent-teal/40 transition-colors h-full">
       <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-[0.06] ${accentClass.replace('text-', 'bg-')}`} />
       <div className="flex items-start justify-between mb-3">
-        <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold">{label}</span>
+        <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold flex items-center gap-1">
+          {label}
+          {tooltip && <Info className="w-3 h-3 text-text-secondary/70 group-hover:text-accent-teal transition-colors" />}
+        </span>
         <Icon className={`w-4 h-4 ${accentClass}`} />
       </div>
       <p className="text-3xl font-bold text-foreground tabular-nums leading-none">{value}</p>
@@ -48,7 +60,19 @@ function KpiCard({
       </div>
     </div>
   );
+  if (!tooltip) return card;
+  return (
+    <Tooltip delayDuration={150}>
+      <TooltipTrigger asChild>
+        <div className="cursor-help">{card}</div>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="max-w-xs bg-surface-raised border-border text-foreground text-[11px] leading-relaxed">
+        {tooltip}
+      </TooltipContent>
+    </Tooltip>
+  );
 }
+
 
 /* ---------------- RISK HEAT MAP ---------------- */
 const heatRows = [
@@ -65,35 +89,90 @@ const cellTone = (r: string) =>
   : r === 'M' ? 'bg-accent-amber/25 text-accent-amber border-accent-amber/40'
   : 'bg-accent-teal/15 text-accent-teal border-accent-teal/30';
 
+function ScannerRulesDialog() {
+  const [sin, setSin] = useState(true);
+  const [pci, setPci] = useState(true);
+  const [code, setCode] = useState(false);
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          aria-label="Sensitive data scanning rules"
+          className="inline-flex items-center justify-center w-6 h-6 rounded-md border border-border hover:border-accent-teal/60 hover:text-accent-teal text-text-secondary transition-colors"
+        >
+          <Settings className="w-3.5 h-3.5" />
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-md bg-card border-border">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-foreground">
+            <Search className="w-4 h-4 text-accent-teal" /> Sensitive Data Scanning Rules
+          </DialogTitle>
+          <DialogDescription className="text-text-secondary text-xs">
+            Configure which patterns the Bastion PII/PCI scanner intercepts before egress.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="space-y-2 mt-2">
+          <ScanRow label="Social Insurance Numbers (SIN)" sub="ca.pii.sin.v2 · 9-digit Luhn" checked={sin} onChange={setSin} />
+          <ScanRow label="PCI-DSS (Credit Cards)" sub="Visa / MC / Amex · BIN-verified" checked={pci} onChange={setPci} />
+          <ScanRow label="Internal Source Code / Proprietary Repos" sub="Regex + entropy · flags stack traces & keys" checked={code} onChange={setCode} />
+        </div>
+        <div className="mt-3 rounded-lg border border-accent-teal/30 bg-accent-teal/10 p-3 space-y-1.5">
+          <p className="text-[10px] uppercase tracking-widest text-accent-teal font-semibold">Cryptographic Proofs</p>
+          <div className="flex items-center gap-2 text-[11px] text-foreground">
+            <Lock className="w-3 h-3 text-accent-teal" /> TLS 1.3 Enforced <span className="text-text-secondary">— data in transit to UI</span>
+          </div>
+          <div className="flex items-center gap-2 text-[11px] text-foreground">
+            <KeyRound className="w-3 h-3 text-accent-teal" /> AES-256 at rest <span className="text-text-secondary">— keys isolated in Canada Central (OSFI B-13)</span>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function ScanRow({ label, sub, checked, onChange }: { label: string; sub: string; checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <label className="flex items-start gap-3 bg-surface-raised border border-border rounded-lg p-2.5 cursor-pointer hover:border-accent-teal/40 transition-colors">
+      <Checkbox checked={checked} onCheckedChange={(v) => onChange(!!v)} className="mt-0.5" />
+      <div>
+        <p className="text-xs font-semibold text-foreground">{label}</p>
+        <p className="text-[10px] text-text-secondary">{sub}</p>
+      </div>
+    </label>
+  );
+}
+
 function RiskHeatMap() {
   return (
     <div className="bg-card border border-border rounded-xl p-5">
-      <div className="flex items-center justify-between mb-4">
-        <div>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <h3 className="text-sm font-bold text-foreground">AI Risk Heat Map</h3>
-          <p className="text-[10px] text-text-secondary uppercase tracking-widest">Departments × Risk Categories</p>
+          <ScannerRulesDialog />
         </div>
         <span className="text-[10px] font-mono text-text-secondary">Live · Updated 11 sec ago</span>
       </div>
+      <p className="text-[10px] text-text-secondary uppercase tracking-widest mb-3">Departments × Risk Categories</p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
             <tr>
-              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-2 font-semibold">Business Unit</th>
-              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-2 font-semibold">Agents</th>
+              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-1.5 font-semibold">Business Unit</th>
+              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-1.5 font-semibold">Agents</th>
               {heatCats.map(c => (
-                <th key={c} className="text-center text-[10px] uppercase tracking-wider text-text-secondary pb-2 font-semibold">{c}</th>
+                <th key={c} className="text-center text-[10px] uppercase tracking-wider text-text-secondary pb-1.5 font-semibold">{c}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {heatRows.map(r => (
               <tr key={r.dept} className="border-t border-border/60">
-                <td className="py-2.5 text-foreground text-xs">{r.dept}</td>
-                <td className="py-2.5 font-mono text-text-secondary">{r.agents}</td>
+                <td className="py-1 text-foreground text-xs">{r.dept}</td>
+                <td className="py-1 font-mono text-text-secondary">{r.agents}</td>
                 {r.risks.map((cell, i) => (
-                  <td key={i} className="py-2.5 px-1">
-                    <div className={`h-7 rounded border flex items-center justify-center text-[10px] font-bold font-mono ${cellTone(cell)}`}>
+                  <td key={i} className="py-1 px-1">
+                    <div className={`h-5 rounded border flex items-center justify-center text-[10px] font-bold font-mono ${cellTone(cell)}`}>
                       {cell}
                     </div>
                   </td>
@@ -103,7 +182,7 @@ function RiskHeatMap() {
           </tbody>
         </table>
       </div>
-      <div className="flex items-center gap-4 mt-4 pt-3 border-t border-border">
+      <div className="flex items-center gap-4 mt-3 pt-2.5 border-t border-border">
         <span className="text-[10px] uppercase tracking-widest text-text-secondary">Legend</span>
         <span className="flex items-center gap-1.5 text-[10px] text-text-secondary"><span className="w-3 h-3 rounded bg-accent-teal/30 border border-accent-teal/40" /> Low</span>
         <span className="flex items-center gap-1.5 text-[10px] text-text-secondary"><span className="w-3 h-3 rounded bg-accent-amber/30 border border-accent-amber/40" /> Medium</span>
@@ -113,10 +192,11 @@ function RiskHeatMap() {
   );
 }
 
+
 /* ---------------- INCIDENT TIMELINE ---------------- */
-const timeline = [
-  { time: '10:43:02', label: 'Prompt Injection Attempt', detail: 'PayrollAgent · payload pattern match', tone: 'amber' },
-  { time: '10:43:04', label: 'PII Access Attempt', detail: 'Attempt to read SIN field · ca.pii.sin.v2', tone: 'red' },
+const timeline: Array<{ time: string; label: string; detail: string; tone: string; action?: 'investigate' | 'isolate' }> = [
+  { time: '10:43:02', label: 'Prompt Injection Attempt', detail: 'PayrollAgent · payload pattern match', tone: 'amber', action: 'investigate' },
+  { time: '10:43:04', label: 'PII Access Attempt', detail: 'Attempt to read SIN field · ca.pii.sin.v2', tone: 'red', action: 'isolate' },
   { time: '10:43:05', label: 'Risk Score Increased', detail: '67 → 42 · drift threshold exceeded', tone: 'amber' },
   { time: '10:43:06', label: 'Circuit Breaker Triggered', detail: 'Tool calls suspended · audit log sealed', tone: 'red' },
   { time: '10:43:07', label: 'Agent Quarantined', detail: 'PayrollAgent moved to RESTRICTED', tone: 'red' },
@@ -146,9 +226,25 @@ function IncidentTimeline() {
         {timeline.map((t, i) => (
           <li key={i} className="pl-4 relative">
             <span className={`absolute -left-[7px] top-1.5 w-3 h-3 rounded-full ring-4 ${toneDot(t.tone)}`} />
-            <div className="flex items-baseline gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <span className="font-mono text-[10px] text-text-secondary tabular-nums">{t.time}</span>
               <span className="text-xs text-foreground font-semibold">{t.label}</span>
+              {t.action === 'investigate' && (
+                <button
+                  onClick={() => toast.success('Investigation opened', { description: `${t.label} · INC-2026-0431` })}
+                  className="ml-auto inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-accent-amber/50 bg-accent-amber/10 text-accent-amber hover:bg-accent-amber/20 transition-colors"
+                >
+                  <Search className="w-3 h-3" /> Investigate
+                </button>
+              )}
+              {t.action === 'isolate' && (
+                <button
+                  onClick={() => toast.error('Agent isolated', { description: 'PayrollAgent · tool calls suspended · quarantine engaged' })}
+                  className="ml-auto inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-accent-red/50 bg-accent-red/10 text-accent-red hover:bg-accent-red/20 transition-colors"
+                >
+                  <ShieldOff className="w-3 h-3" /> Isolate Agent
+                </button>
+              )}
             </div>
             <p className="text-[11px] text-text-secondary mt-0.5">{t.detail}</p>
           </li>
@@ -157,6 +253,7 @@ function IncidentTimeline() {
     </div>
   );
 }
+
 
 /* ---------------- ORG CHART ---------------- */
 const orgUnits = [
@@ -270,8 +367,10 @@ export default function GovernanceCommandCenter() {
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
         <KpiCard label="AI Governance Score" value="92/100" status="Excellent" statusTone="teal" sub="↑ +3 vs Q3" icon={ShieldCheck} accent="teal" />
         <KpiCard label="Agents Under Mgmt" value="284" status="6 BUs" statusTone="blue" sub="+42 this month" icon={Users} accent="blue" />
-        <KpiCard label="Regulatory Exposure" value="$3.4M" status="Low" statusTone="teal" sub="if unmitigated" icon={Scale} accent="amber" />
-        <KpiCard label="Financial Loss Prevented" value="$28.7M" status="12 mo" statusTone="teal" sub="↑ +18% YoY" icon={DollarSign} accent="teal" />
+        <KpiCard label="Regulatory Exposure" value="$3.4M" status="Low" statusTone="teal" sub="if unmitigated" icon={Scale} accent="amber"
+          tooltip="Calculated using active PIPEDA/AIDA (Bill C-27) fine schedules × intercepted PII leaks × OSFI E-21 exposure weighting. CAD, 12-mo forward-looking." />
+        <KpiCard label="Financial Loss Prevented" value="$28.7M" status="12 mo" statusTone="teal" sub="↑ +18% YoY" icon={DollarSign} accent="teal"
+          tooltip="Sum of blocked fraud attempts, prevented PII breaches (avg $165 per record · IBM 2025) and averted OSFI B-13 penalties over the last 12 months." />
         <KpiCard label="High-Risk Agents" value="7" status="Investigate" statusTone="red" sub="quarantine ready" icon={AlertTriangle} accent="red" />
         <KpiCard label="Active Interventions" value="134" status="Today" statusTone="blue" sub="↑ +12 since 09:00" icon={Activity} accent="blue" />
       </div>

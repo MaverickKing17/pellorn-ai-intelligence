@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIndustry } from '@/context/IndustryContext';
 import { useAuth } from '@/hooks/useAuth';
+import ExitStrategyButton from '@/components/dashboard/ExitStrategyButton';
 
 interface TopNavProps {
   onMenuToggle: () => void;
@@ -48,6 +49,8 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
             <div className="h-full w-full bg-accent-teal rounded-full" />
           </div>
         </div>
+
+        <ExitStrategyButton />
 
         <Button
           size="sm"
