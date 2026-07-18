@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import {
   ShieldCheck, Users, Scale, DollarSign, AlertTriangle, Activity,
-  Sparkles, TrendingUp, ArrowUpRight, Clock, Building2, ChevronRight,
+  Sparkles, TrendingUp, ArrowUpRight, Building2, ChevronRight,
+  Settings, Info, Lock, KeyRound, Search, ShieldOff,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger,
+} from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import { toast } from 'sonner';
 
 /* ---------------- KPI HERO ---------------- */
 function KpiCard({
