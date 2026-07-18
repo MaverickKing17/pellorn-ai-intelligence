@@ -89,35 +89,90 @@ const cellTone = (r: string) =>
   : r === 'M' ? 'bg-accent-amber/25 text-accent-amber border-accent-amber/40'
   : 'bg-accent-teal/15 text-accent-teal border-accent-teal/30';
 
+function ScannerRulesDialog() {
+  const [sin, setSin] = useState(true);
+  const [pci, setPci] = useState(true);
+  const [code, setCode] = useState(false);
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          aria-label="Sensitive data scanning rules"
+          className="inline-flex items-center justify-center w-6 h-6 rounded-md border border-border hover:border-accent-teal/60 hover:text-accent-teal text-text-secondary transition-colors"
+        >
+          <Settings className="w-3.5 h-3.5" />
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-md bg-card border-border">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-foreground">
+            <Search className="w-4 h-4 text-accent-teal" /> Sensitive Data Scanning Rules
+          </DialogTitle>
+          <DialogDescription className="text-text-secondary text-xs">
+            Configure which patterns the Bastion PII/PCI scanner intercepts before egress.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="space-y-2 mt-2">
+          <ScanRow label="Social Insurance Numbers (SIN)" sub="ca.pii.sin.v2 · 9-digit Luhn" checked={sin} onChange={setSin} />
+          <ScanRow label="PCI-DSS (Credit Cards)" sub="Visa / MC / Amex · BIN-verified" checked={pci} onChange={setPci} />
+          <ScanRow label="Internal Source Code / Proprietary Repos" sub="Regex + entropy · flags stack traces & keys" checked={code} onChange={setCode} />
+        </div>
+        <div className="mt-3 rounded-lg border border-accent-teal/30 bg-accent-teal/10 p-3 space-y-1.5">
+          <p className="text-[10px] uppercase tracking-widest text-accent-teal font-semibold">Cryptographic Proofs</p>
+          <div className="flex items-center gap-2 text-[11px] text-foreground">
+            <Lock className="w-3 h-3 text-accent-teal" /> TLS 1.3 Enforced <span className="text-text-secondary">— data in transit to UI</span>
+          </div>
+          <div className="flex items-center gap-2 text-[11px] text-foreground">
+            <KeyRound className="w-3 h-3 text-accent-teal" /> AES-256 at rest <span className="text-text-secondary">— keys isolated in Canada Central (OSFI B-13)</span>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function ScanRow({ label, sub, checked, onChange }: { label: string; sub: string; checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <label className="flex items-start gap-3 bg-surface-raised border border-border rounded-lg p-2.5 cursor-pointer hover:border-accent-teal/40 transition-colors">
+      <Checkbox checked={checked} onCheckedChange={(v) => onChange(!!v)} className="mt-0.5" />
+      <div>
+        <p className="text-xs font-semibold text-foreground">{label}</p>
+        <p className="text-[10px] text-text-secondary">{sub}</p>
+      </div>
+    </label>
+  );
+}
+
 function RiskHeatMap() {
   return (
     <div className="bg-card border border-border rounded-xl p-5">
-      <div className="flex items-center justify-between mb-4">
-        <div>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <h3 className="text-sm font-bold text-foreground">AI Risk Heat Map</h3>
-          <p className="text-[10px] text-text-secondary uppercase tracking-widest">Departments × Risk Categories</p>
+          <ScannerRulesDialog />
         </div>
         <span className="text-[10px] font-mono text-text-secondary">Live · Updated 11 sec ago</span>
       </div>
+      <p className="text-[10px] text-text-secondary uppercase tracking-widest mb-3">Departments × Risk Categories</p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
             <tr>
-              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-2 font-semibold">Business Unit</th>
-              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-2 font-semibold">Agents</th>
+              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-1.5 font-semibold">Business Unit</th>
+              <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary pb-1.5 font-semibold">Agents</th>
               {heatCats.map(c => (
-                <th key={c} className="text-center text-[10px] uppercase tracking-wider text-text-secondary pb-2 font-semibold">{c}</th>
+                <th key={c} className="text-center text-[10px] uppercase tracking-wider text-text-secondary pb-1.5 font-semibold">{c}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {heatRows.map(r => (
               <tr key={r.dept} className="border-t border-border/60">
-                <td className="py-2.5 text-foreground text-xs">{r.dept}</td>
-                <td className="py-2.5 font-mono text-text-secondary">{r.agents}</td>
+                <td className="py-1 text-foreground text-xs">{r.dept}</td>
+                <td className="py-1 font-mono text-text-secondary">{r.agents}</td>
                 {r.risks.map((cell, i) => (
-                  <td key={i} className="py-2.5 px-1">
-                    <div className={`h-7 rounded border flex items-center justify-center text-[10px] font-bold font-mono ${cellTone(cell)}`}>
+                  <td key={i} className="py-1 px-1">
+                    <div className={`h-5 rounded border flex items-center justify-center text-[10px] font-bold font-mono ${cellTone(cell)}`}>
                       {cell}
                     </div>
                   </td>
@@ -127,7 +182,7 @@ function RiskHeatMap() {
           </tbody>
         </table>
       </div>
-      <div className="flex items-center gap-4 mt-4 pt-3 border-t border-border">
+      <div className="flex items-center gap-4 mt-3 pt-2.5 border-t border-border">
         <span className="text-[10px] uppercase tracking-widest text-text-secondary">Legend</span>
         <span className="flex items-center gap-1.5 text-[10px] text-text-secondary"><span className="w-3 h-3 rounded bg-accent-teal/30 border border-accent-teal/40" /> Low</span>
         <span className="flex items-center gap-1.5 text-[10px] text-text-secondary"><span className="w-3 h-3 rounded bg-accent-amber/30 border border-accent-amber/40" /> Medium</span>
@@ -136,6 +191,7 @@ function RiskHeatMap() {
     </div>
   );
 }
+
 
 /* ---------------- INCIDENT TIMELINE ---------------- */
 const timeline = [
