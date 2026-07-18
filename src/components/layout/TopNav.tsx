@@ -50,6 +50,8 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
           </div>
         </div>
 
+        <ExitStrategyButton />
+
         <Button
           size="sm"
           className="bg-accent-red/20 text-accent-red border border-accent-red/30 hover:bg-accent-red/30 text-[10px] uppercase tracking-wider font-semibold h-7 px-3"
