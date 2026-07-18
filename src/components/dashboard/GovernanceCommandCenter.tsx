@@ -194,9 +194,9 @@ function RiskHeatMap() {
 
 
 /* ---------------- INCIDENT TIMELINE ---------------- */
-const timeline = [
-  { time: '10:43:02', label: 'Prompt Injection Attempt', detail: 'PayrollAgent · payload pattern match', tone: 'amber' },
-  { time: '10:43:04', label: 'PII Access Attempt', detail: 'Attempt to read SIN field · ca.pii.sin.v2', tone: 'red' },
+const timeline: Array<{ time: string; label: string; detail: string; tone: string; action?: 'investigate' | 'isolate' }> = [
+  { time: '10:43:02', label: 'Prompt Injection Attempt', detail: 'PayrollAgent · payload pattern match', tone: 'amber', action: 'investigate' },
+  { time: '10:43:04', label: 'PII Access Attempt', detail: 'Attempt to read SIN field · ca.pii.sin.v2', tone: 'red', action: 'isolate' },
   { time: '10:43:05', label: 'Risk Score Increased', detail: '67 → 42 · drift threshold exceeded', tone: 'amber' },
   { time: '10:43:06', label: 'Circuit Breaker Triggered', detail: 'Tool calls suspended · audit log sealed', tone: 'red' },
   { time: '10:43:07', label: 'Agent Quarantined', detail: 'PayrollAgent moved to RESTRICTED', tone: 'red' },
@@ -226,9 +226,25 @@ function IncidentTimeline() {
         {timeline.map((t, i) => (
           <li key={i} className="pl-4 relative">
             <span className={`absolute -left-[7px] top-1.5 w-3 h-3 rounded-full ring-4 ${toneDot(t.tone)}`} />
-            <div className="flex items-baseline gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <span className="font-mono text-[10px] text-text-secondary tabular-nums">{t.time}</span>
               <span className="text-xs text-foreground font-semibold">{t.label}</span>
+              {t.action === 'investigate' && (
+                <button
+                  onClick={() => toast.success('Investigation opened', { description: `${t.label} · INC-2026-0431` })}
+                  className="ml-auto inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-accent-amber/50 bg-accent-amber/10 text-accent-amber hover:bg-accent-amber/20 transition-colors"
+                >
+                  <Search className="w-3 h-3" /> Investigate
+                </button>
+              )}
+              {t.action === 'isolate' && (
+                <button
+                  onClick={() => toast.error('Agent isolated', { description: 'PayrollAgent · tool calls suspended · quarantine engaged' })}
+                  className="ml-auto inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border border-accent-red/50 bg-accent-red/10 text-accent-red hover:bg-accent-red/20 transition-colors"
+                >
+                  <ShieldOff className="w-3 h-3" /> Isolate Agent
+                </button>
+              )}
             </div>
             <p className="text-[11px] text-text-secondary mt-0.5">{t.detail}</p>
           </li>
@@ -237,6 +253,7 @@ function IncidentTimeline() {
     </div>
   );
 }
+
 
 /* ---------------- ORG CHART ---------------- */
 const orgUnits = [
