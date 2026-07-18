@@ -1,4 +1,9 @@
-import { Globe, Lock, MapPin, Server, Activity, Wifi } from 'lucide-react';
+import { useState } from 'react';
+import { Globe, Lock, MapPin, Server, Activity, Wifi, Settings2, KeyRound, ShieldCheck } from 'lucide-react';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger,
+} from '@/components/ui/dialog';
+import { Switch } from '@/components/ui/switch';
 
 interface SidebarProps {
   open: boolean;
@@ -6,6 +11,10 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
+  const [pipeda, setPipeda] = useState(true);
+  const [aida, setAida] = useState(true);
+  const [crossBorder, setCrossBorder] = useState(false);
+
   return (
     <>
       {open && (
@@ -40,7 +49,55 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
           {/* Data Residency */}
           <section>
-            <h3 className="text-[10px] uppercase tracking-widest text-text-secondary mb-2">Data Residency</h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-[10px] uppercase tracking-widest text-text-secondary">Data Residency</h3>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button
+                    className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-accent-teal hover:text-accent-teal-lt border border-accent-teal/30 hover:border-accent-teal/60 bg-accent-teal/10 rounded-md px-1.5 py-0.5 transition-colors"
+                    aria-label="Configure governance presets"
+                  >
+                    <Settings2 className="w-3 h-3" /> Configure
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md bg-card border-border">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2 text-foreground">
+                      <ShieldCheck className="w-4 h-4 text-accent-teal" /> Governance Framework Presets
+                    </DialogTitle>
+                    <DialogDescription className="text-text-secondary text-xs">
+                      Toggle statutory frameworks enforced across the tenant. Changes apply to policy engine on next sync.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-2 mt-2">
+                    <PresetRow
+                      title="PIPEDA Compliance"
+                      subtitle="Personal Information Protection & Electronic Documents Act"
+                      checked={pipeda} onChange={setPipeda}
+                    />
+                    <PresetRow
+                      title="AIDA (Bill C-27)"
+                      subtitle="Federal Artificial Intelligence & Data Act"
+                      checked={aida} onChange={setAida}
+                    />
+                    <PresetRow
+                      title="Cross-Border Data Residency Safeguard"
+                      subtitle="Blocks payloads leaving Canadian sovereign zones"
+                      checked={crossBorder} onChange={setCrossBorder}
+                    />
+                  </div>
+                  <div className="mt-3 rounded-lg border border-accent-teal/30 bg-accent-teal/10 p-3 space-y-1.5">
+                    <p className="text-[10px] uppercase tracking-widest text-accent-teal font-semibold">Sovereign Pinning</p>
+                    <p className="text-[11px] text-foreground">
+                      All PII processing & immutable audit trails pinned to{' '}
+                      <span className="font-semibold text-accent-teal">Azure Canada Central (Toronto)</span>{' '}
+                      with failover to <span className="font-semibold text-accent-teal">Canada East (Quebec)</span>.
+                    </p>
+                    <p className="text-[10px] text-text-secondary">Satisfies PIPEDA §4.1 data-sovereignty & OSFI B-13 residency clauses.</p>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
             <div className="bg-surface-raised border border-border rounded-xl p-3 space-y-2">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-semibold text-foreground">Region Config</span>
@@ -48,17 +105,21 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-3 h-3 text-text-secondary" />
-                <span className="text-[11px] text-text-secondary">Primary Region</span>
-                <span className="text-[11px] font-semibold text-accent-amber ml-auto">Canada Central</span>
+                <span className="text-[11px] text-text-secondary">Primary</span>
+                <span className="text-[11px] font-semibold text-accent-amber ml-auto">Canada Central · Toronto</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-3 h-3 text-text-secondary" />
-                <span className="text-[11px] text-text-secondary">Failover Zone</span>
-                <span className="text-[11px] font-semibold text-foreground ml-auto">Canada East</span>
+                <span className="text-[11px] text-text-secondary">Failover</span>
+                <span className="text-[11px] font-semibold text-foreground ml-auto">Canada East · Quebec</span>
               </div>
               <p className="text-[10px] text-text-muted-custom leading-relaxed">
                 All PII processing and immutable audit trails are strictly confined to Canadian sovereign infrastructure.
               </p>
+              <div className="border-t border-border pt-2 space-y-1.5">
+                <SovereignBadge icon={<Lock className="w-3 h-3" />} text="TLS 1.3 Enforced (UI transport)" />
+                <SovereignBadge icon={<KeyRound className="w-3 h-3" />} text="AES-256 · Keys Isolated CA-Central" />
+              </div>
             </div>
           </section>
 
@@ -81,6 +142,27 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         </div>
       </aside>
     </>
+  );
+}
+
+function PresetRow({ title, subtitle, checked, onChange }: { title: string; subtitle: string; checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <div className="flex items-center justify-between bg-surface-raised border border-border rounded-lg p-2.5">
+      <div className="pr-3">
+        <p className="text-xs font-semibold text-foreground">{title}</p>
+        <p className="text-[10px] text-text-secondary">{subtitle}</p>
+      </div>
+      <Switch checked={checked} onCheckedChange={onChange} />
+    </div>
+  );
+}
+
+function SovereignBadge({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex items-center gap-1.5 text-[10px] text-accent-teal">
+      <span className="text-accent-teal">{icon}</span>
+      <span className="font-semibold tracking-wide">{text}</span>
+    </div>
   );
 }
 
