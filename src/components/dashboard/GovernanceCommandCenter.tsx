@@ -16,7 +16,7 @@ import { toast } from 'sonner';
 
 /* ---------------- KPI HERO ---------------- */
 function KpiCard({
-  label, value, status, statusTone = 'teal', sub, icon: Icon, accent = 'teal',
+  label, value, status, statusTone = 'teal', sub, icon: Icon, accent = 'teal', tooltip,
 }: {
   label: string;
   value: string;
@@ -25,6 +25,7 @@ function KpiCard({
   sub?: string;
   icon: any;
   accent?: 'teal' | 'amber' | 'red' | 'blue';
+  tooltip?: string;
 }) {
   const accentClass = {
     teal: 'text-accent-teal',
@@ -38,11 +39,14 @@ function KpiCard({
     red: 'bg-accent-red/10 text-accent-red border-accent-red/30',
     blue: 'bg-accent-blue/10 text-accent-blue border-accent-blue/30',
   }[statusTone];
-  return (
-    <div className="bg-card border border-border rounded-xl p-4 relative overflow-hidden group hover:border-accent-teal/40 transition-colors">
+  const card = (
+    <div className="bg-card border border-border rounded-xl p-4 relative overflow-hidden group hover:border-accent-teal/40 transition-colors h-full">
       <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-[0.06] ${accentClass.replace('text-', 'bg-')}`} />
       <div className="flex items-start justify-between mb-3">
-        <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold">{label}</span>
+        <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold flex items-center gap-1">
+          {label}
+          {tooltip && <Info className="w-3 h-3 text-text-secondary/70 group-hover:text-accent-teal transition-colors" />}
+        </span>
         <Icon className={`w-4 h-4 ${accentClass}`} />
       </div>
       <p className="text-3xl font-bold text-foreground tabular-nums leading-none">{value}</p>
@@ -56,7 +60,19 @@ function KpiCard({
       </div>
     </div>
   );
+  if (!tooltip) return card;
+  return (
+    <Tooltip delayDuration={150}>
+      <TooltipTrigger asChild>
+        <div className="cursor-help">{card}</div>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="max-w-xs bg-surface-raised border-border text-foreground text-[11px] leading-relaxed">
+        {tooltip}
+      </TooltipContent>
+    </Tooltip>
+  );
 }
+
 
 /* ---------------- RISK HEAT MAP ---------------- */
 const heatRows = [
