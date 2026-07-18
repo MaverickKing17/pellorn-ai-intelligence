@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIndustry } from '@/context/IndustryContext';
 import { useAuth } from '@/hooks/useAuth';
+import ExitStrategyButton from '@/components/dashboard/ExitStrategyButton';
 
 interface TopNavProps {
   onMenuToggle: () => void;
