@@ -2,7 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import {
   Gauge, Users, Award, Briefcase, Cloud, ShieldAlert, FlaskConical, Box, Shield,
   Activity, FileText, Stethoscope, Radio, TrendingUp, Loader2, BadgeCheck, Archive, Workflow, MoreHorizontal, Scale,
-  KeyRound, Plug, Network,
+  KeyRound, Plug, Network, Lock,
 } from 'lucide-react';
 import TopNav from '@/components/layout/TopNav';
 import Sidebar from '@/components/layout/Sidebar';
@@ -29,6 +29,7 @@ const CaseManagement = lazy(() => import('@/components/dashboard/CaseManagement'
 const EntraConnector = lazy(() => import('@/components/dashboard/EntraConnector'));
 const IntegrationCenter = lazy(() => import('@/components/dashboard/IntegrationCenter'));
 const GovernanceGraph = lazy(() => import('@/components/dashboard/GovernanceGraph'));
+const ComplianceEncryption = lazy(() => import('@/components/dashboard/ComplianceEncryption'));
 
 const primaryTabs = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
@@ -52,6 +53,7 @@ const primaryTabs = [
 const moreTabs = [
   { id: 'entra-connector', label: 'Entra Connector', icon: KeyRound, badge: 'PREVIEW' },
   { id: 'integration-center', label: 'Integration Center', icon: Plug, badge: 'NEW' },
+  { id: 'compliance-encryption', label: 'Compliance & Encryption', icon: Lock, badge: 'BYOK' },
   { id: 'model-inventory', label: 'Model Inventory', icon: Box },
   { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
   { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
@@ -79,6 +81,7 @@ export default function Index() {
       case 'entra-connector': return <EntraConnector />;
       case 'integration-center': return <IntegrationCenter />;
       case 'policy-engine': return <PolicyEnforcement />;
+      case 'compliance-encryption': return <ComplianceEncryption />;
       case 'threat-feed': return <LiveThreatFeed />;
       case 'red-team': return <RedTeamSandbox />;
       case 'model-inventory': return <ModelInventory />;
