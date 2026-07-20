@@ -38,6 +38,39 @@ export type Database = {
         }
         Relationships: []
       }
+      tenant_encryption_configs: {
+        Row: {
+          azure_client_id: string
+          azure_tenant_id: string
+          created_at: string
+          encrypted_dek: string | null
+          id: string
+          key_vault_url: string
+          tenant_id: string
+          updated_at: string
+        }
+        Insert: {
+          azure_client_id: string
+          azure_tenant_id: string
+          created_at?: string
+          encrypted_dek?: string | null
+          id?: string
+          key_vault_url: string
+          tenant_id: string
+          updated_at?: string
+        }
+        Update: {
+          azure_client_id?: string
+          azure_tenant_id?: string
+          created_at?: string
+          encrypted_dek?: string | null
+          id?: string
+          key_vault_url?: string
+          tenant_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
