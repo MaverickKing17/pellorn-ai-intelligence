@@ -89,7 +89,7 @@ export default function Auth() {
           <Shield className="w-7 h-7 text-accent-teal drop-shadow-[0_0_12px_hsl(var(--accent-teal)/0.6)]" />
           <div>
             <h1 className="text-lg font-bold text-foreground leading-none">Pellorn</h1>
-            <p className="text-[10px] uppercase tracking-widest text-text-secondary mt-1">
+            <p className="text-[11px] uppercase tracking-widest text-text-secondary mt-1">
               AI Governance &amp; Intelligence
             </p>
           </div>
@@ -203,7 +203,7 @@ export default function Auth() {
 
             <div className="my-4 flex items-center gap-2">
               <div className="flex-1 h-px bg-border" />
-              <span className="text-[10px] uppercase tracking-widest text-text-secondary">or</span>
+              <span className="text-[11px] uppercase tracking-widest text-text-secondary">or</span>
               <div className="flex-1 h-px bg-border" />
             </div>
 
@@ -236,7 +236,7 @@ export default function Auth() {
           </div>
         </div>
 
-        <p className="text-[10px] text-text-secondary/80 text-center mt-6 uppercase tracking-[0.28em] font-medium">
+        <p className="text-[11px] text-text-secondary/80 text-center mt-6 uppercase tracking-[0.28em] font-medium">
           Your industry vertical is bound to your account on signup
         </p>
       </div>

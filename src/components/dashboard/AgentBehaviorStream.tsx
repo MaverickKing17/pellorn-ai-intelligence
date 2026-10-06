@@ -25,7 +25,7 @@ export default function AgentBehaviorStream() {
           <User className="w-4 h-4 text-text-secondary" />
           <h3 className="text-sm font-bold text-foreground">Agent Behavior Stream</h3>
         </div>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full flex items-center gap-1">
           <span className="w-1.5 h-1.5 bg-accent-teal rounded-full animate-pulse-glow" />
           Live Feed
         </span>
@@ -45,13 +45,13 @@ export default function AgentBehaviorStream() {
       </div>
 
       <div className="flex items-center gap-4 mt-3">
-        <span className="flex items-center gap-1 text-[10px] text-text-secondary">
+        <span className="flex items-center gap-1 text-[11px] text-text-secondary">
           <span className="w-2 h-2 rounded-full bg-accent-blue" /> MONITOR • {logCounts.MONITOR}
         </span>
-        <span className="flex items-center gap-1 text-[10px] text-text-secondary">
+        <span className="flex items-center gap-1 text-[11px] text-text-secondary">
           <span className="w-2 h-2 rounded-full bg-accent-amber" /> CHECK • {logCounts.CHECK}
         </span>
-        <span className="flex items-center gap-1 text-[10px] text-text-secondary">
+        <span className="flex items-center gap-1 text-[11px] text-text-secondary">
           <span className="w-2 h-2 rounded-full bg-accent-teal" /> OK • {logCounts.OK}
         </span>
       </div>

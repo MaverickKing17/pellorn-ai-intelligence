@@ -91,10 +91,10 @@ export default function AgentCertification() {
           <h1 className="text-xl font-bold text-foreground">Agent Certification Workflow</h1>
           <p className="text-xs text-text-secondary mt-1">
             Evidence-backed agent certification across security, compliance, and risk lines of defense.
-            <span className="ml-2 text-[10px] uppercase tracking-wider text-accent-amber/80">Simulation Data</span>
+            <span className="ml-2 text-[11px] uppercase tracking-wider text-accent-amber/80">Simulation Data</span>
           </p>
         </div>
-        <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-text-secondary">
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-text-secondary">
           <span className="px-2 py-0.5 rounded-full bg-accent-teal/10 border border-accent-teal/30 text-accent-teal">OSFI E-21</span>
           <span className="px-2 py-0.5 rounded-full bg-accent-blue/10 border border-accent-blue/30 text-accent-blue">PIPEDA</span>
           <span className="px-2 py-0.5 rounded-full bg-accent-purple/10 border border-accent-purple/30 text-accent-purple">AIDA</span>
@@ -109,7 +109,7 @@ export default function AgentCertification() {
           return (
             <div key={k.label} className="bg-card border border-border rounded-lg p-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] uppercase tracking-wider text-text-secondary">{k.label}</span>
+                <span className="text-[11px] uppercase tracking-wider text-text-secondary">{k.label}</span>
                 <Icon className={`w-3.5 h-3.5 ${k.color}`} />
               </div>
               <div className={`text-2xl font-bold mt-1 ${k.color}`}>{k.value}</div>
@@ -122,7 +122,7 @@ export default function AgentCertification() {
       <div className="bg-card border border-border rounded-lg p-3">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-foreground">Certification Pipeline</h2>
-          <span className="text-[10px] uppercase tracking-wider text-text-secondary">Drag-free demo board</span>
+          <span className="text-[11px] uppercase tracking-wider text-text-secondary">Drag-free demo board</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {stages.map(stage => {
@@ -130,8 +130,8 @@ export default function AgentCertification() {
             return (
               <div key={stage} className="bg-background/40 border border-border rounded-md p-2 min-h-[280px]">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] uppercase tracking-wider text-text-secondary font-semibold">{stage}</span>
-                  <span className="text-[10px] font-mono-code text-text-muted">{cards.length}</span>
+                  <span className="text-[11px] uppercase tracking-wider text-text-secondary font-semibold">{stage}</span>
+                  <span className="text-[11px] font-mono-code text-text-muted">{cards.length}</span>
                 </div>
                 <div className="space-y-2">
                   {cards.map(a => (
@@ -142,20 +142,20 @@ export default function AgentCertification() {
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-semibold text-foreground truncate">{a.name}</span>
-                        <span className={`text-[10px] font-mono-code ${trustColor(a.trust)}`}>{a.trust}</span>
+                        <span className={`text-[11px] font-mono-code ${trustColor(a.trust)}`}>{a.trust}</span>
                       </div>
-                      <div className="text-[10px] text-text-secondary mt-0.5 truncate">{a.dept} · {a.owner}</div>
+                      <div className="text-[11px] text-text-secondary mt-0.5 truncate">{a.dept} · {a.owner}</div>
                       <div className="flex items-center justify-between mt-2">
-                        <span className={`text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${riskBadge(a.risk)}`}>{a.risk}</span>
-                        <span className="text-[9px] text-text-muted">Next: {a.nextReview}</span>
+                        <span className={`text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${riskBadge(a.risk)}`}>{a.risk}</span>
+                        <span className="text-[10.5px] text-text-muted">Next: {a.nextReview}</span>
                       </div>
                       <div className="flex flex-wrap gap-1 mt-2">
                         {a.frameworks.map(f => (
-                          <span key={f} className="text-[9px] font-mono-code text-text-secondary bg-background/60 px-1 py-0.5 rounded">{f}</span>
+                          <span key={f} className="text-[10.5px] font-mono-code text-text-secondary bg-background/60 px-1 py-0.5 rounded">{f}</span>
                         ))}
                       </div>
                       {a.reason && (
-                        <div className="text-[10px] text-accent-amber mt-1.5 line-clamp-2">⚠ {a.reason}</div>
+                        <div className="text-[11px] text-accent-amber mt-1.5 line-clamp-2">⚠ {a.reason}</div>
                       )}
                     </button>
                   ))}
@@ -170,7 +170,7 @@ export default function AgentCertification() {
       <div className="bg-card border border-border rounded-lg p-3">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-sm font-semibold text-foreground">Recent Certification Decisions</h2>
-          <span className="text-[10px] uppercase tracking-wider text-text-secondary">Audit Trail · Sealed Evidence</span>
+          <span className="text-[11px] uppercase tracking-wider text-text-secondary">Audit Trail · Sealed Evidence</span>
         </div>
         {decisions.length === 0 ? (
           <p className="text-xs text-text-muted py-3">No decisions yet. Open an agent card to record a certification decision.</p>
@@ -181,7 +181,7 @@ export default function AgentCertification() {
                 <span className="font-mono-code text-text-secondary">{d.ts}</span>
                 <span className="text-foreground">{d.agent}</span>
                 <span className="text-accent-teal">{d.action}</span>
-                <span className="text-[10px] text-text-muted">evidence sealed</span>
+                <span className="text-[11px] text-text-muted">evidence sealed</span>
               </li>
             ))}
           </ul>
@@ -208,15 +208,15 @@ export default function AgentCertification() {
 
             <div className="grid grid-cols-3 gap-2 mt-4">
               <div className="bg-background/50 border border-border rounded p-2">
-                <div className="text-[10px] uppercase text-text-secondary">Trust Score</div>
+                <div className="text-[11px] uppercase text-text-secondary">Trust Score</div>
                 <div className={`text-xl font-bold ${trustColor(selected.trust)}`}>{selected.trust}</div>
               </div>
               <div className="bg-background/50 border border-border rounded p-2">
-                <div className="text-[10px] uppercase text-text-secondary">Risk Tier</div>
+                <div className="text-[11px] uppercase text-text-secondary">Risk Tier</div>
                 <div className="text-sm font-semibold text-foreground">{selected.risk}</div>
               </div>
               <div className="bg-background/50 border border-border rounded p-2">
-                <div className="text-[10px] uppercase text-text-secondary">Status</div>
+                <div className="text-[11px] uppercase text-text-secondary">Status</div>
                 <div className="text-sm font-semibold text-foreground">{selected.status}</div>
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function AgentCertification() {
                   </button>
                 ))}
               </div>
-              <p className="text-[10px] text-text-muted mt-2">Each decision generates a sealed evidence record in the Governance Evidence Vault.</p>
+              <p className="text-[11px] text-text-muted mt-2">Each decision generates a sealed evidence record in the Governance Evidence Vault.</p>
             </section>
           </div>
         </div>

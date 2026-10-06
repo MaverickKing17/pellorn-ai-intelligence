@@ -127,7 +127,7 @@ export default function AgentRegistry() {
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="grid grid-cols-[32px_1.4fr_1fr_1.2fr_120px_120px_110px] gap-3 px-4 py-3 border-b border-border bg-surface-raised">
           {['', 'Agent', 'Department', 'Trust Score', 'Status', 'Certification', 'Last Audit'].map(h => (
-            <span key={h} className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold">{h}</span>
+            <span key={h} className="text-[11px] uppercase tracking-widest text-text-secondary font-semibold">{h}</span>
           ))}
         </div>
         {agents.map(a => {
@@ -145,7 +145,7 @@ export default function AgentRegistry() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-foreground truncate">{a.name}</p>
-                    <p className="text-[10px] font-mono text-text-secondary truncate">{a.id}</p>
+                    <p className="text-[11px] font-mono text-text-secondary truncate">{a.id}</p>
                   </div>
                 </div>
                 <span className="text-xs text-text-secondary">{a.dept}</span>
@@ -155,9 +155,9 @@ export default function AgentRegistry() {
                     <div className={`h-full ${trustBar(a.trust)} rounded-full`} style={{ width: `${a.trust}%` }} />
                   </div>
                 </div>
-                <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border w-fit ${statusTone[a.status]}`}>{a.status}</span>
-                <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border w-fit ${certTone[a.cert]}`}>{a.cert}</span>
-                <span className="text-[10px] font-mono text-text-secondary">{a.lastAudit}</span>
+                <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border w-fit ${statusTone[a.status]}`}>{a.status}</span>
+                <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border w-fit ${certTone[a.cert]}`}>{a.cert}</span>
+                <span className="text-[11px] font-mono text-text-secondary">{a.lastAudit}</span>
               </button>
 
               {isOpen && (
@@ -202,7 +202,7 @@ function DetailRow({ icon: Icon, label, value, mono }: { icon?: any; label: stri
     <div className="flex items-start gap-2 py-1.5 border-b border-border/40 last:border-b-0">
       {Icon && <Icon className="w-3 h-3 text-text-secondary mt-1 shrink-0" />}
       <div className="flex-1 min-w-0">
-        <p className="text-[10px] uppercase tracking-widest text-text-secondary">{label}</p>
+        <p className="text-[11px] uppercase tracking-widest text-text-secondary">{label}</p>
         <p className={`text-xs text-foreground ${mono ? 'font-mono' : ''} break-all`}>{value}</p>
       </div>
     </div>

@@ -9,8 +9,8 @@ export default function RedTeamSandbox() {
       {/* Search */}
       <div className="bg-card border border-border rounded-xl p-4">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold">Global Sandbox Search</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+          <span className="text-[11px] uppercase tracking-widest text-text-secondary font-semibold">Global Sandbox Search</span>
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full flex items-center gap-1">
             <span className="w-1.5 h-1.5 bg-accent-teal rounded-full animate-pulse-glow" />
             Sandbox Active
           </span>

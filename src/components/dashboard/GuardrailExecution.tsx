@@ -8,7 +8,7 @@ export default function GuardrailExecution() {
     <div className="bg-card border border-border rounded-xl p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-bold text-foreground">Live Guardrail Execution</h3>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full">
           Real Time Monitoring
         </span>
       </div>
@@ -19,7 +19,7 @@ export default function GuardrailExecution() {
             <CheckCircle className="w-4 h-4 text-accent-teal flex-shrink-0" />
             <span className="text-xs text-foreground flex-1">{g.name}</span>
             <span className="text-[11px] text-text-secondary font-mono">{g.latency}ms</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full">
               PASSED
             </span>
           </div>

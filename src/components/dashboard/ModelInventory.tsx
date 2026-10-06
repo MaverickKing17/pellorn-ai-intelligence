@@ -31,7 +31,7 @@ export default function ModelInventory() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border text-[10px] uppercase tracking-widest text-text-secondary">
+              <tr className="border-b border-border text-[11px] uppercase tracking-widest text-text-secondary">
                 <th className="text-left py-2 pr-4">Agent</th>
                 <th className="text-left py-2 pr-4 hidden md:table-cell">Provider / Region</th>
                 <th className="text-left py-2 pr-4 hidden sm:table-cell">Last Audit</th>
@@ -44,13 +44,13 @@ export default function ModelInventory() {
               {agents.map((a, i) => (
                 <tr key={i} className="border-b border-border/50 hover:bg-surface-raised/50 transition-colors">
                   <td className="py-3 pr-4">
-                    <div className="font-semibold text-foreground">{a.name} <span className="text-text-muted-custom text-[10px] bg-surface-raised px-1.5 py-0.5 rounded ml-1">{a.version}</span></div>
-                    <div className="text-[10px] text-text-secondary mt-0.5 hidden md:hidden">◆ {a.provider}</div>
+                    <div className="font-semibold text-foreground">{a.name} <span className="text-text-muted-custom text-[11px] bg-surface-raised px-1.5 py-0.5 rounded ml-1">{a.version}</span></div>
+                    <div className="text-[11px] text-text-secondary mt-0.5 hidden md:hidden">◆ {a.provider}</div>
                   </td>
                   <td className="py-3 pr-4 text-text-secondary hidden md:table-cell">{a.provider}</td>
                   <td className="py-3 pr-4 text-text-secondary hidden sm:table-cell">{a.lastAudit}</td>
-                  <td className="py-3 pr-4"><span className={`font-semibold uppercase tracking-wider text-[10px] ${a.riskColor}`}>{a.risk}</span></td>
-                  <td className="py-3 pr-4"><span className={`font-semibold uppercase tracking-wider text-[10px] ${a.statusColor}`}>{a.status}</span></td>
+                  <td className="py-3 pr-4"><span className={`font-semibold uppercase tracking-wider text-[11px] ${a.riskColor}`}>{a.risk}</span></td>
+                  <td className="py-3 pr-4"><span className={`font-semibold uppercase tracking-wider text-[11px] ${a.statusColor}`}>{a.status}</span></td>
                   <td className="py-3"><ChevronRight className="w-4 h-4 text-text-muted-custom" /></td>
                 </tr>
               ))}
@@ -98,7 +98,7 @@ export default function ModelInventory() {
 function StatCard({ label, value, color }: { label: string; value: string; color: string }) {
   return (
     <div className="bg-surface-raised border border-border rounded-lg p-4 text-center">
-      <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-1">{label}</p>
+      <p className="text-[11px] uppercase tracking-widest text-text-secondary mb-1">{label}</p>
       <p className={`text-2xl font-bold ${color}`}>{value}</p>
     </div>
   );

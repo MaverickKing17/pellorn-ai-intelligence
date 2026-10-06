@@ -5,7 +5,7 @@ import {
 
 function IntegrationBadge() {
   return (
-    <span className="absolute top-3 right-3 font-mono text-[9px] uppercase tracking-wider px-2 py-1 rounded-full bg-slate-800 text-amber-400 border border-amber-500/20">
+    <span className="absolute top-3 right-3 font-mono text-[10.5px] uppercase tracking-wider px-2 py-1 rounded-full bg-slate-800 text-amber-400 border border-amber-500/20">
       [Integration Preview]
     </span>
   );
@@ -44,8 +44,8 @@ function PurviewCard() {
 
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 mb-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Purview Labels / AI Traffic</span>
-          <span className="text-[10px] font-mono text-emerald-400">live</span>
+          <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Purview Labels / AI Traffic</span>
+          <span className="text-[11px] font-mono text-emerald-400">live</span>
         </div>
         <div className="flex items-end gap-1 h-12">
           {bars.map((h, i) => (
@@ -56,7 +56,7 @@ function PurviewCard() {
           {categories.map(c => (
             <div key={c.label} className="flex items-center gap-1.5">
               <span className={`w-1.5 h-1.5 rounded-full ${c.color}`} />
-              <span className="text-[10px] font-mono text-slate-400">{c.label}</span>
+              <span className="text-[11px] font-mono text-slate-400">{c.label}</span>
             </div>
           ))}
         </div>
@@ -66,36 +66,36 @@ function PurviewCard() {
         <Row icon={ShieldCheck} iconClass="text-emerald-400" tone="emerald">
           <div className="flex-1">
             <p className="text-xs text-slate-200">Purview Sensitivity Label Detected</p>
-            <p className="text-[10px] font-mono text-emerald-300/80">Confidential / Highly Restricted</p>
+            <p className="text-[11px] font-mono text-emerald-300/80">Confidential / Highly Restricted</p>
           </div>
         </Row>
         <Row icon={AlertTriangle} iconClass="text-red-400" tone="red">
           <div className="flex-1">
             <p className="text-xs text-slate-200">PII Policy Check — SIN Detected</p>
-            <p className="text-[10px] font-mono text-red-300/80">policy: ca.pii.sin.v2</p>
+            <p className="text-[11px] font-mono text-red-300/80">policy: ca.pii.sin.v2</p>
           </div>
-          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/30">● BLOCKED</span>
+          <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/30">● BLOCKED</span>
         </Row>
         <Row icon={FolderKey} iconClass="text-amber-400">
           <div className="flex-1">
             <p className="text-xs text-slate-200">Purview Classification</p>
-            <p className="text-[10px] font-mono text-slate-400">Financial Records (110 matches)</p>
+            <p className="text-[11px] font-mono text-slate-400">Financial Records (110 matches)</p>
           </div>
         </Row>
         <Row icon={Lock} iconClass="text-accent-blue">
           <div className="flex-1">
             <p className="text-xs text-slate-200">PII Redacted before transit</p>
-            <p className="text-[10px] font-mono text-slate-400">→ azure.openai/canada-central</p>
+            <p className="text-[11px] font-mono text-slate-400">→ azure.openai/canada-central</p>
           </div>
         </Row>
       </div>
 
       <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-slate-500">Active Policies Audited</p>
+          <p className="text-[11px] uppercase tracking-widest text-slate-500">Active Policies Audited</p>
           <p className="font-mono text-lg text-slate-100">03</p>
         </div>
-        <p className="text-[10px] font-mono text-amber-400">⚠ Breach Prevention: 12 incidents / wk</p>
+        <p className="text-[11px] font-mono text-amber-400">⚠ Breach Prevention: 12 incidents / wk</p>
       </div>
     </CardShell>
   );
@@ -109,11 +109,11 @@ function KeyVaultCard() {
       <CardHeader icon={Key} title="Azure Key Vault Integration" />
 
       <div className="flex items-start justify-between gap-3 mb-4">
-        <span className="font-mono text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-[0_0_12px_-2px_rgba(16,185,129,0.5)]">
+        <span className="font-mono text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-[0_0_12px_-2px_rgba(16,185,129,0.5)]">
           Status: [ CONNECTED · Canada Central ]
         </span>
         <div className="bg-slate-900/60 border border-slate-800 rounded-lg px-2 py-1.5">
-          <p className="text-[9px] font-mono uppercase tracking-wider text-slate-500 mb-1">Key Rotation</p>
+          <p className="text-[10.5px] font-mono uppercase tracking-wider text-slate-500 mb-1">Key Rotation</p>
           <div className="flex items-end gap-0.5 h-6">
             {rotation.map((h, i) => (
               <div key={i} className="w-1 rounded-sm bg-emerald-400/70" style={{ height: `${h}%` }} />
@@ -123,12 +123,12 @@ function KeyVaultCard() {
       </div>
 
       <div className="mb-3">
-        <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Vault URI</p>
+        <p className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">Vault URI</p>
         <p className="font-mono text-xs text-accent-teal break-all">vault-bastion-pilot-rbc.vault.azure.net</p>
       </div>
 
       <div className="bg-slate-900 rounded-xl border border-slate-800 p-3 space-y-2 mb-3">
-        <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Monitored Secrets</p>
+        <p className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">Monitored Secrets</p>
         <SecretRow name="VITE_LAKERA_API_KEY" meta="Rotated 4 days ago" />
         <SecretRow name="ENTRA_CLIENT_SECRET" meta="Active" />
       </div>
@@ -137,19 +137,19 @@ function KeyVaultCard() {
         <Row icon={RefreshCw} iconClass="text-emerald-400" tone="emerald">
           <div className="flex-1">
             <p className="text-xs text-slate-200">Auto-Rotation</p>
-            <p className="text-[10px] font-mono text-emerald-300/80">enabled: yes</p>
+            <p className="text-[11px] font-mono text-emerald-300/80">enabled: yes</p>
           </div>
         </Row>
         <Row icon={Shield} iconClass="text-accent-blue">
           <div className="flex-1">
             <p className="text-xs text-slate-200">Hardware HSM Level</p>
-            <p className="text-[10px] font-mono text-slate-400">FIPS 140-2 L3 Validated · Active</p>
+            <p className="text-[11px] font-mono text-slate-400">FIPS 140-2 L3 Validated · Active</p>
           </div>
         </Row>
         <Row icon={Users} iconClass="text-amber-400">
           <div className="flex-1">
             <p className="text-xs text-slate-200">RBAC Enforcement</p>
-            <p className="text-[10px] font-mono text-slate-400">via Entra ID · Active</p>
+            <p className="text-[11px] font-mono text-slate-400">via Entra ID · Active</p>
           </div>
         </Row>
       </div>
@@ -165,8 +165,8 @@ function SecretRow({ name, meta }: { name: string; meta: string }) {
         <p className="font-mono text-[11px] text-slate-200 truncate">{name}</p>
       </div>
       <div className="flex items-center gap-2 shrink-0">
-        <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">[ ENCRYPTED ]</span>
-        <span className="font-mono text-[9px] text-slate-500">{meta}</span>
+        <span className="font-mono text-[10.5px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">[ ENCRYPTED ]</span>
+        <span className="font-mono text-[10.5px] text-slate-500">{meta}</span>
       </div>
     </div>
   );
@@ -185,7 +185,7 @@ function DefenderCard() {
 
       <div className="flex items-center justify-between mb-3">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-slate-500">Sentinel Telemetry</p>
+          <p className="text-[11px] uppercase tracking-widest text-slate-500">Sentinel Telemetry</p>
           <p className="text-xs text-slate-200 mt-0.5">AI Workload Monitoring</p>
         </div>
         <div className="flex items-center gap-2">
@@ -193,22 +193,22 @@ function DefenderCard() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="font-mono text-[10px] text-emerald-400">[ ACTIVE ]</span>
+          <span className="font-mono text-[11px] text-emerald-400">[ ACTIVE ]</span>
         </div>
       </div>
 
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden mb-4">
         <div className="grid grid-cols-[70px_1fr_90px_60px] gap-2 px-3 py-2 border-b border-slate-800">
           {['Severity', 'Incident', 'Source', 'Time'].map(c => (
-            <span key={c} className="text-[9px] font-mono uppercase tracking-wider text-slate-500">{c}</span>
+            <span key={c} className="text-[10.5px] font-mono uppercase tracking-wider text-slate-500">{c}</span>
           ))}
         </div>
         {feed.map((r, i) => (
           <div key={i} className="grid grid-cols-[70px_1fr_90px_60px] gap-2 px-3 py-2.5 border-b border-slate-800/50 last:border-b-0 items-center">
-            <span className={`font-mono text-[10px] px-1.5 py-0.5 rounded border w-fit ${r.color}`}>{r.sev}</span>
+            <span className={`font-mono text-[11px] px-1.5 py-0.5 rounded border w-fit ${r.color}`}>{r.sev}</span>
             <span className="text-xs text-slate-200">{r.incident}</span>
-            <span className="font-mono text-[10px] text-slate-400">{r.source}</span>
-            <span className="font-mono text-[10px] text-slate-500">{r.time}</span>
+            <span className="font-mono text-[11px] text-slate-400">{r.source}</span>
+            <span className="font-mono text-[11px] text-slate-500">{r.time}</span>
           </div>
         ))}
       </div>
@@ -217,16 +217,16 @@ function DefenderCard() {
         <Row icon={CheckCircle2} iconClass="text-emerald-400" tone="emerald">
           <div className="flex-1">
             <p className="text-xs text-slate-200">Key Vault Access Log Audited</p>
-            <p className="text-[10px] font-mono text-emerald-300/80">passed</p>
+            <p className="text-[11px] font-mono text-emerald-300/80">passed</p>
           </div>
         </Row>
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-2.5">
-            <p className="text-[9px] uppercase tracking-wider text-slate-500">Jailbreaks</p>
+            <p className="text-[10.5px] uppercase tracking-wider text-slate-500">Jailbreaks</p>
             <p className="font-mono text-lg text-red-400">12</p>
           </div>
           <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-2.5">
-            <p className="text-[9px] uppercase tracking-wider text-slate-500">Hallucinations</p>
+            <p className="text-[10.5px] uppercase tracking-wider text-slate-500">Hallucinations</p>
             <p className="font-mono text-lg text-amber-400">01</p>
           </div>
         </div>
@@ -264,15 +264,15 @@ function ComplianceCard() {
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <p className="font-mono text-2xl text-slate-100">{pct}%</p>
-            <p className="text-[9px] uppercase tracking-widest text-slate-500">Compliance</p>
+            <p className="text-[10.5px] uppercase tracking-widest text-slate-500">Compliance</p>
           </div>
         </div>
         <div className="flex-1">
-          <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Risk Rating</p>
+          <p className="text-[11px] uppercase tracking-widest text-slate-500 mb-1">Risk Rating</p>
           <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30">
             LOW – MEDIUM
           </span>
-          <p className="text-[10px] font-mono text-slate-500 mt-3">Next audit window: 14 days</p>
+          <p className="text-[11px] font-mono text-slate-500 mt-3">Next audit window: 14 days</p>
         </div>
       </div>
 
@@ -280,26 +280,26 @@ function ComplianceCard() {
         <Row icon={CheckCircle2} iconClass="text-emerald-400" tone="emerald">
           <div className="flex-1">
             <p className="text-xs text-slate-200">OSFI E-21 (Sec 4.2) — Model Risk Mgmt</p>
-            <p className="text-[10px] font-mono text-emerald-300/80">98% · Ready to certify</p>
+            <p className="text-[11px] font-mono text-emerald-300/80">98% · Ready to certify</p>
           </div>
         </Row>
         <Row icon={AlertOctagon} iconClass="text-amber-400" tone="amber">
           <div className="flex-1">
             <p className="text-xs text-slate-200">PIPEDA — Data Handling</p>
-            <p className="text-[10px] font-mono text-amber-300/80">85% · 1 Data Minimization Warning</p>
+            <p className="text-[11px] font-mono text-amber-300/80">85% · 1 Data Minimization Warning</p>
           </div>
         </Row>
         <Row icon={CheckCircle2} iconClass="text-emerald-400" tone="emerald">
           <div className="flex-1">
             <p className="text-xs text-slate-200">AIDA (Bill C-27) — Audit Trails</p>
-            <p className="text-[10px] font-mono text-emerald-300/80">Audit-Ready Logs (OK)</p>
+            <p className="text-[11px] font-mono text-emerald-300/80">Audit-Ready Logs (OK)</p>
           </div>
         </Row>
       </div>
 
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-[9px] uppercase tracking-wider text-slate-500">Upcoming Task</p>
+          <p className="text-[10.5px] uppercase tracking-wider text-slate-500">Upcoming Task</p>
           <p className="text-xs text-slate-200 truncate">Review data minimization policy — Agentic Model Alpha</p>
         </div>
         <button className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent-teal/15 hover:bg-accent-teal/25 text-accent-teal border border-accent-teal/40 text-[11px] font-semibold uppercase tracking-wider transition shadow-[0_0_20px_-8px_rgba(45,212,191,0.6)]">

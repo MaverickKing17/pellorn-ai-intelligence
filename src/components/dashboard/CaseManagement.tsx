@@ -121,7 +121,7 @@ export default function CaseManagement() {
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-text-secondary mb-1">
+          <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-text-secondary mb-1">
             <Scale className="w-3 h-3" /> Governance / Case Management
           </div>
           <h1 className="text-xl font-bold text-foreground">AI Governance Case Management</h1>
@@ -130,9 +130,9 @@ export default function CaseManagement() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-accent-red/30 bg-accent-red/10 text-accent-red font-semibold">8 Critical</span>
-          <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 font-semibold">6 Escalated</span>
-          <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-border bg-card text-text-secondary font-semibold">47 Open</span>
+          <span className="text-[11px] uppercase tracking-wider px-2 py-1 rounded-full border border-accent-red/30 bg-accent-red/10 text-accent-red font-semibold">8 Critical</span>
+          <span className="text-[11px] uppercase tracking-wider px-2 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 font-semibold">6 Escalated</span>
+          <span className="text-[11px] uppercase tracking-wider px-2 py-1 rounded-full border border-border bg-card text-text-secondary font-semibold">47 Open</span>
         </div>
       </div>
 
@@ -143,7 +143,7 @@ export default function CaseManagement() {
           return (
             <div key={k.label} className="bg-card border border-border rounded-lg p-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] uppercase tracking-wider text-text-secondary">{k.label}</span>
+                <span className="text-[11px] uppercase tracking-wider text-text-secondary">{k.label}</span>
                 <Icon className={`w-3.5 h-3.5 ${k.color}`} />
               </div>
               <div className={`text-2xl font-bold ${k.color}`}>{k.value}</div>
@@ -169,7 +169,7 @@ export default function CaseManagement() {
         <select value={st} onChange={e => setSt(e.target.value as 'All' | Status)} className="bg-background border border-border rounded-md px-2 py-1.5 text-xs text-foreground">
           <option>All</option><option>Open</option><option>Investigating</option><option>Escalated</option><option>Pending Approval</option><option>Closed</option>
         </select>
-        <button className="text-[10px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-md border border-accent-teal/40 text-accent-teal hover:bg-accent-teal/10">
+        <button className="text-[11px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-md border border-accent-teal/40 text-accent-teal hover:bg-accent-teal/10">
           + New Case
         </button>
       </div>
@@ -180,14 +180,14 @@ export default function CaseManagement() {
           <div className="flex items-center gap-2">
             <Briefcase className="w-4 h-4 text-accent-teal" />
             <h2 className="text-sm font-semibold text-foreground">Case Queue</h2>
-            <span className="text-[10px] uppercase tracking-wider text-text-secondary">{filtered.length} cases</span>
+            <span className="text-[11px] uppercase tracking-wider text-text-secondary">{filtered.length} cases</span>
           </div>
-          <span className="text-[10px] uppercase tracking-wider text-text-secondary">Auto-refresh · 30s</span>
+          <span className="text-[11px] uppercase tracking-wider text-text-secondary">Auto-refresh · 30s</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead className="bg-background/50 border-b border-border">
-              <tr className="text-left text-text-secondary uppercase tracking-wider text-[10px]">
+              <tr className="text-left text-text-secondary uppercase tracking-wider text-[11px]">
                 <th className="px-4 py-2 font-medium">Case ID</th>
                 <th className="px-4 py-2 font-medium">Title</th>
                 <th className="px-4 py-2 font-medium">Severity</th>
@@ -205,13 +205,13 @@ export default function CaseManagement() {
                   <td className="px-4 py-2.5 font-mono text-accent-teal">{c.id}</td>
                   <td className="px-4 py-2.5 text-foreground">{c.title}</td>
                   <td className="px-4 py-2.5">
-                    <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${sevTone[c.severity]}`}>{c.severity}</span>
+                    <span className={`text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${sevTone[c.severity]}`}>{c.severity}</span>
                   </td>
                   <td className="px-4 py-2.5 text-text-secondary font-mono">{c.agent}</td>
                   <td className="px-4 py-2.5 text-text-secondary">{c.owner}</td>
                   <td className="px-4 py-2.5 text-text-secondary">{c.framework}</td>
                   <td className="px-4 py-2.5">
-                    <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${statusTone[c.status]}`}>{c.status}</span>
+                    <span className={`text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${statusTone[c.status]}`}>{c.status}</span>
                   </td>
                   <td className="px-4 py-2.5 text-text-secondary">{c.updated}</td>
                   <td className="px-4 py-2.5 text-right">
@@ -225,7 +225,7 @@ export default function CaseManagement() {
       </div>
 
       {/* Footer note */}
-      <p className="text-[10px] text-text-secondary uppercase tracking-wider">
+      <p className="text-[11px] text-text-secondary uppercase tracking-wider">
         Simulation data · All actions create immutable audit records sealed in the Evidence Vault
       </p>
 
@@ -242,14 +242,14 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
         {/* Drawer header */}
         <div className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border px-6 py-4 flex items-start justify-between">
           <div>
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-text-secondary mb-1">
+            <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-text-secondary mb-1">
               <Scale className="w-3 h-3" /> Investigation Record
             </div>
             <div className="flex items-center gap-3 flex-wrap">
               <span className="font-mono text-accent-teal text-sm">{c.id}</span>
               <h2 className="text-lg font-bold text-foreground">{c.title}</h2>
-              <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${sevTone[c.severity]}`}>{c.severity}</span>
-              <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${statusTone[c.status]}`}>{c.status}</span>
+              <span className={`text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${sevTone[c.severity]}`}>{c.severity}</span>
+              <span className={`text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${statusTone[c.status]}`}>{c.status}</span>
             </div>
           </div>
           <button onClick={onClose} className="p-1 rounded-md hover:bg-card text-text-secondary"><X className="w-5 h-5" /></button>
@@ -268,7 +268,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
               return (
                 <div key={f.l} className="bg-card border border-border rounded-lg p-3">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] uppercase tracking-wider text-text-secondary">{f.l}</span>
+                    <span className="text-[11px] uppercase tracking-wider text-text-secondary">{f.l}</span>
                     <Icon className="w-3.5 h-3.5 text-text-secondary" />
                   </div>
                   <div className={`text-sm font-semibold ${f.tone ?? 'text-foreground'}`}>{f.v}</div>
@@ -279,10 +279,10 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
 
           {/* Framework impact */}
           <div className="bg-card border border-border rounded-lg p-3">
-            <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-2">Framework Impact</div>
+            <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-2">Framework Impact</div>
             <div className="flex flex-wrap gap-2">
               {['PIPEDA', 'OSFI E-21', 'SOC 2', 'AIDA (Bill C-27)'].map(f => (
-                <span key={f} className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-accent-amber/30 bg-accent-amber/10 text-accent-amber font-semibold">{f}</span>
+                <span key={f} className="text-[11px] uppercase tracking-wider px-2 py-1 rounded-full border border-accent-amber/30 bg-accent-amber/10 text-accent-amber font-semibold">{f}</span>
               ))}
             </div>
           </div>
@@ -294,7 +294,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
                 <Sparkles className="w-4 h-4 text-accent-teal" />
                 <h3 className="text-sm font-semibold text-foreground">Executive Investigation Narrative</h3>
               </div>
-              <span className="text-[9px] uppercase tracking-wider text-accent-teal bg-accent-teal/10 border border-accent-teal/30 px-2 py-0.5 rounded-full">AI-Generated</span>
+              <span className="text-[10.5px] uppercase tracking-wider text-accent-teal bg-accent-teal/10 border border-accent-teal/30 px-2 py-0.5 rounded-full">AI-Generated</span>
             </div>
             <p className="text-xs text-text-secondary leading-relaxed">
               Pellorn detected a prompt injection attempt targeting <span className="text-foreground font-semibold">{c.agent}</span>. The attack attempted to extract employee payroll information. Policy Enforcement blocked the request and automatically reduced the agent Trust Score from 91 to {c.trust}. Circuit Breaker policy quarantined the agent and generated this governance case for human review.
@@ -307,7 +307,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
                 { l: 'Recommended', v: 'Re-Certify', tone: 'text-accent-amber' },
               ].map(x => (
                 <div key={x.l} className="bg-background/50 border border-border rounded-md p-2">
-                  <div className="text-[9px] uppercase tracking-wider text-text-secondary">{x.l}</div>
+                  <div className="text-[10.5px] uppercase tracking-wider text-text-secondary">{x.l}</div>
                   <div className={`text-sm font-bold ${x.tone}`}>{x.v}</div>
                 </div>
               ))}
@@ -336,7 +336,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
               <div className="flex items-center gap-2 mb-3">
                 <Lock className="w-4 h-4 text-accent-teal" />
                 <h3 className="text-sm font-semibold text-foreground">Evidence Panel</h3>
-                <span className="text-[10px] uppercase tracking-wider text-text-secondary">{evidence.length} sealed artifacts</span>
+                <span className="text-[11px] uppercase tracking-wider text-text-secondary">{evidence.length} sealed artifacts</span>
               </div>
               <div className="space-y-1.5">
                 {evidence.map(e => (
@@ -347,11 +347,11 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
                         <span className="font-mono text-[11px] text-accent-teal">{e.id}</span>
                         <span className="text-xs text-foreground truncate">{e.type}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-[10px] text-text-secondary font-mono mt-0.5">
+                      <div className="flex items-center gap-3 text-[11px] text-text-secondary font-mono mt-0.5">
                         <span>{e.hash}</span><span>{e.ts}</span><span>Retain {e.retain}</span>
                       </div>
                     </div>
-                    <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 font-semibold">{e.integrity}</span>
+                    <span className="text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 font-semibold">{e.integrity}</span>
                   </div>
                 ))}
               </div>
@@ -363,11 +363,11 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
             <div className="flex items-center gap-2 mb-3">
               <ShieldAlert className="w-4 h-4 text-accent-red" />
               <h3 className="text-sm font-semibold text-foreground">Remediation Actions</h3>
-              <span className="text-[10px] uppercase tracking-wider text-text-secondary">All actions create immutable audit records</span>
+              <span className="text-[11px] uppercase tracking-wider text-text-secondary">All actions create immutable audit records</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {remediation.map(r => (
-                <button key={r.label} className={`text-[10px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-md border bg-background ${remTone[r.tone]}`}>
+                <button key={r.label} className={`text-[11px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-md border bg-background ${remTone[r.tone]}`}>
                   {r.label}
                 </button>
               ))}
@@ -379,11 +379,11 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
             <div className="flex items-center gap-2 mb-3">
               <FileSignature className="w-4 h-4 text-purple-300" />
               <h3 className="text-sm font-semibold text-foreground">Approval Workflow</h3>
-              <span className="text-[10px] uppercase tracking-wider text-text-secondary">2 of 5 signed</span>
+              <span className="text-[11px] uppercase tracking-wider text-text-secondary">2 of 5 signed</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="text-left text-text-secondary uppercase tracking-wider text-[10px] border-b border-border">
+                <thead className="text-left text-text-secondary uppercase tracking-wider text-[11px] border-b border-border">
                   <tr>
                     <th className="py-2 pr-3 font-medium">Approver</th>
                     <th className="py-2 pr-3 font-medium">Role</th>
@@ -399,7 +399,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
                       <td className="py-2 pr-3 text-foreground">{a.name}</td>
                       <td className="py-2 pr-3 text-text-secondary">{a.role}</td>
                       <td className="py-2 pr-3">
-                        <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${
+                        <span className={`text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full border ${
                           a.decision === 'Approved' ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
                           : a.decision === 'Rejected' ? 'border-accent-red/30 bg-accent-red/10 text-accent-red'
                           : 'border-accent-amber/30 bg-accent-amber/10 text-accent-amber'
@@ -432,7 +432,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
                   { l: 'Disclosure Required', v: 'No', tone: 'text-accent-teal' },
                 ].map(x => (
                   <div key={x.l} className="bg-background/50 border border-border rounded-md p-2.5">
-                    <div className="text-[10px] uppercase tracking-wider text-text-secondary">{x.l}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-text-secondary">{x.l}</div>
                     <div className={`text-sm font-bold ${x.tone}`}>{x.v}</div>
                   </div>
                 ))}
@@ -495,7 +495,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
                       <Icon className="w-3.5 h-3.5 text-accent-teal" />
                       <ArrowUpRight className="w-3 h-3 text-text-secondary group-hover:text-accent-teal" />
                     </div>
-                    <div className="text-[10px] uppercase tracking-wider text-text-secondary">{r.l}</div>
+                    <div className="text-[11px] uppercase tracking-wider text-text-secondary">{r.l}</div>
                     <div className="text-xs text-foreground font-mono truncate">{r.v}</div>
                   </button>
                 );

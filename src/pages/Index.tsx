@@ -31,33 +31,54 @@ const IntegrationCenter = lazy(() => import('@/components/dashboard/IntegrationC
 const GovernanceGraph = lazy(() => import('@/components/dashboard/GovernanceGraph'));
 const ComplianceEncryption = lazy(() => import('@/components/dashboard/ComplianceEncryption'));
 
-const primaryTabs = [
+type TabDef = { id: string; label: string; icon: typeof Gauge; badge?: string };
+
+// Core governance experience — always visible
+const primaryTabs: TabDef[] = [
   { id: 'command-center', label: 'Command Center', icon: Gauge },
-  { id: 'governance-graph', label: 'Governance Graph', icon: Network, badge: 'NEW' },
+  { id: 'governance-graph', label: 'Governance Graph', icon: Network },
   { id: 'agent-registry', label: 'Agent Registry', icon: Users },
-  { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck },
   { id: 'case-management', label: 'Case Management', icon: Scale, badge: '12' },
-  { id: 'evidence-vault', label: 'Evidence Vault', icon: Archive, badge: 'NEW' },
-  { id: 'governance-workflows', label: 'Governance Workflows', icon: Workflow, badge: 'NEW' },
   { id: 'trust-score', label: 'Trust Score™', icon: Award },
   { id: 'executive-exposure', label: 'Executive Exposure', icon: Briefcase },
-  { id: 'digital-twin', label: 'Digital Twin', icon: TrendingUp, badge: 'BETA' },
-  { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
-  { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
-  { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity },
   { id: 'board-report', label: 'Board Report', icon: FileText },
-  { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud },
-  { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert },
 ];
 
-const moreTabs = [
-  { id: 'entra-connector', label: 'Entra Connector', icon: KeyRound, badge: 'PREVIEW' },
-  { id: 'integration-center', label: 'Integration Center', icon: Plug, badge: 'NEW' },
-  { id: 'compliance-encryption', label: 'Compliance & Encryption', icon: Lock, badge: 'BYOK' },
-  { id: 'model-inventory', label: 'Model Inventory', icon: Box },
-  { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
-  { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
+// Operational / advanced capabilities — progressive disclosure
+const tabGroups: { label: string; tabs: TabDef[] }[] = [
+  {
+    label: 'Assurance',
+    tabs: [
+      { id: 'agent-certification', label: 'Agent Certification', icon: BadgeCheck },
+      { id: 'evidence-vault', label: 'Evidence Vault', icon: Archive },
+      { id: 'governance-workflows', label: 'Governance Workflows', icon: Workflow },
+      { id: 'policy-engine', label: 'Policy Enforcement', icon: ShieldAlert },
+      { id: 'compliance-encryption', label: 'Compliance & Encryption', icon: Lock, badge: 'BYOK' },
+    ],
+  },
+  {
+    label: 'Monitoring',
+    tabs: [
+      { id: 'threat-feed', label: 'Live Threat Feed', icon: Radio },
+      { id: 'behavioral-drift', label: 'Behavioral Drift', icon: Activity },
+      { id: 'red-team', label: 'Red Team Sandbox', icon: FlaskConical },
+      { id: 'digital-twin', label: 'Digital Twin', icon: TrendingUp, badge: 'Beta' },
+      { id: 'model-inventory', label: 'Model Inventory', icon: Box },
+      { id: 'vuln-audit', label: 'Vulnerability Audit', icon: Shield },
+    ],
+  },
+  {
+    label: 'Platform',
+    tabs: [
+      { id: 'azure-workspace', label: 'Azure Workspace', icon: Cloud },
+      { id: 'entra-connector', label: 'Entra Connector', icon: KeyRound, badge: 'Preview' },
+      { id: 'integration-center', label: 'Integration Center', icon: Plug },
+      { id: 'diagnostics', label: 'Diagnostics', icon: Stethoscope },
+    ],
+  },
 ];
+
+const allTabs = [...primaryTabs, ...tabGroups.flatMap(g => g.tabs)];
 
 
 
@@ -119,7 +140,7 @@ export default function Index() {
                 <Icon className="w-3.5 h-3.5" />
                 {tab.label}
                 {badge && (
-                  <span className="text-[9px] font-semibold uppercase tracking-wider bg-accent-teal/10 text-accent-teal px-1.5 py-0.5 rounded-full">
+                  <span className="text-[10.5px] font-semibold uppercase tracking-wider bg-accent-teal/10 text-accent-teal px-1.5 py-0.5 rounded-full">
                     {badge}
                   </span>
                 )}

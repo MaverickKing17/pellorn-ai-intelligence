@@ -175,7 +175,7 @@ export default function ComplianceEncryption() {
 function Field({ label, value, onChange, placeholder }: { label: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; placeholder?: string }) {
   return (
     <label className="block">
-      <span className="text-[10px] uppercase tracking-widest text-text-secondary">{label}</span>
+      <span className="text-[11px] uppercase tracking-widest text-text-secondary">{label}</span>
       <input
         type="text"
         value={value}

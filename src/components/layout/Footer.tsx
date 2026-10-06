@@ -15,7 +15,7 @@ export default function Footer() {
           <p className="text-xs text-text-secondary">{config.footerTagline}</p>
         </div>
         <div>
-          <h4 className="text-[10px] uppercase tracking-widest text-text-secondary mb-3">Regulatory Frameworks</h4>
+          <h4 className="text-[11px] uppercase tracking-widest text-text-secondary mb-3">Regulatory Frameworks</h4>
           <ul className="space-y-1.5 text-xs text-accent-blue">
             {config.regulatoryLinks.map(link => (
               <li key={link} className="hover:underline cursor-pointer">{link}</li>
@@ -23,7 +23,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-[10px] uppercase tracking-widest text-text-secondary mb-3">Security Resources</h4>
+          <h4 className="text-[11px] uppercase tracking-widest text-text-secondary mb-3">Security Resources</h4>
           <ul className="space-y-1.5 text-xs text-accent-blue">
             <li className="hover:underline cursor-pointer">Threat Intelligence</li>
             <li className="hover:underline cursor-pointer">Incident Response</li>
@@ -32,7 +32,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-[10px] uppercase tracking-widest text-text-secondary mb-3">Enterprise Support</h4>
+          <h4 className="text-[11px] uppercase tracking-widest text-text-secondary mb-3">Enterprise Support</h4>
           <p className="text-xs text-text-secondary mb-3">24/7 SOC team support for critical incidents</p>
           <Button size="sm" className="bg-accent-teal hover:bg-accent-teal-lt text-foreground text-xs h-8">
             Contact SOC Team
