@@ -24,7 +24,7 @@ const agents: Agent[] = [
     id: 'agt-001', name: 'UnderwriterGPT', dept: 'Lending', trust: 97, status: 'Trusted', cert: 'Certified', lastAudit: '4 min ago',
     identity: {
       certificate: 'CN=underwriter.bastion.ca · SHA-256:9F:3A:…:E1',
-      issuer: 'Bastion Internal CA · Entra ID',
+      issuer: 'Pellorn Internal CA · Entra ID',
       roles: ['lending.underwrite.read', 'risk.model.score'],
       tools: ['credit-bureau.read', 'osfi.policy.query', 'collateral.valuation'],
       data: ['Customer Tier 2', 'Loan Book (read)', 'Risk Models'],
@@ -35,7 +35,7 @@ const agents: Agent[] = [
     id: 'agt-002', name: 'ClaimsCopilot', dept: 'Insurance', trust: 84, status: 'Monitor', cert: 'Certified', lastAudit: '2 min ago',
     identity: {
       certificate: 'CN=claims.bastion.ca · SHA-256:21:8B:…:7C',
-      issuer: 'Bastion Internal CA · Entra ID',
+      issuer: 'Pellorn Internal CA · Entra ID',
       roles: ['claims.review', 'claims.summarize'],
       tools: ['claims-db.read', 'medical-records.read', 'fraud.score'],
       data: ['Customer Tier 2', 'Claims History', 'Medical (redacted)'],
@@ -46,7 +46,7 @@ const agents: Agent[] = [
     id: 'agt-003', name: 'SupportAI', dept: 'Retail Banking', trust: 63, status: 'Elevated', cert: 'Conditional', lastAudit: '1 min ago',
     identity: {
       certificate: 'CN=support.bastion.ca · SHA-256:55:11:…:9A',
-      issuer: 'Bastion Internal CA · Entra ID',
+      issuer: 'Pellorn Internal CA · Entra ID',
       roles: ['support.chat', 'kb.read'],
       tools: ['customer.lookup', 'ticket.create', 'kb.search'],
       data: ['Customer Tier 1', 'Knowledge Base'],
@@ -57,7 +57,7 @@ const agents: Agent[] = [
     id: 'agt-004', name: 'PayrollAgent', dept: 'HR / Ops', trust: 42, status: 'Restricted', cert: 'Suspended', lastAudit: '5 sec ago',
     identity: {
       certificate: 'CN=payroll.bastion.ca · SHA-256:F0:22:…:31',
-      issuer: 'Bastion Internal CA · Entra ID',
+      issuer: 'Pellorn Internal CA · Entra ID',
       roles: ['payroll.read', 'payroll.process'],
       tools: ['hrms.read', 'bank.transfer (suspended)'],
       data: ['Employee PII (frozen)', 'Payroll Ledger (read-only)'],
@@ -68,7 +68,7 @@ const agents: Agent[] = [
     id: 'agt-005', name: 'PortfolioAdvisor', dept: 'Wealth Mgmt', trust: 91, status: 'Trusted', cert: 'Certified', lastAudit: '8 min ago',
     identity: {
       certificate: 'CN=advisor.bastion.ca · SHA-256:7D:9C:…:44',
-      issuer: 'Bastion Internal CA · Entra ID',
+      issuer: 'Pellorn Internal CA · Entra ID',
       roles: ['portfolio.read', 'portfolio.rebalance'],
       tools: ['market.data', 'portfolio.api', 'tax.calc'],
       data: ['Client Tier 3', 'Portfolio Positions', 'Market Data'],

@@ -8,7 +8,7 @@ const NotFound = () => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
 
     const prevTitle = document.title;
-    document.title = "Page Not Found — Bastion Audit";
+    document.title = "Page Not Found — Pellorn";
 
     const setMeta = (selector: string, attr: string, name: string, content: string) => {
       let el = document.head.querySelector(selector) as HTMLMetaElement | null;
@@ -38,9 +38,9 @@ const NotFound = () => {
       };
     };
 
-    const restoreDesc = setMeta('meta[name="description"]', "name", "description", "The page you are looking for does not exist on Bastion Audit.");
-    const restoreOgTitle = setMeta('meta[property="og:title"]', "property", "og:title", "Page Not Found — Bastion Audit");
-    const restoreOgDesc = setMeta('meta[property="og:description"]', "property", "og:description", "The page you are looking for does not exist on Bastion Audit.");
+    const restoreDesc = setMeta('meta[name="description"]', "name", "description", "The page you are looking for does not exist on Pellorn.");
+    const restoreOgTitle = setMeta('meta[property="og:title"]', "property", "og:title", "Page Not Found — Pellorn");
+    const restoreOgDesc = setMeta('meta[property="og:description"]', "property", "og:description", "The page you are looking for does not exist on Pellorn.");
     const restoreOgUrl = setMeta('meta[property="og:url"]', "property", "og:url", location.pathname);
     const restoreCanonical = setLink("canonical", location.pathname);
 

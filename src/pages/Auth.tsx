@@ -21,7 +21,7 @@ export default function Auth() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    document.title = mode === 'signin' ? 'Sign In — Bastion Audit' : 'Create Account — Bastion Audit';
+    document.title = mode === 'signin' ? 'Sign In — Pellorn' : 'Create Account — Pellorn';
   }, [mode]);
 
   useEffect(() => {
@@ -88,9 +88,9 @@ export default function Auth() {
         <div className="flex items-center gap-3 mb-8 justify-center">
           <Shield className="w-7 h-7 text-accent-teal drop-shadow-[0_0_12px_hsl(var(--accent-teal)/0.6)]" />
           <div>
-            <h1 className="text-lg font-bold text-foreground leading-none">Bastion Audit</h1>
+            <h1 className="text-lg font-bold text-foreground leading-none">Pellorn</h1>
             <p className="text-[10px] uppercase tracking-widest text-text-secondary mt-1">
-              Enterprise Security Gateway
+              AI Governance &amp; Intelligence
             </p>
           </div>
         </div>

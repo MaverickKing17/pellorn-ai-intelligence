@@ -21,8 +21,8 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
         </button>
         <Shield className="w-6 h-6 text-accent-teal" />
         <div className="hidden sm:block">
-          <h1 className="text-sm font-bold text-foreground leading-none">Bastion Audit</h1>
-          <p className="text-[10px] uppercase tracking-widest text-text-secondary">{config.brandTagline}</p>
+          <h1 className="text-sm font-bold text-foreground leading-none">Pellorn</h1>
+          <p className="text-[10px] uppercase tracking-widest text-text-secondary">AI Governance &amp; Intelligence</p>
         </div>
       </div>
 

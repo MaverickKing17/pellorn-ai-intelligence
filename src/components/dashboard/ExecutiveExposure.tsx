@@ -80,7 +80,7 @@ export default function ExecutiveExposure() {
           <h3 className="text-sm font-bold text-foreground">What this means for the Board</h3>
         </div>
         <p className="text-xs text-text-secondary leading-relaxed">
-          Bastion's continuous governance reduces an estimated <span className="text-foreground font-semibold">$14.7M CAD</span> of theoretical AI-related liability across regulatory, privacy, AIDA and operational categories. Residual exposure of <span className="text-foreground font-semibold">$3.4M</span> sits well within board-approved risk appetite and is fully reflected in this quarter's risk capital model. No additional capital reserve is recommended.
+          Pellorn's continuous governance reduces an estimated <span className="text-foreground font-semibold">$14.7M CAD</span> of theoretical AI-related liability across regulatory, privacy, AIDA and operational categories. Residual exposure of <span className="text-foreground font-semibold">$3.4M</span> sits well within board-approved risk appetite and is fully reflected in this quarter's risk capital model. No additional capital reserve is recommended.
         </p>
       </div>
     </div>

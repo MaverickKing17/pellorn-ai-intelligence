@@ -27,7 +27,7 @@ export default function InterceptionGateway() {
 
       <div className="bg-background border border-border rounded-lg h-32 flex items-center justify-center mb-4">
         <span className="text-[10px] uppercase tracking-widest text-text-muted-custom bg-surface-raised px-4 py-1.5 rounded-full border border-border font-semibold">
-          ◆ Bastion Security Layer
+          ◆ Pellorn Security Layer
         </span>
       </div>
 

@@ -297,7 +297,7 @@ function CaseDrawer({ c, onClose }: { c: CaseRow; onClose: () => void }) {
               <span className="text-[9px] uppercase tracking-wider text-accent-teal bg-accent-teal/10 border border-accent-teal/30 px-2 py-0.5 rounded-full">AI-Generated</span>
             </div>
             <p className="text-xs text-text-secondary leading-relaxed">
-              Bastion Audit detected a prompt injection attempt targeting <span className="text-foreground font-semibold">{c.agent}</span>. The attack attempted to extract employee payroll information. Policy Enforcement blocked the request and automatically reduced the agent Trust Score from 91 to {c.trust}. Circuit Breaker policy quarantined the agent and generated this governance case for human review.
+              Pellorn detected a prompt injection attempt targeting <span className="text-foreground font-semibold">{c.agent}</span>. The attack attempted to extract employee payroll information. Policy Enforcement blocked the request and automatically reduced the agent Trust Score from 91 to {c.trust}. Circuit Breaker policy quarantined the agent and generated this governance case for human review.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
               {[

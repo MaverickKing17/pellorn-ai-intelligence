@@ -72,7 +72,7 @@ const statusTone: Record<Status, string> = {
 };
 
 const flow = [
-  'Enterprise Systems', 'Bastion Connectors', 'Signal Normalization',
+  'Enterprise Systems', 'Pellorn Connectors', 'Signal Normalization',
   'Agent Governance Graph', 'Trust Score Engine', 'Evidence Vault',
   'Case Management', 'Board Reporting',
 ];
@@ -254,7 +254,7 @@ export default function IntegrationCenter() {
               <h2 className="text-base font-semibold text-foreground">Design Partner Integration Program</h2>
             </div>
             <p className="text-sm text-text-secondary">
-              Bastion Audit is preparing Microsoft-native and enterprise governance integrations for regulated organizations.
+              Pellorn is preparing Microsoft-native and enterprise governance integrations for regulated organizations.
               This preview shows planned connector architecture using demo data.
             </p>
           </div>

@@ -10,7 +10,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Shield className="w-4 h-4 text-accent-teal" />
-            <span className="text-sm font-bold text-foreground">Bastion Audit</span>
+            <span className="text-sm font-bold text-foreground">Pellorn</span>
           </div>
           <p className="text-xs text-text-secondary">{config.footerTagline}</p>
         </div>

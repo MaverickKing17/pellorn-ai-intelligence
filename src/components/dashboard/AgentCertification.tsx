@@ -226,7 +226,7 @@ export default function AgentCertification() {
               <h4 className="text-xs uppercase tracking-wider text-text-secondary font-semibold mb-2">Agent Identity</h4>
               <div className="bg-background/40 border border-border rounded p-3 space-y-1.5 text-xs">
                 <div className="flex items-start gap-2"><Fingerprint className="w-3.5 h-3.5 text-accent-teal mt-0.5" /><span className="font-mono-code text-text-secondary text-[11px] break-all">CN={selected.id}.bastion.ca · SHA-256:7A:F1:…:C9</span></div>
-                <div className="flex items-start gap-2"><Key className="w-3.5 h-3.5 text-accent-blue mt-0.5" /><span className="text-text-secondary">Issuer: Bastion Internal CA · Entra ID</span></div>
+                <div className="flex items-start gap-2"><Key className="w-3.5 h-3.5 text-accent-blue mt-0.5" /><span className="text-text-secondary">Issuer: Pellorn Internal CA · Entra ID</span></div>
                 <div className="flex items-start gap-2"><Wrench className="w-3.5 h-3.5 text-accent-amber mt-0.5" /><span className="text-text-secondary">Tools: data.read, policy.query, audit.write</span></div>
                 <div className="flex items-start gap-2"><Database className="w-3.5 h-3.5 text-accent-purple mt-0.5" /><span className="text-text-secondary">Data: Customer Tier 2, Policy Library, Risk Models</span></div>
               </div>
