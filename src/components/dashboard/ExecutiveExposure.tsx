@@ -36,7 +36,7 @@ export default function ExecutiveExposure() {
           return (
             <div key={e.label} className={`bg-card border rounded-xl p-5 ${tone(e.tone)}`}>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold">{e.label}</span>
+                <span className="text-[11px] uppercase tracking-widest text-text-secondary font-semibold">{e.label}</span>
                 <Icon className="w-4 h-4" />
               </div>
               <p className="text-3xl font-bold text-foreground tabular-nums leading-none">{e.value}</p>
@@ -49,21 +49,21 @@ export default function ExecutiveExposure() {
       {/* Ratings */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="bg-card border border-border rounded-xl p-6 text-center">
-          <p className="text-[10px] uppercase tracking-widest text-text-secondary">AI Governance Rating</p>
+          <p className="text-[11px] uppercase tracking-widest text-text-secondary">AI Governance Rating</p>
           <p className="text-6xl font-bold text-accent-teal tabular-nums mt-2">AA</p>
-          <div className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 border border-accent-teal/30 px-2 py-0.5 rounded-full">
+          <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 border border-accent-teal/30 px-2 py-0.5 rounded-full">
             <Award className="w-3 h-3" /> Investment Grade
           </div>
         </div>
         <div className="bg-card border border-border rounded-xl p-6 text-center">
-          <p className="text-[10px] uppercase tracking-widest text-text-secondary">Enterprise Trust Rating</p>
+          <p className="text-[11px] uppercase tracking-widest text-text-secondary">Enterprise Trust Rating</p>
           <p className="text-6xl font-bold text-foreground tabular-nums mt-2">91<span className="text-2xl text-text-secondary">%</span></p>
-          <div className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-accent-blue bg-accent-blue/10 border border-accent-blue/30 px-2 py-0.5 rounded-full">
+          <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-accent-blue bg-accent-blue/10 border border-accent-blue/30 px-2 py-0.5 rounded-full">
             ↑ +4 pts vs Q3
           </div>
         </div>
         <div className="bg-card border border-border rounded-xl p-6">
-          <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-3">If risks were not mitigated…</p>
+          <p className="text-[11px] uppercase tracking-widest text-text-secondary mb-3">If risks were not mitigated…</p>
           <div className="space-y-2">
             <Row label="Gross Theoretical Exposure" value="$18.1M" />
             <Row label="Modeled Mitigation" value="−$14.7M" pos />

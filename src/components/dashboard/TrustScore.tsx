@@ -51,7 +51,7 @@ export default function TrustScore() {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <p className="text-5xl font-bold text-foreground tabular-nums">{composite}</p>
-              <p className="text-[10px] uppercase tracking-widest text-text-secondary">Fleet Composite</p>
+              <p className="text-[11px] uppercase tracking-widest text-text-secondary">Fleet Composite</p>
             </div>
           </div>
           <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-teal/10 border border-accent-teal/30">
@@ -71,9 +71,9 @@ export default function TrustScore() {
                   <Icon className="w-4 h-4 text-accent-teal" />
                   <div className="min-w-0">
                     <p className="text-xs font-semibold text-foreground">{f.label}</p>
-                    <p className="text-[10px] text-text-secondary truncate">{f.desc}</p>
+                    <p className="text-[11px] text-text-secondary truncate">{f.desc}</p>
                   </div>
-                  <span className="text-[10px] font-mono text-accent-amber bg-accent-amber/10 border border-accent-amber/30 rounded px-1.5 py-0.5 text-center">{f.weight}%</span>
+                  <span className="text-[11px] font-mono text-accent-amber bg-accent-amber/10 border border-accent-amber/30 rounded px-1.5 py-0.5 text-center">{f.weight}%</span>
                   <div className="h-1.5 bg-border rounded-full overflow-hidden">
                     <div className="h-full bg-gradient-to-r from-accent-teal to-accent-blue rounded-full" style={{ width: `${f.score}%` }} />
                   </div>

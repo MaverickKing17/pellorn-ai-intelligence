@@ -55,7 +55,7 @@ export default function ExitStrategyButton() {
       <DialogTrigger asChild>
         <Button
           size="sm"
-          className="bg-accent-amber/15 text-accent-amber border border-accent-amber/40 hover:bg-accent-amber/25 text-[10px] uppercase tracking-wider font-semibold h-7 px-3"
+          className="bg-accent-amber/15 text-accent-amber border border-accent-amber/40 hover:bg-accent-amber/25 text-[11px] uppercase tracking-wider font-semibold h-7 px-3"
         >
           <LifeBuoy className="w-3 h-3 mr-1" />
           OSFI B-10 Exit
@@ -85,7 +85,7 @@ export default function ExitStrategyButton() {
                 </div>
                 <div className="flex-1">
                   <p className="text-xs font-semibold text-foreground">{s.label}</p>
-                  <p className="text-[10px] text-text-secondary">{s.detail}</p>
+                  <p className="text-[11px] text-text-secondary">{s.detail}</p>
                 </div>
               </li>
             );

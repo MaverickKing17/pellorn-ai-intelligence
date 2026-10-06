@@ -112,7 +112,7 @@ export default function IntegrationCenter() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="text-2xl font-semibold text-foreground">Integration Center</h1>
-            <span className="text-[10px] font-semibold uppercase tracking-wider bg-accent-blue/10 text-accent-blue border border-accent-blue/30 px-2 py-0.5 rounded-full">
+            <span className="text-[11px] font-semibold uppercase tracking-wider bg-accent-blue/10 text-accent-blue border border-accent-blue/30 px-2 py-0.5 rounded-full">
               Demo Integration Architecture
             </span>
           </div>
@@ -138,9 +138,9 @@ export default function IntegrationCenter() {
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
                         <div className="text-sm font-semibold text-foreground">{c.name}</div>
-                        <div className="text-[10px] uppercase tracking-wider text-text-secondary mt-0.5">{cat.title}</div>
+                        <div className="text-[11px] uppercase tracking-wider text-text-secondary mt-0.5">{cat.title}</div>
                       </div>
-                      <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full border whitespace-nowrap ${statusTone[c.status]}`}>
+                      <span className={`text-[11px] font-semibold uppercase px-2 py-0.5 rounded-full border whitespace-nowrap ${statusTone[c.status]}`}>
                         {c.status}
                       </span>
                     </div>
@@ -225,7 +225,7 @@ export default function IntegrationCenter() {
         </div>
         <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           <div className="text-center md:border-r md:border-border">
-            <div className="text-[10px] uppercase tracking-wider text-text-secondary">Overall Readiness</div>
+            <div className="text-[11px] uppercase tracking-wider text-text-secondary">Overall Readiness</div>
             <div className="text-5xl font-semibold text-accent-teal mt-1">72<span className="text-xl text-text-secondary">/100</span></div>
             <div className="text-xs text-text-secondary mt-1">Preview metric — demo data</div>
           </div>

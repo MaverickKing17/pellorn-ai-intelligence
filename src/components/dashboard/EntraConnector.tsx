@@ -80,7 +80,7 @@ export default function EntraConnector() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="text-2xl font-semibold text-foreground">Entra Connector</h1>
-            <span className="text-[10px] font-semibold uppercase tracking-wider bg-accent-amber/10 text-accent-amber border border-accent-amber/30 px-2 py-0.5 rounded-full">
+            <span className="text-[11px] font-semibold uppercase tracking-wider bg-accent-amber/10 text-accent-amber border border-accent-amber/30 px-2 py-0.5 rounded-full">
               Preview Mode — Mock Tenant Data
             </span>
           </div>
@@ -123,7 +123,7 @@ export default function EntraConnector() {
                 <Icon className={`w-4 h-4 ${k.tone}`} />
               </div>
               <div className="text-base font-semibold text-foreground truncate" title={String(k.value)}>{k.value}</div>
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mt-0.5">{k.label}</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mt-0.5">{k.label}</div>
             </div>
           );
         })}
@@ -136,7 +136,7 @@ export default function EntraConnector() {
             <h2 className="text-sm font-semibold text-foreground">Identity Sync Overview</h2>
             <p className="text-xs text-text-secondary">Mock connector status across Entra ID entity types.</p>
           </div>
-          <span className="text-[10px] uppercase tracking-wider text-text-secondary">Simulated Connector Status</span>
+          <span className="text-[11px] uppercase tracking-wider text-text-secondary">Simulated Connector Status</span>
         </div>
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
           {syncEntities.map((e) => {
@@ -148,7 +148,7 @@ export default function EntraConnector() {
                     <Icon className="w-4 h-4 text-accent-teal" />
                     <span className="text-sm font-medium text-foreground">{e.type}</span>
                   </div>
-                  <span className={`text-[10px] font-semibold uppercase tracking-wider ${healthTone(e.health)}`}>{e.health}</span>
+                  <span className={`text-[11px] font-semibold uppercase tracking-wider ${healthTone(e.health)}`}>{e.health}</span>
                 </div>
                 <div className="text-xl font-semibold text-foreground">{e.count.toLocaleString()}<span className="text-xs text-text-secondary font-normal"> synced</span></div>
                 <div className="h-1.5 rounded-full bg-border/60 mt-2 overflow-hidden">
@@ -189,7 +189,7 @@ export default function EntraConnector() {
                   <td className="px-4 py-2.5 text-foreground">{r.signal}</td>
                   <td className="px-4 py-2.5 text-text-secondary font-mono text-xs">{r.identity}</td>
                   <td className="px-4 py-2.5 text-text-secondary">{r.role}</td>
-                  <td className="px-4 py-2.5"><span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full border ${sevTone(r.severity)}`}>{r.severity}</span></td>
+                  <td className="px-4 py-2.5"><span className={`text-[11px] font-semibold uppercase px-2 py-0.5 rounded-full border ${sevTone(r.severity)}`}>{r.severity}</span></td>
                   <td className="px-4 py-2.5 text-foreground">{r.agent}</td>
                   <td className="px-4 py-2.5 text-text-secondary max-w-sm">{r.action}</td>
                   <td className="px-4 py-2.5 text-text-secondary">{r.status}</td>
@@ -253,7 +253,7 @@ export default function EntraConnector() {
               <div key={c.label} className="rounded-md border border-border bg-background/40 p-3">
                 <Icon className={`w-4 h-4 ${c.tone} mb-2`} />
                 <div className="text-sm font-semibold text-foreground">{c.value}</div>
-                <div className="text-[10px] uppercase tracking-wider text-text-secondary mt-0.5">{c.label}</div>
+                <div className="text-[11px] uppercase tracking-wider text-text-secondary mt-0.5">{c.label}</div>
               </div>
             );
           })}

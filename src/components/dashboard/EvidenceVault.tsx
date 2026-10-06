@@ -77,7 +77,7 @@ export default function EvidenceVault() {
           <h1 className="text-xl font-bold text-foreground">Governance Evidence Vault</h1>
           <p className="text-xs text-text-secondary mt-1">
             Regulator-ready evidence packages with cryptographic integrity seals.
-            <span className="ml-2 text-[10px] uppercase tracking-wider text-accent-amber/80">Demo Telemetry</span>
+            <span className="ml-2 text-[11px] uppercase tracking-wider text-accent-amber/80">Demo Telemetry</span>
           </p>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function EvidenceVault() {
           return (
             <div key={k.label} className="bg-card border border-border rounded-lg p-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] uppercase tracking-wider text-text-secondary">{k.label}</span>
+                <span className="text-[11px] uppercase tracking-wider text-text-secondary">{k.label}</span>
                 <Icon className={`w-3.5 h-3.5 ${k.color}`} />
               </div>
               <div className={`text-2xl font-bold mt-1 ${k.color}`}>{k.value}</div>
@@ -124,7 +124,7 @@ export default function EvidenceVault() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-left text-[10px] uppercase tracking-wider text-text-secondary border-b border-border">
+                <tr className="text-left text-[11px] uppercase tracking-wider text-text-secondary border-b border-border">
                   <th className="py-2 pr-2">ID</th>
                   <th className="py-2 pr-2">Type</th>
                   <th className="py-2 pr-2">Agent</th>
@@ -144,7 +144,7 @@ export default function EvidenceVault() {
                     <td className="py-2 pr-2 text-text-secondary">{e.framework}</td>
                     <td className="py-2 pr-2 text-text-secondary">{e.owner}</td>
                     <td className="py-2 pr-2">
-                      <span className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${statusColor[e.status]}`}>{e.status}</span>
+                      <span className={`text-[11px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${statusColor[e.status]}`}>{e.status}</span>
                     </td>
                     <td className="py-2 pr-2 font-mono-code text-text-muted">{e.created}</td>
                     <td className="py-2 pr-2 text-text-secondary">{e.retention}</td>
@@ -163,15 +163,15 @@ export default function EvidenceVault() {
           <h2 className="text-sm font-semibold text-foreground mb-2">Audit Package Builder</h2>
           <p className="text-[11px] text-text-secondary mb-3">Assemble regulator-ready evidence packs for external audit, board, or supervisory review.</p>
           <div className="space-y-2">
-            <label className="block text-[10px] uppercase tracking-wider text-text-secondary">Framework</label>
+            <label className="block text-[11px] uppercase tracking-wider text-text-secondary">Framework</label>
             <select className="w-full bg-background/50 border border-border rounded-md text-xs px-2 py-1.5 text-foreground">
               <option>OSFI E-21</option><option>PIPEDA</option><option>AIDA (Bill C-27)</option><option>SOC 2</option>
             </select>
-            <label className="block text-[10px] uppercase tracking-wider text-text-secondary mt-2">Date Range</label>
+            <label className="block text-[11px] uppercase tracking-wider text-text-secondary mt-2">Date Range</label>
             <select className="w-full bg-background/50 border border-border rounded-md text-xs px-2 py-1.5 text-foreground">
               <option>Last 30 days</option><option>Last 90 days</option><option>YTD</option><option>Custom…</option>
             </select>
-            <label className="block text-[10px] uppercase tracking-wider text-text-secondary mt-2">Business Unit</label>
+            <label className="block text-[11px] uppercase tracking-wider text-text-secondary mt-2">Business Unit</label>
             <select className="w-full bg-background/50 border border-border rounded-md text-xs px-2 py-1.5 text-foreground">
               <option>All</option><option>Lending</option><option>Insurance</option><option>Real Estate</option><option>HR / Ops</option>
             </select>
@@ -180,15 +180,15 @@ export default function EvidenceVault() {
             </button>
           </div>
           <div className="mt-4 space-y-1.5">
-            <div className="text-[10px] uppercase tracking-wider text-text-secondary">Recently Generated</div>
+            <div className="text-[11px] uppercase tracking-wider text-text-secondary">Recently Generated</div>
             {packs.map(p => (
               <div key={p.name} className="flex items-center justify-between bg-background/40 border border-border rounded-md px-2 py-1.5">
                 <div>
                   <div className="text-xs text-foreground">{p.name}</div>
-                  <div className="text-[10px] text-text-muted">{p.items} evidence items</div>
+                  <div className="text-[11px] text-text-muted">{p.items} evidence items</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${p.status === 'Ready' ? 'border-accent-teal/30 text-accent-teal bg-accent-teal/10' : 'border-accent-amber/30 text-accent-amber bg-accent-amber/10'}`}>{p.status}</span>
+                  <span className={`text-[11px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${p.status === 'Ready' ? 'border-accent-teal/30 text-accent-teal bg-accent-teal/10' : 'border-accent-amber/30 text-accent-amber bg-accent-amber/10'}`}>{p.status}</span>
                   <button className="text-text-secondary hover:text-foreground"><Download className="w-3.5 h-3.5" /></button>
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default function EvidenceVault() {
           <div className="relative bg-card border-l border-border w-full max-w-xl h-full overflow-y-auto p-5" onClick={e => e.stopPropagation()}>
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-text-secondary">Evidence Record</p>
+                <p className="text-[11px] uppercase tracking-wider text-text-secondary">Evidence Record</p>
                 <h3 className="text-lg font-bold text-foreground font-mono-code">{selected.id}</h3>
               </div>
               <button onClick={() => setSelected(null)} className="text-text-secondary hover:text-foreground"><X className="w-4 h-4" /></button>

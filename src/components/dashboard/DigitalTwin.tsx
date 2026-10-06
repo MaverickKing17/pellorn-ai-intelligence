@@ -22,7 +22,7 @@ export default function DigitalTwin() {
     <div className="space-y-4">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
         <div>
-          <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-accent-purple bg-accent-purple/10 border border-accent-purple/30 px-2 py-0.5 rounded-full mb-2">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-accent-purple bg-accent-purple/10 border border-accent-purple/30 px-2 py-0.5 rounded-full mb-2">
             <Sparkles className="w-3 h-3" /> Future-Ready Module
           </span>
           <h2 className="text-lg font-bold text-foreground">Enterprise AI Workforce Simulator</h2>
@@ -55,7 +55,7 @@ export default function DigitalTwin() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold text-foreground">Simulation Scenario</h3>
-            <p className="text-[10px] text-text-secondary uppercase tracking-widest">Baseline · Current control posture maintained</p>
+            <p className="text-[11px] text-text-secondary uppercase tracking-widest">Baseline · Current control posture maintained</p>
           </div>
           <Button size="sm" className="bg-accent-teal hover:bg-accent-teal-lt text-foreground text-xs h-8">
             <Play className="w-3 h-3 mr-1" /> Run Counterfactual
@@ -69,12 +69,12 @@ export default function DigitalTwin() {
             const isActive = x === h;
             return (
               <div key={x} className={`rounded-lg border p-3 transition-colors ${isActive ? 'border-accent-teal/50 bg-accent-teal/5' : 'border-border bg-surface-raised/40'}`}>
-                <p className="text-[10px] uppercase tracking-widest text-text-secondary">{x} days</p>
+                <p className="text-[11px] uppercase tracking-widest text-text-secondary">{x} days</p>
                 <p className="text-lg font-bold text-foreground tabular-nums mt-1">{v.agents}</p>
                 <div className="h-1 bg-border rounded-full overflow-hidden mt-2">
                   <div className="h-full bg-gradient-to-r from-accent-teal to-accent-blue" style={{ width: `${Math.min(100, (v.agents / 900) * 100)}%` }} />
                 </div>
-                <p className="text-[10px] font-mono text-text-secondary mt-1">${v.cost.toFixed(1)}M cost</p>
+                <p className="text-[11px] font-mono text-text-secondary mt-1">${v.cost.toFixed(1)}M cost</p>
               </div>
             );
           })}
@@ -96,11 +96,11 @@ function TwinCard({ icon: Icon, label, value, sub, tone }: { icon: any; label: s
   return (
     <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold">{label}</span>
+        <span className="text-[11px] uppercase tracking-widest text-text-secondary font-semibold">{label}</span>
         <Icon className={`w-4 h-4 ${toneClass}`} />
       </div>
       <p className="text-2xl font-bold text-foreground tabular-nums">{value}</p>
-      <p className={`text-[10px] font-mono mt-1 ${toneClass}`}>{sub}</p>
+      <p className={`text-[11px] font-mono mt-1 ${toneClass}`}>{sub}</p>
     </div>
   );
 }

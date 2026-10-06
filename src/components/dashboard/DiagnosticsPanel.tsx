@@ -75,7 +75,7 @@ export default function DiagnosticsPanel() {
         <div className="flex items-center gap-2">
           <Activity className="w-4 h-4 text-accent-teal" />
           <h3 className="text-sm font-semibold text-foreground">In-App Diagnostics</h3>
-          <span className="text-[10px] uppercase tracking-widest text-text-secondary">
+          <span className="text-[11px] uppercase tracking-widest text-text-secondary">
             Build · {String(env.MODE ?? 'unknown')}
           </span>
         </div>
@@ -141,7 +141,7 @@ export default function DiagnosticsPanel() {
         </table>
       </div>
 
-      <p className="text-[10px] text-text-muted-custom">
+      <p className="text-[11px] text-text-muted-custom">
         Values are masked. * = required for full production behavior. Missing values use safe defaults so the UI never crashes.
       </p>
     </div>
@@ -157,7 +157,7 @@ function StatCell({ label, value, tone }: { label: string; value: string; tone: 
   }[tone];
   return (
     <div className={`rounded-lg border px-3 py-2 ${toneClass}`}>
-      <div className="text-[10px] uppercase tracking-widest opacity-80">{label}</div>
+      <div className="text-[11px] uppercase tracking-widest opacity-80">{label}</div>
       <div className="text-sm font-bold mt-0.5 truncate">{value}</div>
     </div>
   );

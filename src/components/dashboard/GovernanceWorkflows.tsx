@@ -70,7 +70,7 @@ export default function GovernanceWorkflows() {
           <h1 className="text-xl font-bold text-foreground">Governance Workflows</h1>
           <p className="text-xs text-text-secondary mt-1">
             Board-ready governance workflows with automated approvals, escalations, and evidence generation.
-            <span className="ml-2 text-[10px] uppercase tracking-wider text-accent-amber/80">Simulation Data</span>
+            <span className="ml-2 text-[11px] uppercase tracking-wider text-accent-amber/80">Simulation Data</span>
           </p>
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function GovernanceWorkflows() {
           return (
             <div key={k.label} className="bg-card border border-border rounded-lg p-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] uppercase tracking-wider text-text-secondary">{k.label}</span>
+                <span className="text-[11px] uppercase tracking-wider text-text-secondary">{k.label}</span>
                 <Icon className={`w-3.5 h-3.5 ${k.color}`} />
               </div>
               <div className={`text-2xl font-bold mt-1 ${k.color}`}>{k.value}</div>
@@ -96,12 +96,12 @@ export default function GovernanceWorkflows() {
         <div className="lg:col-span-2 bg-card border border-border rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-sm font-semibold text-foreground">Workflow Rules</h2>
-            <span className="text-[10px] uppercase tracking-wider text-text-secondary">Continuous AI Control Assurance</span>
+            <span className="text-[11px] uppercase tracking-wider text-text-secondary">Continuous AI Control Assurance</span>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-left text-[10px] uppercase tracking-wider text-text-secondary border-b border-border">
+                <tr className="text-left text-[11px] uppercase tracking-wider text-text-secondary border-b border-border">
                   <th className="py-2 pr-2">Rule</th>
                   <th className="py-2 pr-2">Trigger</th>
                   <th className="py-2 pr-2">Owner</th>
@@ -117,9 +117,9 @@ export default function GovernanceWorkflows() {
                     <td className="py-2 pr-2 text-foreground font-semibold">{r.name}</td>
                     <td className="py-2 pr-2 text-text-secondary">{r.trigger}</td>
                     <td className="py-2 pr-2 text-text-secondary">{r.owner}</td>
-                    <td className="py-2 pr-2"><span className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${sevColor[r.severity]}`}>{r.severity}</span></td>
+                    <td className="py-2 pr-2"><span className={`text-[11px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${sevColor[r.severity]}`}>{r.severity}</span></td>
                     <td className="py-2 pr-2">
-                      <span className={`text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${
+                      <span className={`text-[11px] uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${
                         r.status === 'Active' ? 'border-accent-teal/30 text-accent-teal bg-accent-teal/10'
                         : r.status === 'Paused' ? 'border-accent-amber/30 text-accent-amber bg-accent-amber/10'
                         : 'border-border text-text-muted bg-background/40'
@@ -137,7 +137,7 @@ export default function GovernanceWorkflows() {
         <div className="bg-card border border-border rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-sm font-semibold text-foreground">Visual Workflow Builder</h2>
-            <span className="text-[10px] uppercase tracking-wider text-text-secondary">Preview</span>
+            <span className="text-[11px] uppercase tracking-wider text-text-secondary">Preview</span>
           </div>
           <div className="space-y-2">
             {flowBlocks.map((b, i) => {
@@ -147,7 +147,7 @@ export default function GovernanceWorkflows() {
                   <div className={`flex items-center gap-2 border rounded-md px-3 py-2 ${b.color}`}>
                     <Icon className="w-3.5 h-3.5" />
                     <div className="flex-1">
-                      <div className="text-[9px] uppercase tracking-wider opacity-70">{b.kind}</div>
+                      <div className="text-[10.5px] uppercase tracking-wider opacity-70">{b.kind}</div>
                       <div className="text-xs font-semibold">{b.label}</div>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export default function GovernanceWorkflows() {
         <div className="bg-card border border-border rounded-lg p-4">
           <div className="flex items-start justify-between flex-wrap gap-3">
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-text-secondary font-mono-code">{selected.id}</p>
+              <p className="text-[11px] uppercase tracking-wider text-text-secondary font-mono-code">{selected.id}</p>
               <h2 className="text-base font-semibold text-foreground">{selected.name}</h2>
               <p className="text-xs text-text-secondary mt-0.5">Owned by {selected.owner} · SLA {selected.sla}</p>
             </div>
@@ -184,31 +184,31 @@ export default function GovernanceWorkflows() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
             <div className="bg-background/40 border border-border rounded-md p-3">
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Trigger Logic</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-1">Trigger Logic</div>
               <div className="text-xs text-foreground">{selected.trigger}</div>
             </div>
             <div className="bg-background/40 border border-border rounded-md p-3">
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Affected Agents</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-1">Affected Agents</div>
               <div className="flex flex-wrap gap-1">
-                {selected.agents.map(a => <span key={a} className="text-[10px] font-mono-code text-text-secondary bg-background/60 border border-border px-1.5 py-0.5 rounded">{a}</span>)}
+                {selected.agents.map(a => <span key={a} className="text-[11px] font-mono-code text-text-secondary bg-background/60 border border-border px-1.5 py-0.5 rounded">{a}</span>)}
               </div>
             </div>
             <div className="bg-background/40 border border-border rounded-md p-3">
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Automated Actions</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-1">Automated Actions</div>
               <div className="text-xs text-foreground">{selected.action}</div>
             </div>
             <div className="bg-background/40 border border-border rounded-md p-3">
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Approval Requirements</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-1">Approval Requirements</div>
               <div className="text-xs text-foreground">{selected.approval}</div>
             </div>
             <div className="bg-background/40 border border-border rounded-md p-3">
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Evidence Generated</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-1">Evidence Generated</div>
               <div className="text-xs text-foreground">{selected.evidence}</div>
             </div>
             <div className="bg-background/40 border border-border rounded-md p-3">
-              <div className="text-[10px] uppercase tracking-wider text-text-secondary mb-1">Notification Recipients</div>
+              <div className="text-[11px] uppercase tracking-wider text-text-secondary mb-1">Notification Recipients</div>
               <div className="flex flex-wrap gap-1">
-                {selected.notify.map(n => <span key={n} className="text-[10px] text-text-secondary bg-background/60 border border-border px-1.5 py-0.5 rounded">{n}</span>)}
+                {selected.notify.map(n => <span key={n} className="text-[11px] text-text-secondary bg-background/60 border border-border px-1.5 py-0.5 rounded">{n}</span>)}
               </div>
             </div>
           </div>

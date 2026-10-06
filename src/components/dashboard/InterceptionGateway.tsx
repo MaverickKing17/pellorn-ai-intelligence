@@ -11,7 +11,7 @@ export default function InterceptionGateway() {
           <Shield className="w-5 h-5 text-accent-teal" />
           <h3 className="text-sm font-bold text-foreground">Real-time Interception Gateway</h3>
         </div>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-teal bg-accent-teal/10 px-2 py-0.5 rounded-full flex items-center gap-1">
           <span className="w-1.5 h-1.5 bg-accent-teal rounded-full animate-pulse-glow" />
           Active Monitoring
         </span>
@@ -26,7 +26,7 @@ export default function InterceptionGateway() {
       </div>
 
       <div className="bg-background border border-border rounded-lg h-32 flex items-center justify-center mb-4">
-        <span className="text-[10px] uppercase tracking-widest text-text-muted-custom bg-surface-raised px-4 py-1.5 rounded-full border border-border font-semibold">
+        <span className="text-[11px] uppercase tracking-widest text-text-muted-custom bg-surface-raised px-4 py-1.5 rounded-full border border-border font-semibold">
           ◆ Pellorn Security Layer
         </span>
       </div>

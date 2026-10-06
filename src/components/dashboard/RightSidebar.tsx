@@ -12,7 +12,7 @@ export default function RightSidebar() {
   return (
     <div className="space-y-4">
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-[10px] uppercase tracking-widest text-accent-amber font-semibold mb-4">Why This Matters for ROI</h3>
+        <h3 className="text-[11px] uppercase tracking-widest text-accent-amber font-semibold mb-4">Why This Matters for ROI</h3>
         <div className="space-y-4">
           {config.roi.map((r, i) => (
             <ROIItem key={i} icon={iconMap[r.iconKey]} title={r.title} desc={r.desc} />
@@ -22,11 +22,11 @@ export default function RightSidebar() {
 
       <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1">
+          <h3 className="text-[11px] uppercase tracking-widest font-semibold flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-accent-red animate-pulse-glow" />
             <span className="text-accent-red">Global Threat Intel</span>
           </h3>
-          <span className="text-[10px] text-text-muted-custom">
+          <span className="text-[11px] text-text-muted-custom">
             {industry === 'real_estate' ? 'GTA Brokerage Net' : 'Amazon AWS'}
           </span>
         </div>
@@ -45,7 +45,7 @@ export default function RightSidebar() {
       </div>
 
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-[10px] uppercase tracking-widest text-text-secondary font-semibold mb-3">Compliance Score Impact</h3>
+        <h3 className="text-[11px] uppercase tracking-widest text-text-secondary font-semibold mb-3">Compliance Score Impact</h3>
         <div className="flex items-baseline gap-2 mb-2">
           <span className="text-3xl font-bold text-accent-teal">94.2</span>
           <span className="text-xs text-accent-teal">+2.1% this week</span>
@@ -82,7 +82,7 @@ function ThreatItem({ title, desc, severity }: { title: string; desc: string; se
         <p className="text-[11px] text-text-secondary">{desc}</p>
       </div>
       <span
-        className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+        className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
           severity === 'CRITICAL'
             ? 'bg-accent-red/10 text-accent-red border border-accent-red/30'
             : 'bg-accent-amber/10 text-accent-amber border border-accent-amber/30'

@@ -112,7 +112,7 @@ export default function PolicyEnforcement() {
             <div className="flex items-center gap-2 mb-1">
               <ShieldAlert className="w-5 h-5 text-accent-teal" />
               <h2 className="text-base font-bold text-foreground">Policy Enforcement Engine</h2>
-              <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1 ${
+              <span className={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1 ${
                 engine.protection === 'active'
                   ? 'text-accent-teal bg-accent-teal/10'
                   : 'text-text-muted-custom bg-background border border-border'
@@ -147,7 +147,7 @@ export default function PolicyEnforcement() {
             return (
               <div key={s.label} className="bg-surface-raised border border-border rounded-lg p-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold">{s.label}</span>
+                  <span className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold">{s.label}</span>
                   <Icon className={`w-3.5 h-3.5 ${s.accent}`} />
                 </div>
                 <div className="text-xl font-bold text-foreground">{s.value}</div>
@@ -163,9 +163,9 @@ export default function PolicyEnforcement() {
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-accent-amber" />
             <h3 className="text-sm font-bold text-foreground">Interception Tester</h3>
-            <span className="text-[10px] uppercase tracking-wider text-text-muted-custom">Live engine</span>
+            <span className="text-[11px] uppercase tracking-wider text-text-muted-custom">Live engine</span>
           </div>
-          <span className="text-[10px] text-text-secondary">Fail-closed · &lt;50ms target</span>
+          <span className="text-[11px] text-text-secondary">Fail-closed · &lt;50ms target</span>
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-3">
@@ -173,7 +173,7 @@ export default function PolicyEnforcement() {
             <button
               key={s.label}
               onClick={() => runTest(s.text)}
-              className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-border text-text-secondary hover:text-foreground hover:border-accent-teal/40 transition-colors"
+              className="text-[11px] uppercase tracking-wider px-2 py-1 rounded-full border border-border text-text-secondary hover:text-foreground hover:border-accent-teal/40 transition-colors"
             >
               {s.label}
             </button>
@@ -200,21 +200,21 @@ export default function PolicyEnforcement() {
             <div className="bg-surface-raised border border-border rounded-lg p-3 space-y-2">
               <div className="flex items-center gap-2 flex-wrap">
                 <Icon className={`w-4 h-4 ${meta.color}`} />
-                <span className={`text-[10px] font-bold uppercase tracking-wider ${meta.color}`}>{meta.label}</span>
-                <span className="text-[10px] font-mono text-text-muted-custom">HTTP {lastResult.status}</span>
-                <span className="text-[10px] font-mono text-text-muted-custom">· {lastResult.latencyMs.toFixed(1)}ms</span>
+                <span className={`text-[11px] font-bold uppercase tracking-wider ${meta.color}`}>{meta.label}</span>
+                <span className="text-[11px] font-mono text-text-muted-custom">HTTP {lastResult.status}</span>
+                <span className="text-[11px] font-mono text-text-muted-custom">· {lastResult.latencyMs.toFixed(1)}ms</span>
                 {lastResult.failClosed && (
-                  <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-red/10 text-accent-red">Fail-Closed</span>
+                  <span className="text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-red/10 text-accent-red">Fail-Closed</span>
                 )}
-                <span className="ml-auto text-[10px] text-text-muted-custom">{lastResult.hits.length} detections</span>
+                <span className="ml-auto text-[11px] text-text-muted-custom">{lastResult.hits.length} detections</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]">
                 <div>
-                  <div className="text-[9px] uppercase tracking-wider text-text-muted-custom mb-0.5">Original</div>
+                  <div className="text-[10.5px] uppercase tracking-wider text-text-muted-custom mb-0.5">Original</div>
                   <div className="text-text-secondary font-mono break-all">{lastResult.prompt}</div>
                 </div>
                 <div>
-                  <div className="text-[9px] uppercase tracking-wider text-text-muted-custom mb-0.5">Forwarded to model</div>
+                  <div className="text-[10.5px] uppercase tracking-wider text-text-muted-custom mb-0.5">Forwarded to model</div>
                   <div className="text-foreground font-mono break-all">
                     {lastResult.action === 'block' ? <span className="text-accent-red">[REQUEST BLOCKED]</span> : lastResult.sanitized}
                   </div>
@@ -223,7 +223,7 @@ export default function PolicyEnforcement() {
               {lastResult.hits.length > 0 && (
                 <div className="flex flex-wrap gap-1 pt-1 border-t border-border">
                   {lastResult.hits.map((h, i) => (
-                    <span key={i} className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
+                    <span key={i} className={`text-[11px] px-1.5 py-0.5 rounded font-mono ${
                       h.category === 'pii' ? 'bg-accent-amber/10 text-accent-amber' :
                       h.category === 'injection' ? 'bg-accent-red/10 text-accent-red' :
                       'bg-accent-purple/10 text-accent-purple'
@@ -245,12 +245,12 @@ export default function PolicyEnforcement() {
             <TrendingUp className="w-4 h-4 text-accent-red" />
             <h3 className="text-sm font-bold text-foreground">Top Risks & Recommended Actions</h3>
           </div>
-          <span className="text-[10px] uppercase tracking-wider text-text-secondary">Decision Intelligence</span>
+          <span className="text-[11px] uppercase tracking-wider text-text-secondary">Decision Intelligence</span>
         </div>
         <div className="space-y-2">
           {TOP_RISKS.map(r => (
             <div key={r.id} className="flex items-start gap-3 p-3 bg-surface-raised border border-border rounded-lg hover:border-accent-teal/40 transition-colors">
-              <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded border ${sevMeta[r.severity]}`}>
+              <span className={`text-[10.5px] font-bold uppercase tracking-wider px-2 py-1 rounded border ${sevMeta[r.severity]}`}>
                 {r.severity}
               </span>
               <div className="flex-1 min-w-0">
@@ -261,8 +261,8 @@ export default function PolicyEnforcement() {
                 </div>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <span className="text-[10px] text-text-muted-custom font-mono">{r.policy}</span>
-                <Button size="sm" className="bg-accent-teal hover:bg-accent-teal-lt text-foreground text-[10px] h-6 px-2">
+                <span className="text-[11px] text-text-muted-custom font-mono">{r.policy}</span>
+                <Button size="sm" className="bg-accent-teal hover:bg-accent-teal-lt text-foreground text-[11px] h-6 px-2">
                   Apply
                 </Button>
               </div>
@@ -278,14 +278,14 @@ export default function PolicyEnforcement() {
             <div className="flex items-center gap-2">
               <Layers className="w-4 h-4 text-accent-teal" />
               <h3 className="text-sm font-bold text-foreground">Policy Catalog</h3>
-              <span className="text-[10px] text-text-muted-custom">click a policy for details</span>
+              <span className="text-[11px] text-text-muted-custom">click a policy for details</span>
             </div>
             <div className="flex flex-wrap gap-1">
               {(['all', 'identity', 'ai', 'data', 'compliance'] as const).map(f => (
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border transition-colors ${
+                  className={`text-[11px] uppercase tracking-wider px-2 py-1 rounded-full border transition-colors ${
                     filter === f
                       ? 'bg-accent-teal/10 text-accent-teal border-accent-teal/40'
                       : 'border-border text-text-secondary hover:text-foreground'
@@ -315,12 +315,12 @@ export default function PolicyEnforcement() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <span className="text-[10px] font-mono text-text-muted-custom">{p.id}</span>
+                        <span className="text-[11px] font-mono text-text-muted-custom">{p.id}</span>
                         <span className="text-xs font-semibold text-foreground">{p.name}</span>
-                        <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-background border border-border text-text-secondary">
+                        <span className="text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-background border border-border text-text-secondary">
                           PRECEDENCE {p.precedence}
                         </span>
-                        <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-teal/10 text-accent-teal">
+                        <span className="text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-teal/10 text-accent-teal">
                           Active
                         </span>
                       </div>
@@ -334,7 +334,7 @@ export default function PolicyEnforcement() {
                           <span className="text-foreground">{p.action}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 mt-2 text-[10px] text-text-muted-custom flex-wrap">
+                      <div className="flex items-center gap-3 mt-2 text-[11px] text-text-muted-custom flex-wrap">
                         <span>Hits 24h: <span className="text-foreground font-semibold">{totalHits}</span></span>
                         <span>Last: <span className="text-foreground">{stat.lastTriggered ? timeAgo(stat.lastTriggered) : `${Math.floor(Math.random() * 60)}m ago`}</span></span>
                         <div className="flex gap-1">
@@ -359,7 +359,7 @@ export default function PolicyEnforcement() {
               <Workflow className="w-4 h-4 text-accent-purple" />
               <h3 className="text-sm font-bold text-foreground">Live Policy Editor</h3>
             </div>
-            <span className="text-[10px] uppercase tracking-wider text-text-secondary">Blocklist</span>
+            <span className="text-[11px] uppercase tracking-wider text-text-secondary">Blocklist</span>
           </div>
 
           <p className="text-[11px] text-text-secondary mb-3">
@@ -393,7 +393,7 @@ export default function PolicyEnforcement() {
             </Button>
           </div>
 
-          <div className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">
+          <div className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">
             Custom Terms ({engine.blocklist.length})
           </div>
           <div className="flex flex-wrap gap-1.5 min-h-[40px]">
@@ -415,7 +415,7 @@ export default function PolicyEnforcement() {
           </div>
 
           <div className="mt-4 pt-4 border-t border-border">
-            <div className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Built-in Detectors</div>
+            <div className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Built-in Detectors</div>
             <div className="space-y-1.5 text-[11px]">
               {[
                 { label: 'PII (email, NA phone, SIN, SSN)', icon: FileLock, color: 'text-accent-teal' },
@@ -440,7 +440,7 @@ export default function PolicyEnforcement() {
           <div className="flex items-center gap-2">
             <FileText className="w-4 h-4 text-accent-blue" />
             <h3 className="text-sm font-bold text-foreground">Recent Enforcement Log</h3>
-            <span className="text-[10px] uppercase tracking-wider text-text-muted-custom">WORM · Immutable</span>
+            <span className="text-[11px] uppercase tracking-wider text-text-muted-custom">WORM · Immutable</span>
           </div>
           <Button size="sm" variant="outline" className="border-border text-text-secondary text-xs h-7">
             <Filter className="w-3 h-3 mr-1" /> Filter
@@ -459,16 +459,16 @@ export default function PolicyEnforcement() {
               return (
                 <div key={i} className="bg-surface-raised border border-border rounded-lg p-2.5 flex items-center gap-3 flex-wrap">
                   <Icon className={`w-4 h-4 ${meta.color} flex-shrink-0`} />
-                  <span className="text-[10px] font-mono text-text-muted-custom">
+                  <span className="text-[11px] font-mono text-text-muted-custom">
                     {new Date(e.timestamp).toLocaleTimeString('en-CA', { hour12: false })}
                   </span>
-                  <span className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${meta.color} bg-surface-raised border border-border`}>
+                  <span className={`text-[10.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${meta.color} bg-surface-raised border border-border`}>
                     {meta.label}
                   </span>
-                  <span className="text-[10px] font-mono text-text-muted-custom">HTTP {e.status}</span>
+                  <span className="text-[11px] font-mono text-text-muted-custom">HTTP {e.status}</span>
                   <span className="text-xs text-foreground flex-1 truncate min-w-[200px]">{e.prompt}</span>
-                  <span className="text-[10px] text-text-secondary font-mono">{e.latencyMs.toFixed(1)}ms</span>
-                  <span className="text-[10px] text-text-muted-custom">{e.hits.length} hits</span>
+                  <span className="text-[11px] text-text-secondary font-mono">{e.latencyMs.toFixed(1)}ms</span>
+                  <span className="text-[11px] text-text-muted-custom">{e.hits.length} hits</span>
                 </div>
               );
             })}
@@ -491,10 +491,10 @@ export default function PolicyEnforcement() {
               { layer: 'Audit Plane', items: ['WORM log', 'Compliance mapper', 'Evidence packager'] },
             ].map(l => (
               <div key={l.layer} className="bg-surface-raised border border-border rounded-lg p-2.5">
-                <div className="text-[10px] uppercase tracking-wider text-accent-teal font-semibold mb-1.5">{l.layer}</div>
+                <div className="text-[11px] uppercase tracking-wider text-accent-teal font-semibold mb-1.5">{l.layer}</div>
                 <div className="flex flex-wrap gap-1">
                   {l.items.map(i => (
-                    <span key={i} className="text-[10px] text-text-secondary bg-background border border-border px-2 py-0.5 rounded">{i}</span>
+                    <span key={i} className="text-[11px] text-text-secondary bg-background border border-border px-2 py-0.5 rounded">{i}</span>
                   ))}
                 </div>
               </div>
@@ -516,12 +516,12 @@ export default function PolicyEnforcement() {
             ].map(r => (
               <div key={r.role} className="bg-surface-raised border border-border rounded-lg p-2.5">
                 <div className="text-xs font-semibold text-foreground mb-0.5">{r.role}</div>
-                <div className="text-[10px] text-text-secondary">{r.perms}</div>
+                <div className="text-[11px] text-text-secondary">{r.perms}</div>
               </div>
             ))}
           </div>
           <div className="bg-surface-raised border border-border rounded-lg p-3">
-            <div className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Tenant Isolation</div>
+            <div className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Tenant Isolation</div>
             <div className="space-y-1.5 text-[11px]">
               {[
                 'Per-tenant KMS keys (envelope encryption)',
@@ -554,8 +554,8 @@ export default function PolicyEnforcement() {
                     <div className={`p-2 rounded ${meta.color}`}>
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-[10px] font-mono text-text-muted-custom">{selectedPolicy.id}</span>
-                    <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-teal/10 text-accent-teal">
+                    <span className="text-[11px] font-mono text-text-muted-custom">{selectedPolicy.id}</span>
+                    <span className="text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-teal/10 text-accent-teal">
                       Active
                     </span>
                   </div>
@@ -568,23 +568,23 @@ export default function PolicyEnforcement() {
                 <div className="mt-6 space-y-4">
                   <div className="grid grid-cols-2 gap-2">
                     <div className="bg-surface-raised border border-border rounded-lg p-3">
-                      <div className="text-[9px] uppercase tracking-wider text-text-muted-custom font-semibold mb-1">Hit Rate</div>
+                      <div className="text-[10.5px] uppercase tracking-wider text-text-muted-custom font-semibold mb-1">Hit Rate</div>
                       <div className="text-lg font-bold text-foreground">{hitRate}/min</div>
-                      <div className="text-[10px] text-text-secondary">{totalHits} hits / 24h</div>
+                      <div className="text-[11px] text-text-secondary">{totalHits} hits / 24h</div>
                     </div>
                     <div className="bg-surface-raised border border-border rounded-lg p-3">
-                      <div className="text-[9px] uppercase tracking-wider text-text-muted-custom font-semibold mb-1">Last Triggered</div>
+                      <div className="text-[10.5px] uppercase tracking-wider text-text-muted-custom font-semibold mb-1">Last Triggered</div>
                       <div className="text-lg font-bold text-foreground">
                         {stat.lastTriggered ? timeAgo(stat.lastTriggered) : 'baseline'}
                       </div>
-                      <div className="text-[10px] text-text-secondary">
+                      <div className="text-[11px] text-text-secondary">
                         {stat.lastTriggered ? new Date(stat.lastTriggered).toLocaleString() : 'no live triggers yet'}
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Logic</div>
+                    <div className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Logic</div>
                     <div className="bg-surface-raised border border-border rounded-lg p-3 space-y-2 text-[11px] font-mono">
                       <div><span className="text-accent-teal">IF</span> <span className="text-text-secondary">{selectedPolicy.trigger}</span></div>
                       <div><span className="text-accent-amber">THEN</span> <span className="text-foreground">{selectedPolicy.action}</span></div>
@@ -592,16 +592,16 @@ export default function PolicyEnforcement() {
                   </div>
 
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Compliance Mapping</div>
+                    <div className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Compliance Mapping</div>
                     <div className="flex flex-wrap gap-1">
                       {selectedPolicy.compliance.map(c => (
-                        <span key={c} className="text-[10px] px-2 py-1 rounded bg-surface-raised border border-border text-text-secondary">{c}</span>
+                        <span key={c} className="text-[11px] px-2 py-1 rounded bg-surface-raised border border-border text-text-secondary">{c}</span>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Live Stats</div>
+                    <div className="text-[11px] uppercase tracking-wider text-text-muted-custom font-semibold mb-2">Live Stats</div>
                     <div className="bg-surface-raised border border-border rounded-lg p-3 space-y-2">
                       <div className="flex justify-between text-[11px]">
                         <span className="text-text-muted-custom">Triggered this session</span>

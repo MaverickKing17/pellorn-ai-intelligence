@@ -36,7 +36,7 @@ export default function BehavioralDrift() {
         </div>
 
         <h3 className="text-sm font-bold text-foreground mb-3">30-Day Drift Chart — Activity Score vs. Baseline</h3>
-        <div className="flex gap-4 mb-2 text-[10px] text-text-secondary">
+        <div className="flex gap-4 mb-2 text-[11px] text-text-secondary">
           <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-accent-teal/40" /> Baseline envelope</span>
           <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-accent-teal" /> Live activity</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-accent-red" /> Anomaly event</span>
@@ -70,7 +70,7 @@ export default function BehavioralDrift() {
       <div className="bg-card border border-border rounded-xl p-5 overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-border text-[10px] uppercase tracking-widest text-text-secondary">
+            <tr className="border-b border-border text-[11px] uppercase tracking-widest text-text-secondary">
               <th className="text-left py-2 pr-4">Timestamp</th>
               <th className="text-left py-2 pr-4">Agent</th>
               <th className="text-left py-2 pr-4">Event Type</th>
@@ -86,7 +86,7 @@ export default function BehavioralDrift() {
                 <td className="py-3 pr-4 text-foreground font-semibold">{e.agent}</td>
                 <td className="py-3 pr-4 text-foreground">{e.event}</td>
                 <td className="py-3 pr-4">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-red bg-accent-red/10 px-2 py-0.5 rounded-full">{e.severity}</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-accent-red bg-accent-red/10 px-2 py-0.5 rounded-full">{e.severity}</span>
                 </td>
                 <td className="py-3 pr-4 text-accent-amber font-semibold">{e.delta}</td>
                 <td className="py-3 text-text-secondary">{e.action}</td>
@@ -110,7 +110,7 @@ export default function BehavioralDrift() {
 function SummaryCard({ label, value, color }: { label: string; value: string; color: string }) {
   return (
     <div className="bg-card border border-border rounded-xl p-4 text-center">
-      <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-1">{label}</p>
+      <p className="text-[11px] uppercase tracking-widest text-text-secondary mb-1">{label}</p>
       <p className={`text-xl font-bold ${color}`}>{value}</p>
     </div>
   );
