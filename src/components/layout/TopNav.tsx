@@ -25,12 +25,12 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
           </div>
           <div className="hidden sm:block">
             <h1 className="text-base font-semibold tracking-tight text-foreground leading-none">Pellorn</h1>
-            <p className="text-[11px] tracking-wide text-text-secondary mt-1 leading-none">AI Governance &amp; Intelligence</p>
+            <p className="text-[11px] tracking-wide text-text-secondary mt-1 leading-none whitespace-nowrap">AI Governance &amp; Intelligence</p>
           </div>
         </div>
       </div>
 
-      <div className="hidden md:flex items-center gap-2">
+      <div className="hidden 2xl:flex items-center gap-2">
         {config.complianceBadges.map(b => (
           <span
             key={b.label}
@@ -46,7 +46,7 @@ export default function TopNav({ onMenuToggle }: TopNavProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden xl:flex items-center gap-2 whitespace-nowrap">
           <span className="text-[11px] uppercase tracking-wider text-text-secondary">Security Health</span>
           <span className="text-sm font-bold text-foreground">100.0%</span>
           <div className="w-16 h-1.5 bg-border rounded-full overflow-hidden">
