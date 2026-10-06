@@ -114,71 +114,86 @@ export default function Index() {
     }
   };
 
-  const activeInMore = moreTabs.some(t => t.id === activeTab);
+  const activeLabel = allTabs.find(t => t.id === activeTab)?.label ?? 'Command Center';
 
   return (
     <div className="min-h-screen bg-background">
       <TopNav onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main className="lg:ml-60 pt-4 px-4 pb-4">
-        <div className="flex gap-1 overflow-x-auto pb-3 mb-4 scrollbar-hide items-center">
-          {primaryTabs.map(tab => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
-            const badge = (tab as { badge?: string }).badge;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-                  isActive
-                    ? 'bg-card border border-border text-foreground'
-                    : 'text-text-secondary hover:text-foreground hover:bg-card/50'
-                }`}
-              >
-                <Icon className="w-3.5 h-3.5" />
-                {tab.label}
-                {badge && (
-                  <span className="text-[10.5px] font-semibold uppercase tracking-wider bg-accent-teal/10 text-accent-teal px-1.5 py-0.5 rounded-full">
-                    {badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-
-          <div className="relative group">
-            <button
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-                activeInMore
-                  ? 'bg-card border border-border text-foreground'
-                  : 'text-text-secondary hover:text-foreground hover:bg-card/50'
-              }`}
-            >
-              <MoreHorizontal className="w-3.5 h-3.5" />
-              More
-            </button>
-            <div className="absolute right-0 mt-1 w-56 bg-popover border border-border rounded-lg shadow-lg p-1 z-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity">
-              {moreTabs.map(t => {
-                const Icon = t.icon;
-                const isActive = activeTab === t.id;
+      <main className="lg:ml-60 pt-5 px-4 sm:px-6 pb-6">
+        <nav aria-label="Dashboard sections" className="mb-6 border-b border-border">
+          <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+            <div className="flex gap-1 overflow-x-auto scrollbar-hide -mb-px">
+              {primaryTabs.map(tab => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
                 return (
                   <button
-                    key={t.id}
-                    onClick={() => setActiveTab(t.id)}
-                    className={`w-full flex items-center gap-2 px-2 py-1.5 rounded-md text-xs ${
-                      isActive ? 'bg-card text-foreground' : 'text-text-secondary hover:bg-card hover:text-foreground'
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`flex items-center gap-1.5 px-3 py-2.5 text-[13px] font-medium whitespace-nowrap border-b-2 transition-colors ${
+                      isActive
+                        ? 'border-accent-teal text-foreground'
+                        : 'border-transparent text-text-secondary hover:text-foreground'
                     }`}
                   >
-                    <Icon className="w-3.5 h-3.5" />
-                    {t.label}
+                    <Icon className="w-4 h-4" />
+                    {tab.label}
+                    {tab.badge && (
+                      <span className="text-[11px] font-semibold tabular-nums bg-accent-amber/15 text-accent-amber px-1.5 rounded">
+                        {tab.badge}
+                      </span>
+                    )}
                   </button>
                 );
               })}
             </div>
+
+            <div className="flex items-center gap-1 pb-1.5">
+              {tabGroups.map(group => {
+                const groupActive = group.tabs.some(t => t.id === activeTab);
+                return (
+                  <div key={group.label} className="relative group">
+                    <button
+                      className={`flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors ${
+                        groupActive
+                          ? 'bg-surface-raised text-foreground'
+                          : 'text-text-secondary hover:text-foreground hover:bg-surface-raised/60'
+                      }`}
+                    >
+                      {group.label}
+                      <ChevronDown className="w-3 h-3 opacity-70" />
+                    </button>
+                    <div className="absolute right-0 top-full pt-1 w-60 z-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">
+                      <div className="bg-popover border border-border rounded-lg shadow-lg p-1">
+                        {group.tabs.map(t => {
+                          const Icon = t.icon;
+                          const isActive = activeTab === t.id;
+                          return (
+                            <button
+                              key={t.id}
+                              onClick={() => setActiveTab(t.id)}
+                              className={`w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-[13px] text-left ${
+                                isActive ? 'bg-card text-foreground' : 'text-text-secondary hover:bg-card hover:text-foreground'
+                              }`}
+                            >
+                              <Icon className="w-4 h-4" />
+                              <span className="flex-1">{t.label}</span>
+                              {t.badge && <span className="text-[11px] text-text-muted">{t.badge}</span>}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </nav>
+        <h2 className="sr-only">{activeLabel}</h2>
 
         <Suspense fallback={<div className="flex items-center justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-text-secondary" /></div>}>
           {renderTab()}
