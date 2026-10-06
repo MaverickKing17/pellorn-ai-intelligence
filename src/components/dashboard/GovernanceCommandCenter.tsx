@@ -109,7 +109,7 @@ function ScannerRulesDialog() {
             <Search className="w-4 h-4 text-accent-teal" /> Sensitive Data Scanning Rules
           </DialogTitle>
           <DialogDescription className="text-text-secondary text-xs">
-            Configure which patterns the Bastion PII/PCI scanner intercepts before egress.
+            Configure which patterns the Pellorn PII/PCI scanner intercepts before egress.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2 mt-2">
@@ -323,7 +323,7 @@ function NarrativeEngine() {
         <span className="text-[10px] font-mono text-text-secondary">Generated · 10:44 EST</span>
       </div>
       <p className="text-xs text-foreground/90 leading-relaxed mb-3">
-        In the past 30 days Bastion governed <span className="font-semibold text-accent-teal">284 autonomous agents</span> across six business units. <span className="font-semibold text-accent-amber">Seven agents</span> exhibited elevated behavioral drift; three potential PII exposure incidents were intercepted before data transmission. Estimated regulatory liability avoided: <span className="font-semibold text-foreground">$2.8M CAD</span>.
+        In the past 30 days Pellorn governed <span className="font-semibold text-accent-teal">284 autonomous agents</span> across six business units. <span className="font-semibold text-accent-amber">Seven agents</span> exhibited elevated behavioral drift; three potential PII exposure incidents were intercepted before data transmission. Estimated regulatory liability avoided: <span className="font-semibold text-foreground">$2.8M CAD</span>.
       </p>
       <p className="text-[11px] text-text-secondary leading-relaxed">
         Identity assurance remains at 99.4% (cryptographic agent certificates rotated on schedule). Policy compliance against OSFI E-21, PIPEDA and AIDA (Bill C-27) is rated <span className="text-accent-teal font-semibold">AA</span>. No material exposure detected for the upcoming board cycle.

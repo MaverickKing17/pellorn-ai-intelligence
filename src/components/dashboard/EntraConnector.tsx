@@ -244,7 +244,7 @@ export default function EntraConnector() {
       <section className="rounded-lg border border-border bg-card">
         <div className="px-4 py-3 border-b border-border">
           <h2 className="text-sm font-semibold text-foreground">Permission Correlation</h2>
-          <p className="text-xs text-text-secondary">How Bastion correlates Entra roles and groups with AI agent permissions.</p>
+          <p className="text-xs text-text-secondary">How Pellorn correlates Entra roles and groups with AI agent permissions.</p>
         </div>
         <div className="p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
           {correlations.map((c) => {
