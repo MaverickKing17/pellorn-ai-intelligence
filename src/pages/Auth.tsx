@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Building2, Home, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { lovable } from '@/integrations/lovable';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -56,12 +55,6 @@ export default function Auth() {
     }
   };
 
-  const handleGoogle = async () => {
-    const result = await lovable.auth.signInWithOAuth('google', {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) toast.error('Google sign-in failed');
-  };
 
   return (
     <div className="relative min-h-screen bg-background flex items-center justify-center px-4 overflow-hidden">
@@ -201,26 +194,6 @@ export default function Auth() {
               </Button>
             </form>
 
-            <div className="my-4 flex items-center gap-2">
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-[11px] uppercase tracking-widest text-text-secondary">or</span>
-              <div className="flex-1 h-px bg-border" />
-            </div>
-
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleGoogle}
-              className="w-full gap-2 bg-background/40 hover:bg-background/70 transition-colors"
-            >
-              <svg width="16" height="16" viewBox="0 0 48 48" aria-hidden>
-                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.5 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C33.9 6.1 29.2 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
-                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C33.9 6.1 29.2 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
-                <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35 26.7 36 24 36c-5.3 0-9.7-3.4-11.3-8.1l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
-                <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.2 5.2C41.8 35.5 44 30.1 44 24c0-1.3-.1-2.4-.4-3.5z"/>
-              </svg>
-              Continue with Google
-            </Button>
 
             <Button
               type="button"
@@ -229,7 +202,7 @@ export default function Auth() {
                 signInDemo();
                 navigate('/', { replace: true });
               }}
-              className="group w-full mt-2 border-accent-teal/50 text-accent-teal bg-accent-teal/[0.04] hover:bg-accent-teal/10 hover:text-accent-teal hover:border-accent-teal font-semibold uppercase tracking-[0.18em] text-xs transition-all duration-300 hover:shadow-[0_0_0_1px_hsl(var(--accent-teal)/0.4),0_0_24px_hsl(var(--accent-teal)/0.35)]"
+              className="group w-full mt-5 border-accent-teal/50 text-accent-teal bg-accent-teal/[0.04] hover:bg-accent-teal/10 hover:text-accent-teal hover:border-accent-teal font-semibold uppercase tracking-[0.18em] text-xs transition-all duration-300 hover:shadow-[0_0_0_1px_hsl(var(--accent-teal)/0.4),0_0_24px_hsl(var(--accent-teal)/0.35)]"
             >
               Try Demo — Instant Guest Access
             </Button>
