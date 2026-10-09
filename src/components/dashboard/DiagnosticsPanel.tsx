@@ -32,7 +32,7 @@ function mask(value: string) {
 export default function DiagnosticsPanel() {
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const { mode, env, checks } = useMemo(() => {
+  const { mode, env, appEnv, checks } = useMemo(() => {
     const env = (import.meta as any).env ?? {};
     const checks: EnvCheck[] = Object.keys(SAFE_DEFAULTS).map(key => {
       const raw = env[key];
