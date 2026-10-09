@@ -14,13 +14,14 @@ type EnvCheck = {
 
 const SAFE_DEFAULTS: Record<string, string> = {
   VITE_SUPABASE_URL: '(unset — using mock client)',
-  VITE_SUPABASE_ANON_KEY: '(unset — anonymous read-only)',
+  VITE_SUPABASE_PUBLISHABLE_KEY: '(unset — anonymous read-only)',
+  VITE_SUPABASE_ANON_KEY: '(unset — legacy fallback only)',
   VITE_AUTH_MODE: 'guest',
   VITE_API_BASE_URL: '/',
-  VITE_APP_ENV: 'development',
+  VITE_APP_ENV: '(unset)',
 };
 
-const REQUIRED_KEYS = new Set(['VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY']);
+const REQUIRED_KEYS = new Set(['VITE_SUPABASE_URL', 'VITE_SUPABASE_PUBLISHABLE_KEY']);
 
 function mask(value: string) {
   if (!value || value.startsWith('(')) return value;
@@ -31,7 +32,7 @@ function mask(value: string) {
 export default function DiagnosticsPanel() {
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const { mode, env, checks } = useMemo(() => {
+  const { mode, env, appEnv, checks } = useMemo(() => {
     const env = (import.meta as any).env ?? {};
     const checks: EnvCheck[] = Object.keys(SAFE_DEFAULTS).map(key => {
       const raw = env[key];
@@ -50,7 +51,21 @@ export default function DiagnosticsPanel() {
     const declared = env.VITE_AUTH_MODE as string | undefined;
     const mode = declared || (supaPresent ? 'supabase' : 'guest');
 
-    return { mode, env, checks };
+    // Legacy fallback: prefer VITE_SUPABASE_PUBLISHABLE_KEY; accept VITE_SUPABASE_ANON_KEY.
+    const publishable = checks.find(c => c.key === 'VITE_SUPABASE_PUBLISHABLE_KEY');
+    const legacyAnon = checks.find(c => c.key === 'VITE_SUPABASE_ANON_KEY');
+    if (publishable && legacyAnon && !publishable.present && legacyAnon.present) {
+      publishable.present = true;
+      publishable.effective = legacyAnon.effective;
+      publishable.fallback = 'legacy: VITE_SUPABASE_ANON_KEY';
+    }
+
+    const appEnv =
+      typeof env.VITE_APP_ENV === 'string' && env.VITE_APP_ENV.length > 0
+        ? String(env.VITE_APP_ENV)
+        : 'Not configured';
+
+    return { mode, env, appEnv, checks };
   }, [refreshKey]);
 
   const missingRequired = checks.filter(c => c.required && !c.present);
@@ -58,7 +73,7 @@ export default function DiagnosticsPanel() {
   const copyReport = () => {
     const report = {
       authMode: mode,
-      appEnv: env.VITE_APP_ENV ?? SAFE_DEFAULTS.VITE_APP_ENV,
+      appEnv,
       mode: env.MODE,
       prod: env.PROD,
       dev: env.DEV,
@@ -92,7 +107,7 @@ export default function DiagnosticsPanel() {
       {/* Auth mode */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <StatCell label="Auth Mode" value={mode} tone={mode === 'supabase' ? 'teal' : 'amber'} />
-        <StatCell label="App Env" value={String(env.VITE_APP_ENV ?? SAFE_DEFAULTS.VITE_APP_ENV)} tone="blue" />
+        <StatCell label="App Env" value={appEnv} tone="blue" />
         <StatCell
           label="Required Vars"
           value={`${checks.filter(c => c.required && c.present).length}/${checks.filter(c => c.required).length} OK`}
@@ -166,10 +181,11 @@ function StatCell({ label, value, tone }: { label: string; value: string; tone: 
 function descriptionFor(key: string) {
   switch (key) {
     case 'VITE_SUPABASE_URL': return 'Backend URL for Lovable Cloud';
-    case 'VITE_SUPABASE_ANON_KEY': return 'Public anon key for client SDK';
+    case 'VITE_SUPABASE_PUBLISHABLE_KEY': return 'Public publishable key for client SDK';
+    case 'VITE_SUPABASE_ANON_KEY': return 'Legacy anon key (fallback only)';
     case 'VITE_AUTH_MODE': return 'guest | supabase';
     case 'VITE_API_BASE_URL': return 'Base path for API calls';
-    case 'VITE_APP_ENV': return 'development | staging | production';
+    case 'VITE_APP_ENV': return 'Optional label: development | staging | production';
     default: return '';
   }
 }
