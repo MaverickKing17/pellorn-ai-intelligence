@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Shield, Building2, Home, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -18,14 +18,91 @@ export default function Auth() {
   const [fullName, setFullName] = useState('');
   const [industry, setIndustry] = useState<IndustryType>('financial');
   const [submitting, setSubmitting] = useState(false);
+  const [searchParams] = useSearchParams();
+  const initialRecovery =
+    searchParams.get('recovery') === '1' ||
+    (typeof window !== 'undefined' && window.location.hash.includes('type=recovery'));
+  const [recovery, setRecovery] = useState<boolean>(initialRecovery);
+  const [forgot, setForgot] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [recoveryError, setRecoveryError] = useState<string | null>(null);
+
+  // Recovery callback: listen for PASSWORD_RECOVERY and surface link errors.
+  useEffect(() => {
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const qErr = searchParams.get('error_description') || hash.get('error_description');
+    if (qErr && (initialRecovery || searchParams.get('recovery') === '1')) {
+      setRecoveryError('This reset link is invalid or has expired. Please request a new one.');
+    }
+    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        setRecovery(true);
+        setRecoveryError(null);
+      }
+    });
+    return () => sub.subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    document.title = mode === 'signin' ? 'Sign In — Pellorn' : 'Create Account — Pellorn';
-  }, [mode]);
+    document.title = recovery
+      ? 'Reset Password — Pellorn'
+      : mode === 'signin' ? 'Sign In — Pellorn' : 'Create Account — Pellorn';
+  }, [mode, recovery]);
 
   useEffect(() => {
+    // Never navigate away while the password-reset form is in use.
+    if (recovery) return;
     if (!loading && user) navigate('/', { replace: true });
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, recovery]);
+
+  const handleForgot = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+        redirectTo: `${window.location.origin}/auth?recovery=1`,
+      });
+      if (error) throw error;
+      setResetSent(true);
+      toast.success('If an account exists for that email, a reset link has been sent.');
+    } catch (err: any) {
+      toast.error(err?.message ?? 'Could not send reset email');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword.length < 8) return toast.error('Password must be at least 8 characters.');
+    if (newPassword !== confirmPassword) return toast.error('Passwords do not match.');
+    setSubmitting(true);
+    try {
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) {
+        throw new Error('Your reset link is invalid or has expired. Please request a new one.');
+      }
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      await supabase.auth.signOut();
+      setNewPassword('');
+      setConfirmPassword('');
+      setRecovery(false);
+      setMode('signin');
+      window.history.replaceState(null, '', '/auth');
+      toast.success('Password updated. Please sign in with your new password.');
+    } catch (err: any) {
+      toast.error(err?.message ?? 'Could not update password');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const inputCls =
+    'mt-1 transition-all duration-200 focus-visible:border-accent-teal focus-visible:ring-2 focus-visible:ring-accent-teal/40 focus-visible:shadow-[0_0_0_4px_hsl(var(--accent-teal)/0.12)]';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,6 +180,80 @@ export default function Auth() {
                 '0 30px 80px -30px hsl(var(--accent-teal) / 0.25), 0 0 0 1px hsl(var(--border) / 0.4) inset',
             }}
           >
+            {recovery ? (
+              <form onSubmit={handleUpdatePassword} className="space-y-4">
+                <div>
+                  <h2 className="text-base font-semibold text-foreground">Set a new password</h2>
+                  <p className="text-xs text-text-secondary mt-1">Choose a password of at least 8 characters.</p>
+                </div>
+                {recoveryError && (
+                  <p role="alert" className="text-xs text-destructive">{recoveryError}</p>
+                )}
+                <div>
+                  <Label htmlFor="newPassword" className="text-xs">New password</Label>
+                  <Input id="newPassword" type="password" autoComplete="new-password" value={newPassword}
+                    onChange={e => setNewPassword(e.target.value)} required minLength={8} className={inputCls} />
+                </div>
+                <div>
+                  <Label htmlFor="confirmPassword" className="text-xs">Confirm new password</Label>
+                  <Input id="confirmPassword" type="password" autoComplete="new-password" value={confirmPassword}
+                    onChange={e => setConfirmPassword(e.target.value)} required minLength={8} className={inputCls} />
+                </div>
+                {mode === 'signin' && (
+                <div className="flex justify-end -mt-2">
+                  <button type="button" onClick={() => { setForgot(true); setResetSent(false); }}
+                    className="text-xs font-medium text-accent-teal hover:underline">
+                    Forgot password?
+                  </button>
+                </div>
+              )}
+
+              <Button type="submit" disabled={submitting} className="w-full bg-accent-teal text-background hover:bg-accent-teal/90">
+                  {submitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  Update password
+                </Button>
+                <button type="button" onClick={() => { setRecovery(false); setRecoveryError(null); window.history.replaceState(null, '', '/auth'); }}
+                  className="w-full text-xs text-text-secondary hover:text-foreground">
+                  Back to sign in
+                </button>
+              </form>
+            ) : forgot ? (
+              <form onSubmit={handleForgot} className="space-y-4">
+                <div>
+                  <h2 className="text-base font-semibold text-foreground">Reset your password</h2>
+                  <p className="text-xs text-text-secondary mt-1">Enter your account email and we'll send you a reset link.</p>
+                </div>
+                {resetSent ? (
+                  <p role="status" className="text-xs text-accent-teal">
+                    Request accepted. If an account exists for {email}, check your inbox for a reset link.
+                  </p>
+                ) : (
+                  <>
+                    <div>
+                      <Label htmlFor="resetEmail" className="text-xs">Email</Label>
+                      <Input id="resetEmail" type="email" value={email} onChange={e => setEmail(e.target.value)} required className={inputCls} />
+                    </div>
+                    {mode === 'signin' && (
+                <div className="flex justify-end -mt-2">
+                  <button type="button" onClick={() => { setForgot(true); setResetSent(false); }}
+                    className="text-xs font-medium text-accent-teal hover:underline">
+                    Forgot password?
+                  </button>
+                </div>
+              )}
+
+              <Button type="submit" disabled={submitting} className="w-full bg-accent-teal text-background hover:bg-accent-teal/90">
+                      {submitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                      Send reset link
+                    </Button>
+                  </>
+                )}
+                <button type="button" onClick={() => { setForgot(false); setResetSent(false); }}
+                  className="w-full text-xs text-text-secondary hover:text-foreground">
+                  Back to sign in
+                </button>
+              </form>
+            ) : (<>
             <div className="flex gap-1 mb-6 p-1 bg-surface-raised/60 rounded-full">
               <button
                 onClick={() => setMode('signin')}
@@ -188,6 +339,15 @@ export default function Auth() {
                 />
               </div>
 
+              {mode === 'signin' && (
+                <div className="flex justify-end -mt-2">
+                  <button type="button" onClick={() => { setForgot(true); setResetSent(false); }}
+                    className="text-xs font-medium text-accent-teal hover:underline">
+                    Forgot password?
+                  </button>
+                </div>
+              )}
+
               <Button type="submit" disabled={submitting} className="w-full bg-accent-teal text-background hover:bg-accent-teal/90 shadow-[0_8px_24px_-8px_hsl(var(--accent-teal)/0.6)]">
                 {submitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                 {mode === 'signin' ? 'Sign In' : 'Create Account'}
@@ -206,6 +366,7 @@ export default function Auth() {
             >
               Try Demo — Instant Guest Access
             </Button>
+            </>)}
           </div>
         </div>
 
