@@ -4,6 +4,7 @@ import { Shield, Building2, Home, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { PasswordInput } from '@/components/ui/password-input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { useAuth } from '@/hooks/useAuth';
@@ -191,12 +192,12 @@ export default function Auth() {
                 )}
                 <div>
                   <Label htmlFor="newPassword" className="text-xs">New password</Label>
-                  <Input id="newPassword" type="password" autoComplete="new-password" value={newPassword}
+                  <PasswordInput id="newPassword" autoComplete="new-password" value={newPassword}
                     onChange={e => setNewPassword(e.target.value)} required minLength={8} className={inputCls} />
                 </div>
                 <div>
                   <Label htmlFor="confirmPassword" className="text-xs">Confirm new password</Label>
-                  <Input id="confirmPassword" type="password" autoComplete="new-password" value={confirmPassword}
+                  <PasswordInput id="confirmPassword" autoComplete="new-password" value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)} required minLength={8} className={inputCls} />
                 </div>
                 {mode === 'signin' && (
@@ -328,9 +329,8 @@ export default function Auth() {
               </div>
               <div>
                 <Label htmlFor="password" className="text-xs">Password</Label>
-                <Input
+                <PasswordInput
                   id="password"
-                  type="password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required
